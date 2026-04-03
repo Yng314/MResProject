@@ -1,0 +1,119 @@
+2026-02-02 20:52:31,394 - __main__ - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\logs\noise_validation_20260202_205231.log
+2026-02-02 20:52:31,394 - __main__ - INFO - 
+============================================================
+2026-02-02 20:52:31,394 - __main__ - INFO - NOISE RATE VALIDATION - START
+2026-02-02 20:52:31,394 - __main__ - INFO - ============================================================
+
+2026-02-02 20:52:31,394 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,395 - __main__ - INFO - STEP 1: Load and Preprocess Data
+2026-02-02 20:52:31,395 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,395 - __main__ - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-02 20:52:31,402 - __main__ - INFO - Loaded 1029 samples
+2026-02-02 20:52:31,402 - __main__ - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-02 20:52:31,404 - __main__ - INFO - Final dataset: 676 samples
+
+2026-02-02 20:52:31,404 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,404 - __main__ - INFO - STEP 2: Prepare GT Labels
+2026-02-02 20:52:31,404 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,404 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-02 20:52:31,404 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-02 20:52:31,409 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-02 20:52:31,439 - __main__ - INFO - 
+GT Label Statistics:
+2026-02-02 20:52:31,439 - __main__ - INFO -   gt_Atelectasis: 189 positive (28.0%)
+2026-02-02 20:52:31,439 - __main__ - INFO -   gt_Cardiomegaly: 146 positive (21.6%)
+2026-02-02 20:52:31,439 - __main__ - INFO -   gt_Consolidation: 51 positive (7.5%)
+2026-02-02 20:52:31,440 - __main__ - INFO -   gt_Edema: 141 positive (20.9%)
+2026-02-02 20:52:31,440 - __main__ - INFO -   gt_Enlarged Cardiomediastinum: 39 positive (5.8%)
+2026-02-02 20:52:31,440 - __main__ - INFO -   gt_Fracture: 41 positive (6.1%)
+2026-02-02 20:52:31,440 - __main__ - INFO -   gt_Lung Lesion: 47 positive (7.0%)
+2026-02-02 20:52:31,441 - __main__ - INFO -   gt_Lung Opacity: 167 positive (24.7%)
+2026-02-02 20:52:31,441 - __main__ - INFO -   gt_Pleural Effusion: 260 positive (38.5%)
+2026-02-02 20:52:31,441 - __main__ - INFO -   gt_Pleural Other: 28 positive (4.1%)
+2026-02-02 20:52:31,441 - __main__ - INFO -   gt_Pneumonia: 52 positive (7.7%)
+2026-02-02 20:52:31,441 - __main__ - INFO -   gt_Pneumothorax: 34 positive (5.0%)
+2026-02-02 20:52:31,441 - __main__ - INFO - 
+2026-02-02 20:52:31,441 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,441 - __main__ - INFO - STEP 2: Prepare PSEUDO Labels
+2026-02-02 20:52:31,441 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,441 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-02 20:52:31,441 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-02 20:52:31,445 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-02 20:52:31,478 - __main__ - INFO - 
+PSEUDO Label Statistics:
+2026-02-02 20:52:31,478 - __main__ - INFO -   Atelectasis: 188 positive (27.8%)
+2026-02-02 20:52:31,479 - __main__ - INFO -   Cardiomegaly: 176 positive (26.0%)
+2026-02-02 20:52:31,479 - __main__ - INFO -   Consolidation: 62 positive (9.2%)
+2026-02-02 20:52:31,479 - __main__ - INFO -   Edema: 140 positive (20.7%)
+2026-02-02 20:52:31,480 - __main__ - INFO -   Enlarged Cardiomediastinum: 50 positive (7.4%)
+2026-02-02 20:52:31,480 - __main__ - INFO -   Fracture: 51 positive (7.5%)
+2026-02-02 20:52:31,480 - __main__ - INFO -   Lung Lesion: 51 positive (7.5%)
+2026-02-02 20:52:31,480 - __main__ - INFO -   Lung Opacity: 214 positive (31.7%)
+2026-02-02 20:52:31,480 - __main__ - INFO -   Pleural Effusion: 246 positive (36.4%)
+2026-02-02 20:52:31,481 - __main__ - INFO -   Pleural Other: 35 positive (5.2%)
+2026-02-02 20:52:31,481 - __main__ - INFO -   Pneumonia: 77 positive (11.4%)
+2026-02-02 20:52:31,481 - __main__ - INFO -   Pneumothorax: 52 positive (7.7%)
+2026-02-02 20:52:31,481 - __main__ - INFO - 
+2026-02-02 20:52:31,481 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,481 - __main__ - INFO - STEP 3: Model Inference
+2026-02-02 20:52:31,481 - __main__ - INFO - ============================================================
+2026-02-02 20:52:31,501 - __main__ - INFO - Using device: cuda
+2026-02-02 20:52:32,036 - __main__ - INFO - Creating dataloader: batch_size=16, num_workers=0
+2026-02-02 20:52:34,294 - __main__ - INFO - 
+2026-02-02 20:52:34,295 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,295 - __main__ - INFO - STEP 4: Cleanlab Analysis (GT labels)
+2026-02-02 20:52:34,295 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,295 - __main__ - INFO - Validating cleanlab format...
+2026-02-02 20:52:34,296 - __main__ - INFO - 
+Running cleanlab.multilabel_classification.rank for multi-label...
+2026-02-02 20:52:34,299 - __main__ - INFO - 
+Cleanlab analysis complete!
+2026-02-02 20:52:34,299 - __main__ - INFO -   Total samples: 676
+2026-02-02 20:52:34,300 - __main__ - INFO -   Quality score threshold: 0.2810
+2026-02-02 20:52:34,300 - __main__ - INFO -   Label issues detected: 56 (8.28%)
+2026-02-02 20:52:34,300 - __main__ - INFO - 
+  Top 5 samples with label issues (lowest quality scores):
+2026-02-02 20:52:34,300 - __main__ - INFO -     Sample 47: labels=[0, 8], score=0.2716
+2026-02-02 20:52:34,300 - __main__ - INFO -     Sample 335: labels=[3], score=0.2719
+2026-02-02 20:52:34,300 - __main__ - INFO -     Sample 59: labels=[], score=0.2729
+2026-02-02 20:52:34,300 - __main__ - INFO -     Sample 657: labels=[7], score=0.2731
+2026-02-02 20:52:34,300 - __main__ - INFO -     Sample 652: labels=[3], score=0.2732
+2026-02-02 20:52:34,300 - __main__ - INFO - 
+2026-02-02 20:52:34,300 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,300 - __main__ - INFO - STEP 4: Cleanlab Analysis (PSEUDO labels)
+2026-02-02 20:52:34,301 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,301 - __main__ - INFO - Validating cleanlab format...
+2026-02-02 20:52:34,302 - __main__ - INFO - 
+Running cleanlab.multilabel_classification.rank for multi-label...
+2026-02-02 20:52:34,305 - __main__ - INFO - 
+Cleanlab analysis complete!
+2026-02-02 20:52:34,305 - __main__ - INFO -   Total samples: 676
+2026-02-02 20:52:34,305 - __main__ - INFO -   Quality score threshold: 0.2813
+2026-02-02 20:52:34,305 - __main__ - INFO -   Label issues detected: 59 (8.73%)
+2026-02-02 20:52:34,305 - __main__ - INFO - 
+  Top 5 samples with label issues (lowest quality scores):
+2026-02-02 20:52:34,305 - __main__ - INFO -     Sample 335: labels=[3], score=0.2719
+2026-02-02 20:52:34,305 - __main__ - INFO -     Sample 651: labels=[], score=0.2723
+2026-02-02 20:52:34,306 - __main__ - INFO -     Sample 652: labels=[], score=0.2724
+2026-02-02 20:52:34,306 - __main__ - INFO -     Sample 47: labels=[0, 7, 8], score=0.2724
+2026-02-02 20:52:34,306 - __main__ - INFO -     Sample 59: labels=[1, 11], score=0.2730
+2026-02-02 20:52:34,306 - __main__ - INFO - 
+2026-02-02 20:52:34,306 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,306 - __main__ - INFO - STEP 5: Compare Results
+2026-02-02 20:52:34,306 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,308 - __main__ - INFO -   GT labels:     8.28% (56/676)
+2026-02-02 20:52:34,308 - __main__ - INFO -   Pseudo labels: 8.73% (59/676)
+2026-02-02 20:52:34,308 - __main__ - INFO - 
+  Difference: 0.44% (Pseudo - GT)
+2026-02-02 20:52:34,309 - __main__ - INFO - 
+2026-02-02 20:52:34,309 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,309 - __main__ - INFO - STEP 6: Save Results
+2026-02-02 20:52:34,309 - __main__ - INFO - ============================================================
+2026-02-02 20:52:34,311 - __main__ - INFO - Summary saved to: d:\workspace\MRes\NoiseRate\results\noise_validation_summary_20260202_205234.txt
+2026-02-02 20:52:34,314 - __main__ - INFO - Detailed results saved to: noise_validation_details_20260202_205234.npz
+2026-02-02 20:52:34,314 - __main__ - INFO - 
+2026-02-02 20:52:34,314 - __main__ - INFO - 
+============================================================
+2026-02-02 20:52:34,314 - __main__ - INFO - NOISE RATE VALIDATION - COMPLETE
+2026-02-02 20:52:34,314 - __main__ - INFO - ============================================================
+

@@ -1,0 +1,107 @@
+# Unified Noise Rate Configuration
+# This file consolidates configurations for validate_torchxray.py and train_validate_kfold.py
+
+# ==========================================
+# 1. Common Settings (Shared across all)
+# ==========================================
+common:
+  data:
+    gt_metadata_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv"
+    gt_image_base_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt"
+    allowed_view_positions: ['AP', 'PA']
+  
+  preprocessing:
+    uncertain_strategy: "u_ones"  # u_zeros, u_ones, or u_ignore
+    image_size: 224
+    
+  logging:
+    log_dir: "d:/workspace/MRes/NoiseRate/logs"
+
+# ==========================================
+# 2. TorchXRayVision Settings (Validation)
+# ==========================================
+torchxray:
+  model:
+    name: "densenet121-res224-all"
+    device: "auto"
+    
+  inference:
+    batch_size: 16
+    num_workers: 0  # Windows multiprocessing issue
+    
+  cleanlab:
+    return_indices_ranked_by: "self_confidence"
+    
+  output:
+    results_dir: "d:/workspace/MRes/NoiseRate/results"
+
+# ==========================================
+# 3. K-Fold Training Settings
+# ==========================================
+kfold:
+  # Shared settings for both GT and Pseudo training
+  common:
+    kfold_settings:
+      n_splits: 5
+      random_state: 42
+      shuffle: true
+      
+    model:
+      name: "LightweightCNN"
+      num_classes: 12
+      input_channels: 1
+      dropout: 0.5
+      
+    training:
+      batch_size: 32
+      num_workers: 0  # Windows multiprocessing issue
+      epochs_per_fold: 20
+      learning_rate: 0.001
+      weight_decay: 0.0001
+      
+      early_stopping:
+        patience: 5
+        min_delta: 0.001
+        
+      scheduler:
+        type: "CosineAnnealingLR"
+        T_max: 20
+        eta_min: 0.00001
+        
+    augmentation:
+      train:
+        horizontal_flip: 0.5
+        rotation_degrees: 10
+        translate: [0.1, 0.1]
+        brightness: 0.1
+        contrast: 0.1
+      val:
+        enabled: false
+        
+    preprocessing:
+      normalize_mean: [0.5]
+      normalize_std: [0.5]
+      
+    loss:
+      type: "BCEWithLogitsLoss"
+      pos_weight: null
+
+  # GT-specific settings
+  gt:
+    data:
+      use_pseudo_labels: false
+    output:
+      results_dir: "d:/workspace/MRes/NoiseRate/kfold_results"
+      models_dir: "d:/workspace/MRes/NoiseRate/kfold_results/models"
+      logs_dir: "d:/workspace/MRes/NoiseRate/kfold_results/logs"
+      oof_predictions_file: "oof_predictions.npy"
+
+  # Pseudo-specific settings
+  pseudo:
+    data:
+      use_pseudo_labels: true
+    output:
+      results_dir: "d:/workspace/MRes/NoiseRate/kfold_results_pseudo"
+      models_dir: "d:/workspace/MRes/NoiseRate/kfold_results_pseudo/models"
+      logs_dir: "d:/workspace/MRes/NoiseRate/kfold_results_pseudo/logs"
+      oof_predictions_file: "oof_predictions_pseudo.npy"

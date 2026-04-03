@@ -1,0 +1,28 @@
+# Local tooling and environments
+.agent/
+.conda/
+MedSoul/
+
+# Data and generated training artifacts
+datasets/
+**/outputs/
+**/results/
+**/results_*/
+**/cache/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.dll
+*.so
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,70 @@
+# K-Fold Training Configuration
+
+# Data paths
+data:
+  gt_metadata_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv"
+  gt_image_base_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt"
+  allowed_view_positions: ['AP', 'PA']
+
+# K-fold settings
+kfold:
+  n_splits: 5
+  random_state: 42
+  shuffle: true
+
+# Model settings
+model:
+  name: "LightweightCNN"
+  num_classes: 12
+  input_channels: 1
+  dropout: 0.5
+
+# Training settings
+training:
+  batch_size: 32
+  num_workers: 0  # Windows multiprocessing issue
+  epochs_per_fold: 20
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  
+  # Early stopping
+  patience: 5
+  min_delta: 0.001
+  
+  # Learning rate scheduler
+  scheduler:
+    type: "CosineAnnealingLR"
+    T_max: 20
+    eta_min: 0.00001
+
+# Data augmentation
+augmentation:
+  train:
+    horizontal_flip: 0.5
+    rotation_degrees: 10
+    translate: [0.1, 0.1]
+    brightness: 0.1
+    contrast: 0.1
+  
+  val:
+    # No augmentation for validation
+    enabled: false
+
+# Image preprocessing
+preprocessing:
+  image_size: 224
+  normalize_mean: [0.5]
+  normalize_std: [0.5]
+  uncertain_strategy: "u_zeros"
+
+# Output paths
+output:
+  results_dir: "d:/workspace/MRes/NoiseRate/kfold_results"
+  models_dir: "d:/workspace/MRes/NoiseRate/kfold_results/models"
+  logs_dir: "d:/workspace/MRes/NoiseRate/kfold_results/logs"
+  oof_predictions_file: "oof_predictions.npy"
+
+# Loss function
+loss:
+  type: "BCEWithLogitsLoss"
+  pos_weight: null  # Will be computed from data if null

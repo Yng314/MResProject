@@ -1,0 +1,147 @@
+2026-02-04 23:12:48,493 - __main__ - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\logs\noise_validation_20260204_231248.log
+2026-02-04 23:12:48,493 - __main__ - INFO - 
+============================================================
+2026-02-04 23:12:48,493 - __main__ - INFO - NOISE RATE VALIDATION - START
+2026-02-04 23:12:48,495 - __main__ - INFO - ============================================================
+
+2026-02-04 23:12:48,495 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,495 - __main__ - INFO - STEP 1: Load and Preprocess Data
+2026-02-04 23:12:48,495 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,495 - __main__ - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-04 23:12:48,503 - __main__ - INFO - Loaded 1029 samples
+2026-02-04 23:12:48,504 - __main__ - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-04 23:12:48,505 - __main__ - INFO - Final dataset: 676 samples
+
+2026-02-04 23:12:48,505 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,505 - __main__ - INFO - STEP 2: Prepare GT Labels
+2026-02-04 23:12:48,506 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,506 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-04 23:12:48,506 - __main__ - INFO - Applying uncertain label strategy: u_ones
+2026-02-04 23:12:48,509 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-04 23:12:48,534 - __main__ - INFO - GT Label Statistics (Total Samples: 676):
+2026-02-04 23:12:48,534 - __main__ - INFO - Pathology                      Positive   Negative   Pos Rate  
+2026-02-04 23:12:48,534 - __main__ - INFO - -----------------------------------------------------------------
+2026-02-04 23:12:48,535 - __main__ - INFO - gt_Atelectasis                 232        444             34.3%
+2026-02-04 23:12:48,535 - __main__ - INFO - gt_Cardiomegaly                185        491             27.4%
+2026-02-04 23:12:48,536 - __main__ - INFO - gt_Consolidation               77         599             11.4%
+2026-02-04 23:12:48,536 - __main__ - INFO - gt_Edema                       184        492             27.2%
+2026-02-04 23:12:48,537 - __main__ - INFO - gt_Enlarged Cardiomediastinum  70         606             10.4%
+2026-02-04 23:12:48,537 - __main__ - INFO - gt_Fracture                    43         633              6.4%
+2026-02-04 23:12:48,537 - __main__ - INFO - gt_Lung Lesion                 56         620              8.3%
+2026-02-04 23:12:48,537 - __main__ - INFO - gt_Lung Opacity                167        509             24.7%
+2026-02-04 23:12:48,537 - __main__ - INFO - gt_Pleural Effusion            283        393             41.9%
+2026-02-04 23:12:48,539 - __main__ - INFO - gt_Pleural Other               28         648              4.1%
+2026-02-04 23:12:48,539 - __main__ - INFO - gt_Pneumonia                   143        533             21.2%
+2026-02-04 23:12:48,539 - __main__ - INFO - gt_Pneumothorax                45         631              6.7%
+2026-02-04 23:12:48,539 - __main__ - INFO - 
+2026-02-04 23:12:48,539 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,539 - __main__ - INFO - STEP 2: Prepare PSEUDO Labels
+2026-02-04 23:12:48,539 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,540 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-04 23:12:48,540 - __main__ - INFO - Applying uncertain label strategy: u_ones
+2026-02-04 23:12:48,543 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-04 23:12:48,569 - __main__ - INFO - PSEUDO Label Statistics (Total Samples: 676):
+2026-02-04 23:12:48,570 - __main__ - INFO - Pathology                      Positive   Negative   Pos Rate  
+2026-02-04 23:12:48,570 - __main__ - INFO - -----------------------------------------------------------------
+2026-02-04 23:12:48,570 - __main__ - INFO - Atelectasis                    227        449             33.6%
+2026-02-04 23:12:48,571 - __main__ - INFO - Cardiomegaly                   189        487             28.0%
+2026-02-04 23:12:48,571 - __main__ - INFO - Consolidation                  74         602             10.9%
+2026-02-04 23:12:48,571 - __main__ - INFO - Edema                          191        485             28.3%
+2026-02-04 23:12:48,571 - __main__ - INFO - Enlarged Cardiomediastinum     73         603             10.8%
+2026-02-04 23:12:48,571 - __main__ - INFO - Fracture                       51         625              7.5%
+2026-02-04 23:12:48,572 - __main__ - INFO - Lung Lesion                    54         622              8.0%
+2026-02-04 23:12:48,572 - __main__ - INFO - Lung Opacity                   230        446             34.0%
+2026-02-04 23:12:48,572 - __main__ - INFO - Pleural Effusion               273        403             40.4%
+2026-02-04 23:12:48,572 - __main__ - INFO - Pleural Other                  42         634              6.2%
+2026-02-04 23:12:48,573 - __main__ - INFO - Pneumonia                      165        511             24.4%
+2026-02-04 23:12:48,573 - __main__ - INFO - Pneumothorax                   56         620              8.3%
+2026-02-04 23:12:48,574 - __main__ - INFO - 
+2026-02-04 23:12:48,574 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,574 - __main__ - INFO - STEP 3: Model Inference
+2026-02-04 23:12:48,574 - __main__ - INFO - ============================================================
+2026-02-04 23:12:48,593 - __main__ - INFO - Using device: cuda
+2026-02-04 23:12:49,085 - __main__ - INFO - Creating dataloader: batch_size=16, num_workers=0
+2026-02-04 23:12:51,147 - __main__ - INFO - 
+2026-02-04 23:12:51,153 - __main__ - INFO - 
+Calculating AUROC...
+2026-02-04 23:12:51,168 - __main__ - INFO - 
+============================================================
+2026-02-04 23:12:51,168 - __main__ - INFO - PER-CLASS NOISE ANALYSIS
+2026-02-04 23:12:51,168 - __main__ - INFO - ============================================================
+
+2026-02-04 23:12:51,168 - __main__ - INFO - ============================================================
+2026-02-04 23:12:51,168 - __main__ - INFO - Per-Class Noise Analysis (GT labels)
+2026-02-04 23:12:51,169 - __main__ - INFO - ============================================================
+2026-02-04 23:12:51,169 - __main__ - INFO - 
+Analyzing 12 pathology classes individually...
+2026-02-04 23:14:12,691 - __main__ - INFO - 
+Per-class noise rates:
+2026-02-04 23:14:12,691 - __main__ - INFO - Pathology                      Positive Negative  Issues    Rate
+2026-02-04 23:14:12,691 - __main__ - INFO - ----------------------------------------------------------------------
+2026-02-04 23:14:12,691 - __main__ - INFO - Atelectasis                         232      444     230   34.0%
+2026-02-04 23:14:12,691 - __main__ - INFO - Cardiomegaly                        185      491     183   27.1%
+2026-02-04 23:14:12,692 - __main__ - INFO - Consolidation                        77      599     271   40.1%
+2026-02-04 23:14:12,692 - __main__ - INFO - Edema                               184      492     110   16.3%
+2026-02-04 23:14:12,692 - __main__ - INFO - Enlarged Cardiomediastinum           70      606     233   34.5%
+2026-02-04 23:14:12,692 - __main__ - INFO - Fracture                             43      633     314   46.4%
+2026-02-04 23:14:12,692 - __main__ - INFO - Lung Lesion                          56      620     288   42.6%
+2026-02-04 23:14:12,692 - __main__ - INFO - Lung Opacity                        167      509     275   40.7%
+2026-02-04 23:14:12,692 - __main__ - INFO - Pleural Effusion                    283      393     121   17.9%
+2026-02-04 23:14:12,692 - __main__ - INFO - Pleural Other                        28      648     331   49.0%
+2026-02-04 23:14:12,692 - __main__ - INFO - Pneumonia                           143      533     208   30.8%
+2026-02-04 23:14:12,692 - __main__ - INFO - Pneumothorax                         45      631     410   60.7%
+2026-02-04 23:14:12,692 - __main__ - INFO - 
+2026-02-04 23:14:12,692 - __main__ - INFO - ============================================================
+2026-02-04 23:14:12,692 - __main__ - INFO - Per-Class Noise Analysis (PSEUDO labels)
+2026-02-04 23:14:12,693 - __main__ - INFO - ============================================================
+2026-02-04 23:14:12,693 - __main__ - INFO - 
+Analyzing 12 pathology classes individually...
+2026-02-04 23:15:34,066 - __main__ - INFO - 
+Per-class noise rates:
+2026-02-04 23:15:34,066 - __main__ - INFO - Pathology                      Positive Negative  Issues    Rate
+2026-02-04 23:15:34,066 - __main__ - INFO - ----------------------------------------------------------------------
+2026-02-04 23:15:34,066 - __main__ - INFO - Atelectasis                         227      449     234   34.6%
+2026-02-04 23:15:34,066 - __main__ - INFO - Cardiomegaly                        189      487     196   29.0%
+2026-02-04 23:15:34,067 - __main__ - INFO - Consolidation                        74      602     278   41.1%
+2026-02-04 23:15:34,067 - __main__ - INFO - Edema                               191      485     113   16.7%
+2026-02-04 23:15:34,067 - __main__ - INFO - Enlarged Cardiomediastinum           73      603     253   37.4%
+2026-02-04 23:15:34,067 - __main__ - INFO - Fracture                             51      625     317   46.9%
+2026-02-04 23:15:34,067 - __main__ - INFO - Lung Lesion                          54      622     297   43.9%
+2026-02-04 23:15:34,067 - __main__ - INFO - Lung Opacity                        230      446     234   34.6%
+2026-02-04 23:15:34,067 - __main__ - INFO - Pleural Effusion                    273      403     125   18.5%
+2026-02-04 23:15:34,067 - __main__ - INFO - Pleural Other                        42      634     317   46.9%
+2026-02-04 23:15:34,067 - __main__ - INFO - Pneumonia                           165      511     231   34.2%
+2026-02-04 23:15:34,067 - __main__ - INFO - Pneumothorax                         56      620     385   57.0%
+2026-02-04 23:15:34,067 - __main__ - INFO - 
+2026-02-04 23:15:34,069 - __main__ - INFO - 
+============================================================
+2026-02-04 23:15:34,069 - __main__ - INFO - Per-Class Noise Rate Comparison
+2026-02-04 23:15:34,069 - __main__ - INFO - ============================================================
+2026-02-04 23:15:34,069 - __main__ - INFO - 
+Pathology                         GT Rate  Pseudo Rate     Diff
+2026-02-04 23:15:34,069 - __main__ - INFO - ----------------------------------------------------------------------
+2026-02-04 23:15:34,069 - __main__ - INFO - Atelectasis                         34.0%        34.6%    +0.6%
+2026-02-04 23:15:34,069 - __main__ - INFO - Cardiomegaly                        27.1%        29.0%    +1.9%
+2026-02-04 23:15:34,069 - __main__ - INFO - Consolidation                       40.1%        41.1%    +1.0%
+2026-02-04 23:15:34,069 - __main__ - INFO - Edema                               16.3%        16.7%    +0.4%
+2026-02-04 23:15:34,069 - __main__ - INFO - Enlarged Cardiomediastinum          34.5%        37.4%    +3.0%
+2026-02-04 23:15:34,070 - __main__ - INFO - Fracture                            46.4%        46.9%    +0.4%
+2026-02-04 23:15:34,070 - __main__ - INFO - Lung Lesion                         42.6%        43.9%    +1.3%
+2026-02-04 23:15:34,070 - __main__ - INFO - Lung Opacity                        40.7%        34.6%    -6.1%
+2026-02-04 23:15:34,070 - __main__ - INFO - Pleural Effusion                    17.9%        18.5%    +0.6%
+2026-02-04 23:15:34,070 - __main__ - INFO - Pleural Other                       49.0%        46.9%    -2.1%
+2026-02-04 23:15:34,070 - __main__ - INFO - Pneumonia                           30.8%        34.2%    +3.4%
+2026-02-04 23:15:34,070 - __main__ - INFO - Pneumothorax                        60.7%        57.0%    -3.7%
+2026-02-04 23:15:34,070 - __main__ - INFO - 
+2026-02-04 23:15:34,070 - __main__ - INFO - ============================================================
+2026-02-04 23:15:34,071 - __main__ - INFO - Saving Results
+2026-02-04 23:15:34,071 - __main__ - INFO - ============================================================
+2026-02-04 23:15:34,074 - __main__ - INFO - Issue IDs saved to: d:\workspace\MRes\NoiseRate\results\issues_20260204_231534.txt
+2026-02-04 23:15:34,076 - __main__ - INFO - Per-class results saved to: d:\workspace\MRes\NoiseRate\results\perclass_noise_rates_20260204_231534.csv
+2026-02-04 23:15:34,079 - __main__ - INFO - Detailed data saved to: d:\workspace\MRes\NoiseRate\results\noise_analysis_20260204_231534.npz
+2026-02-04 23:15:34,079 - __main__ - INFO - 
+2026-02-04 23:15:34,079 - __main__ - INFO - 
+============================================================
+2026-02-04 23:15:34,079 - __main__ - INFO - NOISE RATE VALIDATION - COMPLETE
+2026-02-04 23:15:34,079 - __main__ - INFO - ============================================================
+

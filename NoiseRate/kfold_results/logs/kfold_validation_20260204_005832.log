@@ -1,0 +1,167 @@
+2026-02-04 00:58:32,155 - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\kfold_results\logs\kfold_validation_20260204_005832.log
+2026-02-04 00:58:32,155 - INFO - 
+============================================================
+2026-02-04 00:58:32,155 - INFO - K-FOLD NOISE RATE VALIDATION - START
+2026-02-04 00:58:32,156 - INFO - ============================================================
+
+2026-02-04 00:58:32,156 - INFO - ============================================================
+2026-02-04 00:58:32,156 - INFO - STEP 1: Load and Preprocess Data
+2026-02-04 00:58:32,156 - INFO - ============================================================
+2026-02-04 00:58:32,156 - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-04 00:58:32,164 - INFO - Loaded 1029 samples
+2026-02-04 00:58:32,164 - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-04 00:58:32,165 - INFO - Final dataset: 676 samples
+
+2026-02-04 00:58:32,165 - INFO - ============================================================
+2026-02-04 00:58:32,165 - INFO - STEP 2: Prepare GT Labels
+2026-02-04 00:58:32,165 - INFO - ============================================================
+2026-02-04 00:58:32,165 - INFO - Available pathology columns: 12/12
+2026-02-04 00:58:32,165 - INFO - Applying uncertain label strategy: u_zeros
+2026-02-04 00:58:32,169 - INFO - Converting to cleanlab multi-label format...
+2026-02-04 00:58:32,192 - INFO - 
+GT Label Statistics:
+2026-02-04 00:58:32,192 - INFO -   gt_Atelectasis: 189 positive (28.0%)
+2026-02-04 00:58:32,193 - INFO -   gt_Cardiomegaly: 146 positive (21.6%)
+2026-02-04 00:58:32,193 - INFO -   gt_Consolidation: 51 positive (7.5%)
+2026-02-04 00:58:32,193 - INFO -   gt_Edema: 141 positive (20.9%)
+2026-02-04 00:58:32,193 - INFO -   gt_Enlarged Cardiomediastinum: 39 positive (5.8%)
+2026-02-04 00:58:32,193 - INFO -   gt_Fracture: 41 positive (6.1%)
+2026-02-04 00:58:32,193 - INFO -   gt_Lung Lesion: 47 positive (7.0%)
+2026-02-04 00:58:32,193 - INFO -   gt_Lung Opacity: 167 positive (24.7%)
+2026-02-04 00:58:32,193 - INFO -   gt_Pleural Effusion: 260 positive (38.5%)
+2026-02-04 00:58:32,194 - INFO -   gt_Pleural Other: 28 positive (4.1%)
+2026-02-04 00:58:32,194 - INFO -   gt_Pneumonia: 52 positive (7.7%)
+2026-02-04 00:58:32,194 - INFO -   gt_Pneumothorax: 34 positive (5.0%)
+2026-02-04 00:58:32,194 - INFO - 
+2026-02-04 00:58:32,194 - INFO - ============================================================
+2026-02-04 00:58:32,194 - INFO - STEP 2: Prepare PSEUDO Labels
+2026-02-04 00:58:32,194 - INFO - ============================================================
+2026-02-04 00:58:32,194 - INFO - Available pathology columns: 12/12
+2026-02-04 00:58:32,195 - INFO - Applying uncertain label strategy: u_zeros
+2026-02-04 00:58:32,198 - INFO - Converting to cleanlab multi-label format...
+2026-02-04 00:58:32,222 - INFO - 
+PSEUDO Label Statistics:
+2026-02-04 00:58:32,222 - INFO -   Atelectasis: 188 positive (27.8%)
+2026-02-04 00:58:32,223 - INFO -   Cardiomegaly: 176 positive (26.0%)
+2026-02-04 00:58:32,223 - INFO -   Consolidation: 62 positive (9.2%)
+2026-02-04 00:58:32,223 - INFO -   Edema: 140 positive (20.7%)
+2026-02-04 00:58:32,223 - INFO -   Enlarged Cardiomediastinum: 50 positive (7.4%)
+2026-02-04 00:58:32,223 - INFO -   Fracture: 51 positive (7.5%)
+2026-02-04 00:58:32,223 - INFO -   Lung Lesion: 51 positive (7.5%)
+2026-02-04 00:58:32,223 - INFO -   Lung Opacity: 214 positive (31.7%)
+2026-02-04 00:58:32,225 - INFO -   Pleural Effusion: 246 positive (36.4%)
+2026-02-04 00:58:32,225 - INFO -   Pleural Other: 35 positive (5.2%)
+2026-02-04 00:58:32,225 - INFO -   Pneumonia: 77 positive (11.4%)
+2026-02-04 00:58:32,225 - INFO -   Pneumothorax: 52 positive (7.7%)
+2026-02-04 00:58:32,225 - INFO - 
+2026-02-04 00:58:32,225 - INFO - Loading OOF predictions from: d:\workspace\MRes\NoiseRate\kfold_results\oof_predictions.npy
+2026-02-04 00:58:32,226 - INFO - OOF predictions shape: (676, 12)
+
+2026-02-04 00:58:32,226 - INFO - ============================================================
+2026-02-04 00:58:32,226 - INFO - STEP 3: Cleanlab Analysis (GT labels)
+2026-02-04 00:58:32,226 - INFO - ============================================================
+2026-02-04 00:58:32,226 - INFO - Validating cleanlab format...
+2026-02-04 00:58:32,226 - INFO - 
+Running cleanlab.multilabel_classification.rank for multi-label...
+2026-02-04 00:58:32,229 - INFO - 
+Cleanlab analysis complete!
+2026-02-04 00:58:32,229 - INFO -   Total samples: 676
+2026-02-04 00:58:32,230 - INFO -   Quality score threshold: 0.2897
+2026-02-04 00:58:32,230 - INFO -   Label issues detected: 128 (18.93%)
+2026-02-04 00:58:32,230 - INFO - 
+2026-02-04 00:58:32,230 - INFO - ============================================================
+2026-02-04 00:58:32,230 - INFO - STEP 3: Cleanlab Analysis (PSEUDO labels)
+2026-02-04 00:58:32,230 - INFO - ============================================================
+2026-02-04 00:58:32,230 - INFO - Validating cleanlab format...
+2026-02-04 00:58:32,231 - INFO - 
+Running cleanlab.multilabel_classification.rank for multi-label...
+2026-02-04 00:58:32,233 - INFO - 
+Cleanlab analysis complete!
+2026-02-04 00:58:32,233 - INFO -   Total samples: 676
+2026-02-04 00:58:32,233 - INFO -   Quality score threshold: 0.2878
+2026-02-04 00:58:32,233 - INFO -   Label issues detected: 128 (18.93%)
+2026-02-04 00:58:32,233 - INFO - 
+2026-02-04 00:58:32,233 - INFO - ============================================================
+2026-02-04 00:58:32,233 - INFO - Per-Class Noise Analysis (GT labels)
+2026-02-04 00:58:32,233 - INFO - ============================================================
+2026-02-04 00:58:32,233 - INFO - 
+Analyzing 12 pathology classes individually...
+2026-02-04 00:59:59,346 - INFO - 
+Per-class noise rates:
+2026-02-04 00:59:59,346 - INFO - Pathology                      Positive Negative  Issues     Rate
+2026-02-04 00:59:59,347 - INFO - ----------------------------------------------------------------------
+2026-02-04 00:59:59,347 - INFO - Atelectasis                         189      487    291    43.0%
+2026-02-04 00:59:59,347 - INFO - Cardiomegaly                        146      530    299    44.2%
+2026-02-04 00:59:59,347 - INFO - Consolidation                        51      625    270    39.9%
+2026-02-04 00:59:59,347 - INFO - Edema                               141      535    263    38.9%
+2026-02-04 00:59:59,347 - INFO - Enlarged Cardiomediastinum           39      637    252    37.3%
+2026-02-04 00:59:59,347 - INFO - Fracture                             41      635    217    32.1%
+2026-02-04 00:59:59,347 - INFO - Lung Lesion                          47      629    285    42.2%
+2026-02-04 00:59:59,348 - INFO - Lung Opacity                        167      509    273    40.4%
+2026-02-04 00:59:59,348 - INFO - Pleural Effusion                    260      416    297    43.9%
+2026-02-04 00:59:59,348 - INFO - Pleural Other                        28      648    214    31.7%
+2026-02-04 00:59:59,348 - INFO - Pneumonia                            52      624    268    39.6%
+2026-02-04 00:59:59,348 - INFO - Pneumothorax                         34      642    181    26.8%
+2026-02-04 00:59:59,348 - INFO - 
+2026-02-04 00:59:59,348 - INFO - ============================================================
+2026-02-04 00:59:59,348 - INFO - Per-Class Noise Analysis (PSEUDO labels)
+2026-02-04 00:59:59,348 - INFO - ============================================================
+2026-02-04 00:59:59,348 - INFO - 
+Analyzing 12 pathology classes individually...
+2026-02-04 01:01:28,845 - INFO - 
+Per-class noise rates:
+2026-02-04 01:01:28,845 - INFO - Pathology                      Positive Negative  Issues     Rate
+2026-02-04 01:01:28,845 - INFO - ----------------------------------------------------------------------
+2026-02-04 01:01:28,845 - INFO - Atelectasis                         188      488    294    43.5%
+2026-02-04 01:01:28,845 - INFO - Cardiomegaly                        176      500    299    44.2%
+2026-02-04 01:01:28,845 - INFO - Consolidation                        62      614    267    39.5%
+2026-02-04 01:01:28,845 - INFO - Edema                               140      536    266    39.3%
+2026-02-04 01:01:28,845 - INFO - Enlarged Cardiomediastinum           50      626    347    51.3%
+2026-02-04 01:01:28,846 - INFO - Fracture                             51      625    219    32.4%
+2026-02-04 01:01:28,846 - INFO - Lung Lesion                          51      625    284    42.0%
+2026-02-04 01:01:28,846 - INFO - Lung Opacity                        214      462    281    41.6%
+2026-02-04 01:01:28,846 - INFO - Pleural Effusion                    246      430    297    43.9%
+2026-02-04 01:01:28,846 - INFO - Pleural Other                        35      641    213    31.5%
+2026-02-04 01:01:28,846 - INFO - Pneumonia                            77      599    293    43.3%
+2026-02-04 01:01:28,846 - INFO - Pneumothorax                         52      624    189    28.0%
+2026-02-04 01:01:28,846 - INFO - 
+2026-02-04 01:01:28,846 - INFO - ============================================================
+2026-02-04 01:01:28,846 - INFO - STEP 4: Compare Results
+2026-02-04 01:01:28,846 - INFO - ============================================================
+2026-02-04 01:01:28,846 - INFO - 
+Overall Noise Rate Comparison:
+2026-02-04 01:01:28,847 - INFO -   GT labels:     18.93% (128/676)
+2026-02-04 01:01:28,847 - INFO -   Pseudo labels: 18.93% (128/676)
+2026-02-04 01:01:28,847 - INFO - 
+  Difference: 0.00% (Pseudo - GT)
+2026-02-04 01:01:28,847 - INFO -   >> UNCLEAR: Noise rates are very similar
+2026-02-04 01:01:28,847 - INFO - 
+============================================================
+2026-02-04 01:01:28,847 - INFO - Per-Class Noise Rate Comparison
+2026-02-04 01:01:28,847 - INFO - ============================================================
+2026-02-04 01:01:28,847 - INFO - 
+Pathology                         GT Rate  Pseudo Rate     Diff
+2026-02-04 01:01:28,848 - INFO - ----------------------------------------------------------------------
+2026-02-04 01:01:28,848 - INFO - Atelectasis                         43.0%        43.5%    +0.4%
+2026-02-04 01:01:28,848 - INFO - Cardiomegaly                        44.2%        44.2%    +0.0%
+2026-02-04 01:01:28,848 - INFO - Consolidation                       39.9%        39.5%    -0.4%
+2026-02-04 01:01:28,848 - INFO - Edema                               38.9%        39.3%    +0.4%
+2026-02-04 01:01:28,848 - INFO - Enlarged Cardiomediastinum          37.3%        51.3%   +14.1%
+2026-02-04 01:01:28,848 - INFO - Fracture                            32.1%        32.4%    +0.3%
+2026-02-04 01:01:28,848 - INFO - Lung Lesion                         42.2%        42.0%    -0.1%
+2026-02-04 01:01:28,848 - INFO - Lung Opacity                        40.4%        41.6%    +1.2%
+2026-02-04 01:01:28,848 - INFO - Pleural Effusion                    43.9%        43.9%    +0.0%
+2026-02-04 01:01:28,848 - INFO - Pleural Other                       31.7%        31.5%    -0.1%
+2026-02-04 01:01:28,848 - INFO - Pneumonia                           39.6%        43.3%    +3.7%
+2026-02-04 01:01:28,848 - INFO - Pneumothorax                        26.8%        28.0%    +1.2%
+2026-02-04 01:01:28,848 - INFO - 
+2026-02-04 01:01:28,850 - INFO - ============================================================
+2026-02-04 01:01:28,850 - INFO - STEP 5: Save Results
+2026-02-04 01:01:28,850 - INFO - ============================================================
+2026-02-04 01:01:28,851 - INFO - Summary saved to: d:\workspace\MRes\NoiseRate\kfold_results\kfold_validation_summary_20260204_010128.txt
+2026-02-04 01:01:28,851 - INFO - 
+2026-02-04 01:01:28,851 - INFO - 
+============================================================
+2026-02-04 01:01:28,851 - INFO - K-FOLD NOISE RATE VALIDATION - COMPLETE
+2026-02-04 01:01:28,851 - INFO - ============================================================
+

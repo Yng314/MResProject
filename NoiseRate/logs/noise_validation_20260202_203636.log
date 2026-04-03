@@ -1,0 +1,81 @@
+2026-02-02 20:36:36,649 - __main__ - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\logs\noise_validation_20260202_203636.log
+2026-02-02 20:36:36,649 - __main__ - INFO - 
+============================================================
+2026-02-02 20:36:36,649 - __main__ - INFO - NOISE RATE VALIDATION - START
+2026-02-02 20:36:36,649 - __main__ - INFO - ============================================================
+
+2026-02-02 20:36:36,649 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,649 - __main__ - INFO - STEP 1: Load and Preprocess Data
+2026-02-02 20:36:36,649 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,650 - __main__ - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-02 20:36:36,661 - __main__ - INFO - Loaded 1029 samples
+2026-02-02 20:36:36,661 - __main__ - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-02 20:36:36,667 - __main__ - INFO - Limiting to 50 samples for testing
+2026-02-02 20:36:36,667 - __main__ - INFO - Final dataset: 50 samples
+
+2026-02-02 20:36:36,667 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,667 - __main__ - INFO - STEP 2: Prepare GT Labels
+2026-02-02 20:36:36,667 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,667 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-02 20:36:36,668 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-02 20:36:36,671 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-02 20:36:36,673 - __main__ - INFO - 
+GT Label Statistics:
+2026-02-02 20:36:36,673 - __main__ - INFO -   gt_Atelectasis: 12 positive (24.0%)
+2026-02-02 20:36:36,673 - __main__ - INFO -   gt_Cardiomegaly: 10 positive (20.0%)
+2026-02-02 20:36:36,673 - __main__ - INFO -   gt_Consolidation: 8 positive (16.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Edema: 12 positive (24.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Enlarged Cardiomediastinum: 7 positive (14.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Fracture: 1 positive (2.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Lung Lesion: 6 positive (12.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Lung Opacity: 14 positive (28.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Pleural Effusion: 18 positive (36.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Pleural Other: 0 positive (0.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Pneumonia: 6 positive (12.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO -   gt_Pneumothorax: 0 positive (0.0%)
+2026-02-02 20:36:36,675 - __main__ - INFO - 
+2026-02-02 20:36:36,675 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,676 - __main__ - INFO - STEP 2: Prepare PSEUDO Labels
+2026-02-02 20:36:36,676 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,676 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-02 20:36:36,676 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-02 20:36:36,679 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-02 20:36:36,681 - __main__ - INFO - 
+PSEUDO Label Statistics:
+2026-02-02 20:36:36,682 - __main__ - INFO -   Atelectasis: 13 positive (26.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Cardiomegaly: 9 positive (18.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Consolidation: 8 positive (16.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Edema: 13 positive (26.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Enlarged Cardiomediastinum: 11 positive (22.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Fracture: 1 positive (2.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Lung Lesion: 6 positive (12.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Lung Opacity: 19 positive (38.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Pleural Effusion: 17 positive (34.0%)
+2026-02-02 20:36:36,682 - __main__ - INFO -   Pleural Other: 4 positive (8.0%)
+2026-02-02 20:36:36,684 - __main__ - INFO -   Pneumonia: 8 positive (16.0%)
+2026-02-02 20:36:36,684 - __main__ - INFO -   Pneumothorax: 0 positive (0.0%)
+2026-02-02 20:36:36,684 - __main__ - INFO - 
+2026-02-02 20:36:36,684 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,684 - __main__ - INFO - STEP 3: Model Inference
+2026-02-02 20:36:36,684 - __main__ - INFO - ============================================================
+2026-02-02 20:36:36,732 - __main__ - INFO - Using device: cuda
+2026-02-02 20:36:37,282 - __main__ - INFO - Creating dataloader: batch_size=16, num_workers=0
+2026-02-02 20:36:38,167 - __main__ - INFO - 
+2026-02-02 20:36:38,170 - __main__ - INFO - ============================================================
+2026-02-02 20:36:38,170 - __main__ - INFO - STEP 4: Cleanlab Analysis (GT labels)
+2026-02-02 20:36:38,172 - __main__ - INFO - ============================================================
+2026-02-02 20:36:38,172 - __main__ - INFO - Validating cleanlab format...
+2026-02-02 20:36:38,173 - __main__ - INFO - 
+Running cleanlab.filter.find_label_issues()...
+2026-02-02 20:36:38,173 - __main__ - ERROR - Cleanlab analysis failed: List of labels must be convertable to 1D numpy array via: np.ndarray(labels).
+2026-02-02 20:36:38,175 - __main__ - INFO - ============================================================
+2026-02-02 20:36:38,175 - __main__ - INFO - STEP 4: Cleanlab Analysis (PSEUDO labels)
+2026-02-02 20:36:38,176 - __main__ - INFO - ============================================================
+2026-02-02 20:36:38,176 - __main__ - INFO - Validating cleanlab format...
+2026-02-02 20:36:38,176 - __main__ - INFO - 
+Running cleanlab.filter.find_label_issues()...
+2026-02-02 20:36:38,177 - __main__ - ERROR - Cleanlab analysis failed: List of labels must be convertable to 1D numpy array via: np.ndarray(labels).
+2026-02-02 20:36:38,179 - __main__ - INFO - 
+============================================================
+2026-02-02 20:36:38,181 - __main__ - INFO - ============================================================
+

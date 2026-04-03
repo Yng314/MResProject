@@ -1,0 +1,95 @@
+2026-02-04 19:31:01,036 - __main__ - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\logs\noise_validation_20260204_193101.log
+2026-02-04 19:31:01,036 - __main__ - INFO - 
+============================================================
+2026-02-04 19:31:01,036 - __main__ - INFO - NOISE RATE VALIDATION - START
+2026-02-04 19:31:01,036 - __main__ - INFO - ============================================================
+
+2026-02-04 19:31:01,036 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,036 - __main__ - INFO - STEP 1: Load and Preprocess Data
+2026-02-04 19:31:01,036 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,037 - __main__ - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-04 19:31:01,044 - __main__ - INFO - Loaded 1029 samples
+2026-02-04 19:31:01,044 - __main__ - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-04 19:31:01,045 - __main__ - INFO - Limiting to 20 samples for testing
+2026-02-04 19:31:01,045 - __main__ - INFO - Final dataset: 20 samples
+
+2026-02-04 19:31:01,045 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,046 - __main__ - INFO - STEP 2: Prepare GT Labels
+2026-02-04 19:31:01,046 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,046 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-04 19:31:01,046 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-04 19:31:01,048 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-04 19:31:01,050 - __main__ - INFO - 
+GT Label Statistics:
+2026-02-04 19:31:01,050 - __main__ - INFO -   gt_Atelectasis: 1 positive (5.0%)
+2026-02-04 19:31:01,050 - __main__ - INFO -   gt_Cardiomegaly: 6 positive (30.0%)
+2026-02-04 19:31:01,050 - __main__ - INFO -   gt_Consolidation: 3 positive (15.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Edema: 8 positive (40.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Enlarged Cardiomediastinum: 4 positive (20.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Fracture: 1 positive (5.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Lung Lesion: 2 positive (10.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Lung Opacity: 4 positive (20.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Pleural Effusion: 6 positive (30.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Pleural Other: 0 positive (0.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Pneumonia: 1 positive (5.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO -   gt_Pneumothorax: 0 positive (0.0%)
+2026-02-04 19:31:01,052 - __main__ - INFO - 
+2026-02-04 19:31:01,052 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,052 - __main__ - INFO - STEP 2: Prepare PSEUDO Labels
+2026-02-04 19:31:01,052 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,052 - __main__ - INFO - Available pathology columns: 12/12
+2026-02-04 19:31:01,052 - __main__ - INFO - Applying uncertain label strategy: u_zeros
+2026-02-04 19:31:01,056 - __main__ - INFO - Converting to cleanlab multi-label format...
+2026-02-04 19:31:01,058 - __main__ - INFO - 
+PSEUDO Label Statistics:
+2026-02-04 19:31:01,058 - __main__ - INFO -   Atelectasis: 2 positive (10.0%)
+2026-02-04 19:31:01,058 - __main__ - INFO -   Cardiomegaly: 5 positive (25.0%)
+2026-02-04 19:31:01,058 - __main__ - INFO -   Consolidation: 4 positive (20.0%)
+2026-02-04 19:31:01,058 - __main__ - INFO -   Edema: 9 positive (45.0%)
+2026-02-04 19:31:01,058 - __main__ - INFO -   Enlarged Cardiomediastinum: 5 positive (25.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Fracture: 1 positive (5.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Lung Lesion: 2 positive (10.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Lung Opacity: 5 positive (25.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Pleural Effusion: 5 positive (25.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Pleural Other: 3 positive (15.0%)
+2026-02-04 19:31:01,059 - __main__ - INFO -   Pneumonia: 1 positive (5.0%)
+2026-02-04 19:31:01,060 - __main__ - INFO -   Pneumothorax: 0 positive (0.0%)
+2026-02-04 19:31:01,060 - __main__ - INFO - 
+2026-02-04 19:31:01,060 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,060 - __main__ - INFO - STEP 3: Model Inference
+2026-02-04 19:31:01,060 - __main__ - INFO - ============================================================
+2026-02-04 19:31:01,077 - __main__ - INFO - Using device: cuda
+2026-02-04 19:31:01,540 - __main__ - INFO - Creating dataloader: batch_size=16, num_workers=0
+2026-02-04 19:31:02,017 - __main__ - INFO - 
+2026-02-04 19:31:02,020 - __main__ - INFO - 
+============================================================
+2026-02-04 19:31:02,020 - __main__ - INFO - PER-CLASS NOISE ANALYSIS
+2026-02-04 19:31:02,020 - __main__ - INFO - ============================================================
+
+2026-02-04 19:31:02,020 - __main__ - INFO - ============================================================
+2026-02-04 19:31:02,020 - __main__ - INFO - Per-Class Noise Analysis (GT labels)
+2026-02-04 19:31:02,020 - __main__ - INFO - ============================================================
+2026-02-04 19:31:02,020 - __main__ - INFO - 
+Analyzing 12 pathology classes individually...
+2026-02-04 19:32:22,273 - __main__ - INFO - 
+Per-class noise rates:
+2026-02-04 19:32:22,273 - __main__ - INFO - Pathology                      Positive Negative  Issues    Rate
+2026-02-04 19:32:22,273 - __main__ - INFO - ----------------------------------------------------------------------
+2026-02-04 19:32:22,273 - __main__ - INFO - Atelectasis                           1       19      13   65.0%
+2026-02-04 19:32:22,273 - __main__ - INFO - Cardiomegaly                          6       14       2   10.0%
+2026-02-04 19:32:22,273 - __main__ - INFO - Consolidation                         3       17      15   75.0%
+2026-02-04 19:32:22,273 - __main__ - INFO - Edema                                 8       12       3   15.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Enlarged Cardiomediastinum            4       16       3   15.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Fracture                              1       19      14   70.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Lung Lesion                           2       18      15   75.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Lung Opacity                          4       16       6   30.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Pleural Effusion                      6       14       3   15.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Pleural Other                         0       20       0    0.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Pneumonia                             1       19      16   80.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - Pneumothorax                          0       20       0    0.0%
+2026-02-04 19:32:22,274 - __main__ - INFO - 
+2026-02-04 19:32:22,274 - __main__ - INFO - ============================================================
+2026-02-04 19:32:22,274 - __main__ - INFO - Per-Class Noise Analysis (PSEUDO labels)
+2026-02-04 19:32:22,274 - __main__ - INFO - ============================================================
+2026-02-04 19:32:22,274 - __main__ - INFO - 
+Analyzing 12 pathology classes individually...

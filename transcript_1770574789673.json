@@ -1,0 +1,1293 @@
+{
+  "summary": "In this meeting, a researcher discusses progress on chest X-ray analysis with supervisors. They recap last week's findings regarding the small noise rate gap between ground truth and pseudo labels. To address this, the researcher experimented with two models—a large pre-trained model and a lightweight CNN—to calculate noise rates for different label sets, aiming to refine data quality assessment. 在这次会议中，一名研究人员与导师讨论了胸部X光分析的进展。他们回顾了上周关于真实标签和伪标签之间噪声率差距较小的发现。为了解决这个问题，研究人员尝试了两种模型——一个大型预训练模型和一个轻量级CNN——来计算不同标签集的噪声率，旨在改进数据质量评估。",
+  "segments": [
+    {
+      "speaker": "Researcher",
+      "timestamp": "01:38",
+      "content": "Can you hear me?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你能听到我说话吗？"
+    },
+    {
+      "speaker": "Supervisor",
+      "timestamp": "01:40",
+      "content": "Yep, all good.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，没问题。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "01:42",
+      "content": "Yes. So a brief recap about last week is that we tried the noise rate on the ground truth and also the pseudo labels, but we found the gap is pretty small.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好的。对上周工作的简要回顾是，我们在真实标签和伪标签上测试了噪声率，但我们发现差距非常小。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "01:54",
+      "content": "So we were thinking like if the... from two aspects, the first one is if the model we were using, if it's like too large for such a small dataset.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以我们从两个方面进行了思考：第一，我们使用的模型对于这么小的数据集是否太大了。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:05",
+      "content": "And the second aspect is that we take a deeper look at the dataset, each of the samples themselves. So that's about last week.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第二个方面是，我们对数据集本身及每个样本进行了更深入的观察。这就是上周的情况。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:12",
+      "content": "So in this week, I did jobs from those two aspects. So the first one is about the model.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以这周，我从这两个方面开展了工作。首先是关于模型的。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:17",
+      "content": "Because we want to calculate the noise rate, if we want to calculate the noise rate, we are going to like... right now using the ground truth, right?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为我们想计算噪声率，如果我们要计算噪声率，我们现在会使用真实标签，对吧？"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:26",
+      "content": "So to avoid any confusion, in the noise rate calculation, we are regarding the ground truth as a kind of clean labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因此，为了避免混淆，在噪声率计算中，我们将真实标签视为一种干净标签。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:35",
+      "content": "We are not using it as the ground truth, you know, to somehow calculate the metrics, we're just regarding it as a kind of clean label.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我们不把它作为真实值来计算指标，只是将其视为一种干净的标签。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:44",
+      "content": "And the pseudo labels are like a noisy label. Yeah, so when calculating the noise rate, we just need the labels, no matter if it's clean labels or pseudo labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "而伪标签就像是噪声标签。是的，所以在计算噪声率时，我们只需要标签，无论是干净标签还是伪标签。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "02:56",
+      "content": "And we're going to need the prediction probabilities with those two things, then we can calculate the noise rate, right?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我们还需要这两者的预测概率，然后我们就可以计算噪声率了，对吧？"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:05",
+      "content": "So in the end we just need a kind of model to give us the prediction probabilities.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以最后我们只需要一种模型来提供预测概率。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:14",
+      "content": "So here what matters is the model. So I tried like from two kind of things.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以这里的关键在于模型。我尝试了两种方法。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:22",
+      "content": "The first one is a large pre-trained model. So it's like pre-trained on many public CXR datasets, also including this MIMIC-CXR.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第一种是大型预训练模型。它在许多公开的胸部X光（CXR）数据集上进行了预训练，也包括这个MIMIC-CXR。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:39",
+      "content": "Might be a leakage, but it won't be like a leakage of the ground truth, it's just, you know, it's trained based on the pseudo labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "可能会有数据泄露，但不会是真实标签的泄露，它只是基于伪标签训练的。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:49",
+      "content": "So it might regard the pseudo labels as somehow cleaner datasets. That is a concern.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以它可能会在某种程度上将伪标签视为更干净的数据集。这是一个顾虑。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "03:57",
+      "content": "And the second one is that I construct a light CNN, it's pretty small, it just have like 400k parameters.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第二个是我构建了一个轻量级的CNN，非常小，只有大约40万个参数。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "04:13",
+      "content": "So based on those two models, we will have the first one is the X-Ray vision ground truth noise rate.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以基于这两个模型，我们将得到第一个：X-Ray vision真实标签噪声率。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "04:23",
+      "content": "And the second one is its CheXpert noise rate.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第二个是它的CheXpert噪声率。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "04:27",
+      "content": "And by using the light CNN, we will have the ground truth noise rate and also a CheXpert noise rate.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "通过使用轻量级CNN，我们将得到真实标签噪声率和CheXpert噪声率。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "04:38",
+      "content": "So that is basically the experiments I was dealing with in the last week.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这基本上就是我上周处理的实验。"
+    },
+    {
+      "speaker": "Researcher",
+      "timestamp": "04:46",
+      "content": "So here is the result. It's like pretty complex, it's very hard to see some pattern, but it's not important, I'll just like briefly somehow describe it.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "结果如下。它非常复杂，很难看出什么模式，但这不重要，我会简要描述一下。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "05:00",
+      "content": "Because we want to calculate the noise rate, if we want to calculate the noise rate, we are going to like, right now using the ground truth, right? So to avoid any confusion, in the noise rate calculation, we are regarding the ground truth as a kind of clean labels. We're not using it as the ground truth, you know, to somehow calculate the metrics, we're just regarding it as a kind of clean label, and the pseudo-labels are like noise labels. When calculating the noise rate, we just need the labels, no matter if it's clean labels or pseudo-labels, and we're going to need the prediction probabilities.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为我们想计算噪声率，如果要计算噪声率，我们现在打算使用真值，对吧？为了避免混淆，在噪声率计算中，我们将真值视为一种干净的标签。我们不把它作为真值使用，只是将其视为一种干净的标签来计算指标，而伪标签就像噪声标签。计算噪声率时，我们只需要标签，不管是干净标签还是伪标签，并且我们需要预测概率。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "05:53",
+      "content": "So here what matters is like the model. So I tried from two kinds of things: the first one is a large pre-trained model. It's pre-trained on many public CXR datasets, also including this MIMIC-CXR. It might be a leakage, but it won't be a leakage of the ground truth. It's just trained based on the pseudo-labels, so it might regard the pseudo-labels as somehow cleaner datasets. That is a concern. And the second one is that I construct a light CNN. It's pretty small, it just has like 400k parameters.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以，这里的关键是模型。我尝试了两种方法：第一种是大型预训练模型。它在许多公共 CXR 数据集上进行了预训练，也包括这个 MIMIC-CXR。这可能存在泄漏，但不会是真值的泄漏。它只是基于伪标签进行训练的，所以它可能会在某种程度上将伪标签视为更干净的数据集。这是一个顾虑。第二种是我构建了一个轻量级 CNN。它非常小，只有大约 40 万个参数。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "06:33",
+      "content": "So here is the result. It's like pretty complex, it's very hard to see some pattern, but it's not because it's not important. I'll just briefly describe it. The second table, I think it's more important, but I just found this one last night, so I just put it there.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这就是结果。它非常复杂，很难看出什么规律，但这并不代表它不重要。我会简单描述一下。我觉得第二个表格更重要，但我昨晚才发现这张表，所以就把它放上来了。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "07:11",
+      "content": "The second table is results as well or?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第二个表格也是结果吗？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "07:14",
+      "content": "Yeah, yeah, still results, and it's more related to our... well, it's like it gives me some insights.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，是的，仍然是结果，而且它与我们的……嗯，它给了我一些启发。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "07:23",
+      "content": "Okay, let's go step by step, let's start from...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好，我们一步步来。先从……开始。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "07:27",
+      "content": "So the first table is all of the results from the last page, those four experiments. We can see the noise rate here, the blue boxes are the pre-trained model's calculated noise rate. You can see there are still pretty small gaps between the ground truth and the pseudo-labels. Overall the gap is pretty small. Even though we use the CNN model, the gap between them is still pretty small. It's larger than the pre-trained model, but might be because the light CNN itself is not well trained. So the gap will be somehow larger, but it's still not going as we expected. We're expecting the ground truth will be cleaner labels and lower noise rate, but there are some samples that are not following our assumption. I was trying to find some patterns, but it's pretty hard. It seems like the noise rate is not working in this dataset.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以第一个表格是上一页所有四个实验的结果。我们可以看到这里的噪声率，蓝色方框是预训练模型计算出的噪声率。你可以看到真值和伪标签之间的差距仍然非常小。总的来说，差距很小。即使我们使用了 CNN 模型，它们之间的差距仍然很小。它比预训练模型的差距大，但可能是因为轻量级 CNN 本身没有训练好。所以差距会大一些，但仍然没有达到我们的预期。我们原本预期真值标签更干净，噪声率更低，但有些样本并不符合我们的假设。我试图寻找一些规律，但非常困难。噪声率在这个数据集中似乎不起作用。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "08:32",
+      "content": "But last night, I did some more exploring in the samples themselves. Let's go to the second table, and I take the noise rate from the pre-trained model as an example. I just copied them here in these first two columns, and the third one is the difference between the first and the second column. The gap is pretty small. After I calculated this mismatch rate, I regard the ground truth as... it's actually the count of samples of the mismatch in the noise labels over the ground truth.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但昨晚，我对样本本身做了更多的探索。我们来看第二个表格，我以预训练模型的噪声率为例。我把前两列复制到了这里，第三列是第一列和第二列之间的差值。差距非常小。在我计算了这个不匹配率之后，我把真值视为……它实际上是噪声标签相对于真值的不匹配样本计数。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "09:30",
+      "content": "You can see that the mismatch rates themselves are very small. That means we are doing this noise rate calculation based on two groups of labels that are already very close to each other.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你可以看到，不匹配率本身非常低。这意味着我们进行噪声率计算所基于的两组标签本身就已经非常接近了。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "09:53",
+      "content": "So that is why we cannot see a very clear difference or clear gap, clear pattern between the clean labels and the pseudo-labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这就是为什么我们在干净标签和伪标签之间看不到非常明显的差异、差距或规律。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "10:00",
+      "content": "So in the end we just need a kind of model to give us the prediction probabilities, so here what matters is like the model, so I tried like from two kind of thing, the first one is a large pretrained model, so it's like pretrained on many public CXR datasets, also including this MIMIC-CXR, might be a leakage but it won't be like a leakage of the ground truth, it's just you know it's trained based on the pseudo labels, so it might regard the pseudo labels as somehow cleaner datasets, that is a concern. And the second one is that I construct a light CNN, it's pretty small, it just have like 400k parameters. So based on those two models, we will have the first one is X-ray Vision ground truth noise rate, and the second one is its CheXpert noise rate, and by using the light CNN we will have the ground truth noise rate and also a CheXpert noise rate. So that is basically the experiments I was dealing with in the last week. So here is the result, it's like pretty complex, it's very hard to see some pattern, but it's not because it's not important, I'll just like briefly somehow describe it and the second table I think it's more important but I just found this one like last night so it's like a I just put it there.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以最后我们只需要一种模型来为我们提供预测概率，所以这里重要的是模型。所以我尝试了两种方案，第一种是大规模预训练模型，它在许多公共CXR数据集（包括这个MIMIC-CXR）上进行了预训练，虽然可能存在数据泄漏，但它不会是真实值的泄漏，只是它是基于伪标签进行训练的，所以它可能会把伪标签视为某种更干净的数据集，这确实是个令人担忧的问题。第二个方案是我构建了一个轻量级的CNN模型，它非常小，只有大约40万个参数。基于这两个模型，我们将得到第一个是X-ray Vision真实值噪声率，第二个是它的CheXpert噪声率，通过使用轻量级CNN，我们将获得真实值噪声率和CheXpert噪声率。这些基本上就是我上周一直在进行的实验。这是结果，它相当复杂，很难看出什么规律，但这并不是因为它不重要，我只是简单地描述一下，我认为第二个表格更重要，但我昨晚刚发现它，所以我就把它放上来了。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "11:15",
+      "content": "The second table is results as well?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "第二个表格也是结果吗？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "11:18",
+      "content": "Yeah, yeah, still results and it's like more related to our somehow...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，是的，仍然是结果，而且它和我们的某种……更相关。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "11:21",
+      "content": "Insight? Okay, let's go step by step, let's start from there.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "启发吗？好的，让我们一步一步来，从那里开始。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "11:25",
+      "content": "Yeah, yeah, sure. So the first table is like the all of the results from the last page I described those four like experiments. Um, it's still like you know from we can see the ground truth here, oh no, the noise rate here, the blue boxes are like the pretrained model and calculate the noise rate. You can see that they are still pretty small gaps between the ground truth and the pseudo labels, although somehow might be larger, but overall the gap is pretty small. And even though we use the CNN model, the gap between them is still pretty small, it's larger than the pretrained model but might be because the light CNN itself, the model itself is not, you know, well trained. So the gap will be like somehow larger but still not like going as we expected, because we are like expecting the ground truth will be like cleaner labels and lower like noise rate, but there are some samples that are not following our assumption. So that is what I was like doing in the last week, so I was trying to find some of the patterns in them, but it's pretty hard. It seems like the noise rate is not working in at least in this dataset.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，没问题。第一张表格就是我刚才描述的那四个实验的所有结果。嗯，从噪声率这里仍然可以看到，蓝色的框代表预训练模型和计算出的噪声率。你可以看到真实值和伪标签之间的差距仍然很小，尽管有时可能会大一点，但总体差距很小。即使我们使用了CNN模型，它们之间的差距仍然很小，虽然比预训练模型的差距大一些，但这可能是因为轻量级CNN模型本身没有得到很好的训练。所以差距可能会变大，但仍然没有达到我们的预期，因为我们预期真实值应该是更干净的标签，噪声率更低，但有些样本并不符合我们的假设。这就是我上周一直在做的事情，我试图在其中寻找一些模式，但这非常困难。在至少在这个数据集中，噪声率似乎不起作用。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "12:35",
+      "content": "But last night I did some more like you know exploring the data in the samples themselves, so I tried to like, well here I take the let's go to the second table and I take the noise rate from the pretrained model as an example, you can see I just copy them here the first two columns, oh sorry, and the third one is you know the difference between the first and second column, right? So this is what we said, the gap is pretty small. So after I've calculated this kind of mismatch rate, so I regard the ground truth as the, so it's actually the count, the sample counts of the mismatch in the noise labels over the ground truth. So you can see that the mismatch rate themselves are very like small. So that means we are doing this kind of noise rate calculation based on two groups of labels that are already very close to each other, right? So that is why we cannot see a very like clear difference or clear gap, clear pattern between the clean labels and the pseudo labels. So I think that is a very insightful thing because I think I still believe that the noise rate might be potential for this kind of dataset evaluation, we're not we were not getting what we expected was just simply we're using the wrong like sample like wrong labels, right? Because we are using two very close samples to do this kind of noise rate calculation. So what I am thinking is that we can like somehow like manually add some noise to the ground truth to simulate the kind of noise and we can do like 10%, 20% and 50% and then we calculate the corresponding noise rate to see if the kind of noise rate have a somehow a linear relationship with the injected or added noise.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但昨晚我针对样本本身的数据做了更多的探索。比如在第二个表格中，我以预训练模型的噪声率为例，我把前两列复制到了这里，抱歉，第三列就是第一列和第二列之间的差异。这就是我们所说的差距非常小。在我计算出这种不匹配率后，我把真实值作为基准，这实际上是不匹配的噪声标签相对于真实值的样本计数。你可以看到不匹配率本身非常低。这意味着我们计算噪声率时所基于的两组标签本身就已经非常接近了。这就是为什么我们在干净标签和伪标签之间看不到非常明显的区别、差距或规律的原因。所以我认为这很有启发性，因为我依然相信噪声率在评估这类数据集方面是有潜力的。我们之所以没得到预期的结果，仅仅是因为我们使用了错误的标签。因为我们是基于两个非常接近的样本来计算噪声率的。所以我在想，我们可以手动向真实值添加一些噪声来模拟那种情况，比如加入10%、20%和50%的噪声，然后计算对应的噪声率，看看这种噪声率是否与注入或添加的噪声存在某种线性关系。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "14:28",
+      "content": "Okay, so by controlling the noise level you can kind of predict the metric is probably going to be worse or better.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好的，所以通过控制噪声水平，你可以在某种程度上预测指标是会变差还是变好。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "14:34",
+      "content": "Yeah, and to see if they like somehow have a kind of, you know, linear relationship between them.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，看看它们之间是否在某种程度上有某种线性关系。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "14:40",
+      "content": "And what are you hoping to do by introducing the noise? Are you going to have the self-learning thing but with synthetic noise basically? Or is that just for your own evaluation of the metric, just to see if it's reliable?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "那么引入噪声后你希望能做些什么？你打算结合合成噪声来进行某种自学习吗？还是这只是为了你自己对指标的评估，看看它是否可靠？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "14:52",
+      "content": "Yeah, right now just for like evaluating if the noise rate is valid because what we were doing is like trying to demonstrate that the noise rate is really somehow connected to the noise, to the quality of our dataset, right? So maybe I can like manually right now start to add some noise to the labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，目前只是为了评估噪声率是否有效。因为我们正在做的是试图证明噪声率确实与噪声及数据集的质量存在某种联系。所以也许我现阶段可以开始手动给标签添加一些噪声。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "15:01",
+      "content": "...needs to be simplified, um, but I still feel like I said last week you should be looking into individual rows to try and find out, you know, what the, what it, so you see what group like pleural effusion has a very low noise rate compared to...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "…需要灣化。但我还是觉得，像我上周说的那样，䯑应该查看每个数据行，以便发现，你知道，比如胸腔积油这一组的噪声率与其他组相比非常低…"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "15:24",
+      "content": "And you only have the pathologies here, you don't have the normals. You don't have normal subjects, like ones without pathology, no findings?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你这里只有病理数据，没有正常数据。你没有正常受试者的数据吗，比如没有病理、没有发现的那种？"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "15:42",
+      "content": "Yes, I just, because they are not in the, those classes are not in the pre-trained models so I just like excluded them.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我只是因为…那些类别不在预训练模型中，我就把它们排除了。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "15:55",
+      "content": "I'm not sure you're... So the problem is this dataset is noisy, right? And you are making judgments based on a noisy dataset, so you can't actually evaluate how good your results is because you don't know what ground truth is.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不确定你是否… 所以问题在于这个数据集是有噪声的，对吗？而你是根据一个有噪声的数据集作出判断，所以你实际上无法评估你的结果有多好，因为你不知道什么是基准真实。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "16:15",
+      "content": "If you go to the previous slide, and we discussed this bit last week as well, you're saying that ground truth here is clean labels. How do you know they're clean?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "如果你看上一张幻灯片，我们上周也讨讲过这一点，你说这里的基准真实是干净的标签。你怎么知道它们是干净的？"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "16:35",
+      "content": "And I know for a fact that this dataset is not clean. Because I have used this dataset before. So it's still a little bit kind of confusing to me. But I think you're right that what you need to do is to simplify the problem, um, and maybe just start with a toy problem.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我确切地知道这个数据集并不干净。因为我以前用过这个数据集。所以这对我来说人然有点令人困怑。但我认为你是对的，你需要做的是灯化问题，也许可以先从一个简单的模拟问题开始。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "17:00",
+      "content": "Yeah, and this is why I think it's really important to look into your data and to look into individual results. I think you're missing this step and you have to get used to it because this is absolutely key to this kind of development work. I guarantee you if you only look at your metrics you're not... this is not what the job entails. You have to be willing to look into each individual data point.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，这就是为什么我认为查看你的数据和每个结果非常重要。我认为你遗漏了这一步，你必须适应它，因为这是这种开匑工作的绝对关键。我向你保证，如果你只看你的指标，你就不是… 这不是这份工作的内容。你必须愿意查看每个数据点。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "17:31",
+      "content": "And I know it's tough and that's why people don't do it. But also there may be tools to help you look into those. So have a look at, have a look if there are specific tools that you can use. But this is kind of... yeah, it's too complicated. So maybe we can think of just to begin with and you should be able to do this fairly quickly a very toy example where...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我知道这很陾，这也是为什么大家都不这么做。但另外也可能有工具可以协助你。所以去看看是否有你可以使用的特定工具。但这个… 是的，太复杂了。所以也许我们可以考虑，作为初步尝试，你应该能够很快地做出一个非常简单的模拟例子，在那里…"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "17:59",
+      "content": "and that's kind of what I was saying with taking normal and abnormal last week rather than each individual pathology.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这就是我上周所说的，采用正常和异常数据，而不是每种单独的病理。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "18:08",
+      "content": "So, you know, if you can, if you can, if you can go back to the next slide... so if you look at like 'no findings' and then you look at just one group perhaps and just take, just do a binary classification and do it on something where, you know, you feel, and and another thing where you need to state how many samples there are in each of these groups because I think it's very unbalanced. Do you know if it's unbalanced?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以，你知道，如果你可以回到下一张幻灯片… 比如你看“无发现”，然后也许只看其中一组，只做二元分类，在你觉得合适的内容上进行。另外一件事是，你需要指明这些组中各有多少样本，因为我认为它很不平衡。你知道它是否不平衡吗？"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "18:51",
+      "content": "Yes, yes, sure. I also highlighted those that are not balanced.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，当然。我也标注了那些不平衡的邨分。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "19:05",
+      "content": "Yeah I mean I, I sorted all of those issue samples... um, so I sorted them but I just like, I didn't have time in the last week because there was some two deadlines there.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我是说我已经对所有那些有问题的样本进行了分类… 我抃它们分了类，但我上周实在没时间，因为有两个截止日期。"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "19:37",
+      "content": "Yeah I know, I understand, that that is a time-consuming thing, but it's like, you have to do it at some point. Um, so yeah, I would find a way to make this problem as simple to make the problem simple but also to make sure that you can understand the results. You mean binary classification it's like just findings and no findings?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我知道，我理解，那是件很耗时的事，但你总得在某个时候去做。所以，是的，我会想办法让问题变得简单，但也要确保你能理解结果。你的意思是二元分类就是“有发现”和“无发现”吗？"
+    },
+    {
+      "speaker": "Camille",
+      "timestamp": "19:59",
+      "content": "For instance, yeah. You'll probably get quite similar results though, but...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "举例来说，是的。虽然你得到的结果可能会非常相似，但是…"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:01",
+      "content": "For instance, yeah. You'll probably get quite similar results, though, but... that's just one example. It doesn't need to... it doesn't need to be that.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "例如，是的。虽然你可能会得到相当类似的结果，但……这只是一个例子。没必要……没必要非得是那样。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:13",
+      "content": "What... what is important is that if you get some results, you can understand if these results are good or not.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "重要的……重要的一点是，如果你得到一些结果，你能明白这些结果好不好。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:23",
+      "content": "And I think that's the difficulty I have here. I don't know if this is good or not because I don't know... I don't know if your ground truth is clean.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我认为这就是我在这里遇到的困难。我不知道这好不好，因为我不知道……我不知道你的真实值（ground truth）是否干净。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:33",
+      "content": "I don't know how noisy your noisy labels are. It could be that, you know, your noisy labels are actually very good.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不知道你的噪声标签噪声有多大。有可能你的噪声标签实际上非常出色。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:41",
+      "content": "So this is the... this is the issue I have here.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以这就是……这就是我在这里遇到的问题。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "20:47",
+      "content": "And then the other thing is like, what is the relationship between... like your mo... your model quality seems low.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "然后另一件事是，准确率和……之间的关系是什么……比如你的模型质量似乎很低。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "21:07",
+      "content": "Yes.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "21:08",
+      "content": "I'm not sure... like, go through mathematically what the relationship should be between your accuracy and your noise rate.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不确定……比如，在数学上梳理一下准确率和噪声率之间的关系应该是怎样的。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "21:21",
+      "content": "Like actually prove it mathematically what the relationship should be or if there should be any relationship.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "比如实际用数学证明这种关系应该是怎样的，或者是否应该存在任何关系。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "21:32",
+      "content": "Because I think we just need to make sure we... we can understand how to interpret the results correctly.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为我认为我们只需要确保我们……我们能够理解如何正确地解释这些结果。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "21:42",
+      "content": "And that means we have a very clear understanding of what the results should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这意味着我们对结果应该是怎样的有一个非常清晰的认识。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "21:49",
+      "content": "Because at the moment I don't know... I don't know what the ground truth noise rate should be in comparison to the pseudo... what the pseudo noise rate should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为目前我不知道……我不知道真实值噪声率与伪噪声率相比应该是多少。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:00",
+      "content": "I'd like to see one higher than the other, but I don't know what the numbers should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我希望能看到一个比另一个高，但我不知道具体的数值应该是多少。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:06",
+      "content": "And that makes these... experiments... and the experiments are fine, but it makes them difficult to interpret.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这使得这些……实验……虽然实验没问题，但让它们变得难以解释。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:13",
+      "content": "So I think starting as simple as possible... and it could be that you even start much, much more simple, right? Where you start with a totally toy example where you have a classifier... you have a... a linear classifier on... on toy data. We've done this in the past, haven't we, with other students where we have real toy examples.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以我认为从尽可能简单开始……你甚至可以从更简单得多的地方开始，对吧？比如从一个完全简单的示例开始，在一个模拟数据上使用线性分类器。我们过去和其他学生一起做过真正的简单示例，不是吗？"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:36",
+      "content": "And then you can just show... because if it doesn't work for a super toy example, it's not going to work at all.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "然后你就可以展示出来……因为如果连超级简单的示例都不行，那它根本就行不通。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "22:42",
+      "content": "Yeah, I was just going to mention actually when you said toy example... that's what came to my mind. You're talking about Daniel's work, right?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，实际上当你提到简单示例时，我也想到了这一点。你是在说 Daniel 的工作，对吧？"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:51",
+      "content": "For instance, that's what we did together, but it could be that... there could be many other things to do like that.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "比如，那是我们一起做的，但也可能……还有很多其他类似的事情可以做。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "22:57",
+      "content": "But just... just one more thing before... before I hand over, um... you know, when you... you will need to... this is not something that's very established in the literature.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但在我移交给其他人之前，还有一件事，你知道，这将是你需要……这在文献中还不是很成熟。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "23:09",
+      "content": "So when you have an examiner reading your thesis, they will need to be convinced about what you're doing.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以当审查员阅读你的论文时，他们需要被你所做的事情说服。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "23:16",
+      "content": "And if you are expecting them to understand something like this, you are asking quite a lot.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "如果你期望他们理解这样的东西，那你对他们的要求就太高了。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "23:22",
+      "content": "So having a very toy example is also a way of kind of communicating what the... the theory behind this is and matters.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以拥有一个非常简单的示例也是一种传达其背后的理论及其重要性的方式。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "23:31",
+      "content": "So it serves two purposes: one for yourself, but also when you put it in a thesis to communicate... to explain really clearly and simply what it is you're trying to do. Because people are not going to understand this normally. This is not a normal thing... This is not a... an established accepted metric in the industry.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "它有两个目的：一是为你自己，二是在论文中解释清楚你想做的事情。因为通常人们不会理解这一点。这在行业中还不是一个成熟公认的指标。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "23:51",
+      "content": "So, go ahead.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以，请继续。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "23:53",
+      "content": "Yeah, I was just thinking out loud whether... whether we might have to... because I remember what Daniel ended up doing is creating like simple geometrical shapes and imposing them on the medical image.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我刚才在想，我们是否需要……因为我记得 Daniel 最后做的是创建简单的几何图形并将它们叠加在医学图像上。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "24:06",
+      "content": "And because they're so simple, it was easy to see if the method was working or not. That... that worked quite nicely. And I wonder how... how we could do something similar here. Because this also involves step by... sorry, the radiology report, so it would be like a text version of that, wouldn't it?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为它们非常简单，所以很容易看出该方法是否有效。那个效果非常好。我想知道我们在这里如何做类似的事情。因为这还涉及放射学报告的文本版本，不是吗？"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "24:23",
+      "content": "No, it doesn't... it doesn't involve radiology reports. It involves labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "不，它不涉及放射学报告。它涉及标签。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "24:29",
+      "content": "But ultimately you want to automate the process of getting...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但最终你想要自动化这个过程……"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "24:34",
+      "content": "Yeah, but what I mean... that's going so far ahead, right? What we're trying to do is prove that this noise rate makes sense.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，但我的意思是……那想得太远了。我们现在试图做的是证明这个噪声率是有意义的。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "24:40",
+      "content": "Okay.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好的。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "24:41",
+      "content": "So... take out... take out like the whole system. What you want to know is does this metric... is this metric valid or not? We don't know if this metric... is this metric valid.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以……把整个系统拿掉。你只需要知道这个指标是否有效？我们现在还不知道。"
+    },
+    {
+      "speaker": "Student",
+      "timestamp": "24:51",
+      "content": "Well, in that case then, then it really is a straightforward experiment we could create with, you know, simple X-rays, we impose some geometrical shapes and we know the labels of those because we imposed them. And then we try to see if the metric makes sense with them.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "既然如此，那这确实是一个可以直接进行的实验，我们可以利用简单的 X 光片，在上面添加一些几何形状，我们知道这些形状的标签。然后看看该指标是否有意义。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:04",
+      "content": "needs to be simplified, um but I still feel like I said last week you should be looking into individual rows to try and find out, you know what the",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "需要简化，但我仍然觉得就像我上周说的那样，你应该查看个别行，试着找出，你知道的，找出什么是"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:13",
+      "content": "what it - so you see one group like pleural effusion has a very low noise rate compared to",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "什么是——所以你看到其中一组，比如胸腔积液，它的噪声率非常低，相比于"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:21",
+      "content": "and you only have the pathologies here, you don't have the normals.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "而且你这里只有病理数据，没有正常数据。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:27",
+      "content": "You don't have normal subjects like ones without pathology, no findings.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你没有正常受试者，比如那些没有病理、没有发现的。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "25:33",
+      "content": "Yes, I just because they're not in the",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我只是因为它们不在"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "25:38",
+      "content": "those classes are not in the pretrained models, so I just like excluded them.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "那些类别不在预训练模型中，所以我只是把它们排除了。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:44",
+      "content": "I - I'm not sure you're - so the problem is this dataset is noisy, right?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不确定你——所以问题在于这个数据集是有噪的，对吧？"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:53",
+      "content": "And you are making judgments based on a noisy dataset.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "而你正在基于一个有噪数据集做出判断。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "25:59",
+      "content": "So you can't actually evaluate how good your results is because you don't know what ground truth is.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以你实际上无法评估你的结果有多好，因为你不知道基准真值是什么。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "26:04",
+      "content": "Right? If you go to the previous slide, and we discussed this bit last week as well,",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "对吧？如果你回到上一张幻灯片，我们上周也讨论过这一点，"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "26:09",
+      "content": "you're saying that ground truth here is clean labels. How do you know they're clean?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你说这里的基准真值是干净的标签。你怎么知道它们是干净的？"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "26:19",
+      "content": "And I know for a fact that this dataset is not clean. Because I have used this dataset before.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "而据我所知，这个数据集并不干净。因为我以前用过这个数据集。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "26:25",
+      "content": "So it's still a little bit kind of confusing to me. But I think you're right that what you need to do is to simplify the problem.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以对我来说还是有点困惑。但我觉得你说得对，你需要做的是简化问题。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "26:35",
+      "content": "Um, and maybe just start with a toy problem.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "嗯，也许可以先从一个玩具问题开始。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "26:43",
+      "content": "Yeah, and this is why I think it's really important to look into your data and to look into individual results.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，这就是为什么我认为研究数据和查看单个结果非常重要。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "26:50",
+      "content": "And I think you're missing this step and you have to get used to it because this is absolutely key to this kind of development work.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我认为你漏掉了这一步，你必须习惯它，因为这对于这类开发工作来说绝对是关键。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "26:57",
+      "content": "I guarantee you if you only look at your metrics you're not - this is not what the the job entails.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我向你保证，如果你只看指标，你就——这并不是这项工作所要求的。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:04",
+      "content": "You have to be willing to look into each individual data point. And I know it's tough and that's why people don't do it.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你必须愿意研究每一个单独的数据点。我知道这很辛苦，所以人们才不去做。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:12",
+      "content": "Yeah, I know. Um, and also there may also be tools to help you look into those. So have a look at -",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我知道。嗯，而且可能还有一些工具可以帮助你研究这些。所以看看——"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:18",
+      "content": "have a look at if there's specific tools that you can use.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "看看是否有你可以使用的特定工具。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:23",
+      "content": "But this is kind of - yeah, it's too complicated. So maybe we can think of just to begin with,",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但这有点——是的，太复杂了。所以也许我们可以考虑先从这里开始，"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:30",
+      "content": "and you should be able to do this fairly quickly, a toy example where -",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你应该能很快完成，做一个玩具示例，在其中——"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:37",
+      "content": "and that's kind of what I was saying with taking normal and abnormal last week rather than each individual pathology.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这也就是我上周说的，采用正常和异常，而不是针对每一种具体的病理。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:44",
+      "content": "Um, so you know, if you can - if you can go back to the next slide... so if you look at like no findings",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "嗯，所以你知道，如果你能——如果你能回到下一张幻灯片……如果你看看像“无发现”这样的"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:51",
+      "content": "and then you look at just one group perhaps and just take - just do a binary classification.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "然后也许只看其中一组，只做一个二元分类。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "27:57",
+      "content": "And do it on something where, you know, you feel... and another thing where you need to state how many samples there are in each of these groups.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "在一些你觉得……的地方做，还有一件事你需要说明这些组中每一组有多少个样本。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "28:03",
+      "content": "Because I think it's very unbalanced. Do you know if it's unbalanced?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为我认为它非常不平衡。你知道它是否不平衡吗？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "28:06",
+      "content": "Yes, yes, sure. I also like highlighted those like not balanced.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，是的，当然。我也标记了那些不平衡的地方。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "28:12",
+      "content": "Yeah, I mean I... I sorted all of those issue samples... and I sorted them but I just like I didn't have time in the last week because there was somehow two deadlines there.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我的意思是，我……我整理了所有这些有问题的样本……我整理了它们，但我上周只是没时间，因为不知道怎么回事在那时有两个截止日期。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:22",
+      "content": "Yeah, I know. I completely understand. This is a time-consuming thing, but it's like you have to do it at some point.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我知道。我完全理解。这是一件耗时的事情，但你必须在某个时刻完成它。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:27",
+      "content": "Um... so yeah, I would find a way to make this problem as simple - to make the problem simple, but also to make sure that you can understand the results.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "嗯……所以是的，我会想办法让这个问题变得简单——让问题变得简单，但同时也要确保你能理解结果。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "28:35",
+      "content": "You mean binary classification? It's like just findings and no findings.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你是说二元分类？就像只是“有发现”和“无发现”。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:39",
+      "content": "For instance, yeah. You'll probably get quite similar results though, but...",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "例如，是的。虽然你可能会得到非常相似的结果，但是……"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:44",
+      "content": "like that's just one example. It doesn't need to be that. What is important is that if you get some results, you can understand if these results are good or not.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "就像那只是一个例子。不一定非要是那个。重要的是，如果你得到一些结果，你能明白这些结果是好是坏。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:51",
+      "content": "And I think that's the difficulty I have here. I don't know if this is good or not because I don't know - I don't know if your ground truth is clean.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我认为这就是我在这里遇到的困难。我不知道这好不好，因为我不知道——我不知道你的基准真值是否干净。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "28:58",
+      "content": "I don't know how noisy your noisy labels are. It could be that, you know, your noisy labels are actually very good.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不知道你的有噪标签有多大的噪声。也有可能，你知道，你的有噪标签实际上非常好。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:05",
+      "content": "So this is the - this is the issue I have here.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以这就是——这就是我在这里遇到的问题。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:09",
+      "content": "And then the other thing is like, what is the relationship between like your model... your model quality seems low.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "然后另一件事是，你的模型……你的模型质量似乎很低，两者之间是什么关系。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "29:17",
+      "content": "Yes.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:22",
+      "content": "And I'm not sure... like go through mathematically what the relationship should be between your accuracy and your noise rate.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我不确定……就像从数学上分析一下你的准确率和噪声率之间的关系应该是什么。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:27",
+      "content": "Like actually prove it mathematically what the relationship should be or if there should be any relationship.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "比如从数学上真正证明这种关系应该是什么，或者是否应该存在任何关系。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:32",
+      "content": "So I think we just need to make sure we... we can understand how to interpret the results correctly.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以我认为我们只需要确保我们……我们能明白如何正确地解释结果。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:37",
+      "content": "And that means we have a very clear understanding of what the result should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这意味着我们对结果应该是什么有一个非常清晰的认识。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:41",
+      "content": "Because at the moment I don't know - I don't know what the ground truth noise rate should be in comparison to the pseudo - what the pseudo noise rate should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为目前我不知道——我不知道基准真值噪声率与伪噪声率相比应该是什么。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:47",
+      "content": "I mean I would want to see one higher than the other, but I don't know what the numbers should be.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我的意思是，我想看到其中一个高于另一个，但我不知道具体的数值应该是多少。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "29:52",
+      "content": "And that makes these experiments... and the experiments are fine, but it makes them hard to interpret. So I think starting as simple as possible.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "这使得这些实验……实验本身没问题，但它们很难解释。所以我认为从尽可能简单开始。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "30:00",
+      "content": "And it could be that you even start much, much more simple, right?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "而且你甚至可以从更简单得多的地方开始，对吧？"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "30:05",
+      "content": "For instance, like on this dataset, the class marked as no finding, I know that the manual labelers have labeled them inconsistently.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "例如，在这个数据集中，被标记为“无发现”的类别，我知道人工标注者对它们的标注是不一致的。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "30:16",
+      "content": "Because some people have labeled it as this is a completely normal scan and others have labeled it as there is no other finding compared to what these pathology findings are, which means it has pathology, it's just nothing else.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "因为有些人将其标注为这是一个完全正常的扫描，而另一些人则将其标注为与这些病理发现相比没有其他发现，这意味着它确实有病理，只是没有别的发现而已。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "30:41",
+      "content": "And that's, you know, that's just how it goes in the real world. You have, you don't have ground truth that's super super accurate and that's why we're looking at this, that's why something like this is valuable.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你知道，现实世界就是这样。你没有非常非常准确的真实值，这就是我们研究这个的原因，也是为什么像这样的工作很有价值。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "31:01",
+      "content": "But yeah, don't be afraid to do things that seem really really simple. That's not a... it's a sign of intelligent way of working, not a sign of like... it's not a sign that you can't do something complicated, it's a sign that you can simplify a complex problem into simple components.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "但是，是的，不要害怕做那些看起来非常非常简单的事情。这并不是……这是一种聪明的这种工作方式的标志，而不是那种……这并不代表你不能做复杂的事情，而是代表你可以把一个复杂的问题简化为简单的组成部分。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "31:40",
+      "content": "Yeah, I remember what Daniel did was creating simple geometric shapes and then once you get a model that works well on this then you can start scale it on medical images.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，我记得 Daniel 所做的是创建简单的几何形状，一旦你得到了一个在这种形状上运行良好的模型，你就可以开始将其扩展到医学图像上。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "32:31",
+      "content": "So basically what you want to do is you have a completely clean dataset. You want to look at your... you want to ideally find a model that fits 100% on the completely clean dataset and then add noise to your labels.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "所以基本上你要做的是你有一个完全干净的数据集。你想看看你的……理想情况下你想找到一个在完全干净的数据集上 100% 拟合的模型，然后在你的标签中加入噪声。"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "33:18",
+      "content": "Given that you have noise in the... that your accuracy will not be a reflection of true accuracy because you have noise. Does that make sense?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "考虑到你在……中存在噪声，你的准确率将不能反映真实的准确率，因为存在噪声。这能理解吗？"
+    },
+    {
+      "speaker": "Kamal",
+      "timestamp": "34:01",
+      "content": "Do you have more deadlines or is this a cleaner week for you?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "你还有更多的截止日期吗，还是说这周对你来说比较轻松？"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "34:07",
+      "content": "I have a deadline this week. It's one of the courses... Ethics.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我这周有一个截止日期。是其中一门课……伦理学。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "34:18",
+      "content": "The idea was to create several years ago was to create a program that's just research, but that's not really possible for masters... So the college sees it as a taught program.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "几年前的想法是创建一个纯研究的项目，但对于硕士来说这不太可能……所以学院将其视为授课型项目。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "34:52",
+      "content": "It's like this term is the busiest one because we have the elective modules and all of the other modules, but in term three it will be like only this project.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "就像这学期是最忙的一个学期，因为我们有选修模块和其他所有模块，但在第三学期就只有这个项目了。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "35:00",
+      "content": "Yeah, so term three is... I'll be like focusing on only this project.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，第三学期……我会只专注于这个项目。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "35:08",
+      "content": "That's good, that's good. Yeah, the other stuff is quite useful as well, like the simulated R&D, that's a useful skill, you know, down the line, or, you know, you're going to have to convince someone at some point to give you funding for something. So that's quite useful. The ethics, my understanding is that these days it's technical ethics, isn't it? Like, you know, technical perspective of ethics, because that course used to be basically philosophy a few years ago. So it's all useful stuff, you know, it's not a waste of time. But yeah, you'll get there once the ethics and that stuff is done, you can then focus on the project.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "很好，很好。是的，其他内容也很有用，比如模拟研发，那是项实用的技能，你知道，以后或者你早晚得在某个时刻说服别人给你提供项目资金。所以这很有用。关于伦理，我的理解是现在的课程讲的是技术伦理，对吧？比如，从技术角度看伦理，因为几年前那门课基本上是哲学课。所以这些都是有用的内容，不是在浪费时间。不过，一旦伦理和那些内容结束，你就能到达那个阶段，然后专注于项目了。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "35:48",
+      "content": "Okay. I mean, I think you're making progress, but you're coming across challenges that are the challenges I would expect in a real-world research problem. So don't get disheartened because this is not... the results don't haven't proved that you know, you haven't replicated what was in another paper because that's the whole... this is the real experience. You get a paper, it's all beautiful, you try it on for yourself, doesn't it doesn't have the same effect. So this is all perfectly normal. And the way you're going about it is also perfectly normal, you know, taking something that exists, trying it out on your own data, seeing the results for yourself that these are, you know, hard to interpret or you don't know what's going on, and then using that to inform the next step which is to simplify the problem and to start at the toy. So this is completely... this is progress. So I hope you feel that it's positive progress even if the results aren't what you expected.",
+      "language": "English",
+      "emotion": "Happy",
+      "translation": "好的。我的意思是，我觉得你正在取得进展，但你遇到的挑战正是现实科研问题中我会预料到的挑战。所以不要灰心，因为这并不是……结果没有证明，你知道，你没能复现另一篇论文中的内容，因为这就是……这就是真实的体验。你看一篇论文，写得天花乱坠，你自己动手试一下，却发现效果不一样。所以这完全正常。你处理问题的方式也完全正常，比如拿一个现有的东西，在自己的数据上试运行，亲眼看到这些结果很难解释或者你搞不清楚状况，然后根据这些反馈进行下一步，即简化问题并从简单的模型开始。所以这完全……这就是进展。即便结果不如预期，我还是希望你能感受到这是积极的进展。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "36:57",
+      "content": "Yeah, definitely.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，确实。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "36:59",
+      "content": "Okay. Do you have any questions?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好的。你还有什么问题吗？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "37:01",
+      "content": "No, it seems pretty clear.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "没有，现在很清楚了。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "37:04",
+      "content": "Okay. Well, yeah, email us if you if you, you know, if you want to run through what your toy experiment is and what you think it should be, send that in an email, that's fine.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "好的。嗯，如果你想梳理一下你的初步实验是什么以及你认为应该是什么样的，发邮件告诉我们就行，没问题。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "37:16",
+      "content": "Anything else we should talk about, either side?",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "两边还有什么要讨论的吗？"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "37:19",
+      "content": "Don't think so.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "我觉得没有了。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "37:20",
+      "content": "Yeah, just go through just go through that short paper and that'll give you some suggestions on what you could start doing.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "是的，仔细读读那篇短论文，它会给你一些建议，告诉你从哪里开始着手。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "37:26",
+      "content": "Okay. Yeah. Thank you.",
+      "language": "English",
+      "emotion": "Happy",
+      "translation": "好的。是的。谢谢。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "37:28",
+      "content": "And then Carmody, do you have two minutes? Just to talk about the email I sent you yesterday.",
+      "language": "English",
+      "emotion": "Neutral",
+      "translation": "然后 Carmody，你有两分钟时间吗？我想谈谈昨天发给你的那封邮件。"
+    },
+    {
+      "speaker": "Speaker 2",
+      "timestamp": "37:32",
+      "content": "Yeah, okay. Yeah. Brilliant.",
+      "language": "English",
+      "emotion": "Happy",
+      "translation": "好的，没问题。太棒了。"
+    },
+    {
+      "speaker": "Speaker 3",
+      "timestamp": "37:34",
+      "content": "Okay. Thank you. Thank you, everyone.",
+      "language": "English",
+      "emotion": "Happy",
+      "translation": "好的。谢谢。谢谢大家。"
+    },
+    {
+      "speaker": "Speaker 1",
+      "timestamp": "37:36",
+      "content": "See you. Thanks. Bye.",
+      "language": "English",
+      "emotion": "Happy",
+      "translation": "再见。谢谢。拜拜。"
+    }
+  ]
+}

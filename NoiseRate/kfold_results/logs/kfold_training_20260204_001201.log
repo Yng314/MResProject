@@ -1,0 +1,41 @@
+2026-02-04 00:12:01,498 - INFO - Logging initialized. Log file: d:\workspace\MRes\NoiseRate\kfold_results\logs\kfold_training_20260204_001201.log
+2026-02-04 00:12:01,498 - INFO - 
+============================================================
+2026-02-04 00:12:01,498 - INFO - K-FOLD TRAINING - START
+2026-02-04 00:12:01,498 - INFO - ============================================================
+
+2026-02-04 00:12:01,514 - INFO - Using device: cuda
+
+2026-02-04 00:12:01,514 - INFO - ============================================================
+2026-02-04 00:12:01,514 - INFO - Loading and Preparing Data
+2026-02-04 00:12:01,514 - INFO - ============================================================
+2026-02-04 00:12:01,515 - INFO - Loading metadata from: d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv
+2026-02-04 00:12:01,521 - INFO - Loaded 1029 samples
+2026-02-04 00:12:01,521 - INFO - Filtering for ViewPosition: ['AP', 'PA']
+2026-02-04 00:12:01,523 - INFO - After filtering: 676 samples
+
+2026-02-04 00:12:01,523 - INFO - Found 14 pathology columns
+2026-02-04 00:12:01,523 - INFO - Applying uncertain label strategy: u_zeros
+2026-02-04 00:12:01,527 - INFO - Labels shape: (676, 14)
+
+2026-02-04 00:12:01,528 - INFO - Creating 5-fold stratified splits...
+2026-02-04 00:12:01,528 - INFO - Created 5 folds
+2026-02-04 00:12:01,529 - INFO -   Fold 1: 540 train, 136 val
+2026-02-04 00:12:01,529 - INFO -   Fold 2: 541 train, 135 val
+2026-02-04 00:12:01,529 - INFO -   Fold 3: 541 train, 135 val
+2026-02-04 00:12:01,529 - INFO -   Fold 4: 541 train, 135 val
+2026-02-04 00:12:01,530 - INFO -   Fold 5: 541 train, 135 val
+2026-02-04 00:12:01,530 - INFO - 
+2026-02-04 00:12:01,530 - INFO - ============================================================
+2026-02-04 00:12:01,530 - INFO - Training Fold 1/5
+2026-02-04 00:12:01,530 - INFO - ============================================================
+2026-02-04 00:12:01,533 - INFO - Train batches: 17, Val batches: 5
+2026-02-04 00:12:01,617 - INFO - Model parameters: 391,404
+2026-02-04 00:12:01,618 - INFO - Computed pos_weight: [19.76923   17.         3.6956522 14.882353   3.090909   3.6153846
+ 11.        13.594595   2.253012  17.         1.5352113 23.545454
+ 15.363636   1.8723404]
+2026-02-04 00:12:01,618 - INFO - 
+Epoch 1/20
+2026-02-04 00:12:01,619 - INFO - ----------------------------------------
+2026-02-04 00:12:02,528 - ERROR - 
+ERROR: Target size (torch.Size([32, 14])) must be the same as input size (torch.Size([32, 12]))
