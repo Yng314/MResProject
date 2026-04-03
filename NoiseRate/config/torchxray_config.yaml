@@ -1,0 +1,30 @@
+# Noise Rate Validation Configuration
+
+# Data paths
+data:
+  gt_metadata_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt/metadata.csv"
+  gt_image_base_path: "d:/workspace/MRes/datasets/mimic-cxr-clean/gt"
+  allowed_view_positions:
+    - "AP"
+    - "PA"
+
+# Preprocessing
+preprocessing:
+  # Strategy for handling uncertain (-1.0) labels
+  # Options: 'u_zeros', 'u_ones', 'u_ignore'
+  uncertain_strategy: "u_zeros"
+
+# Model inference
+inference:
+  batch_size: 16
+  num_workers: 0  # Set to 0 to avoid multiprocessing issues on Windows
+  device: "auto"  # 'cuda', 'cpu', or 'auto'
+
+# Output
+output:
+  results_dir: "d:/workspace/MRes/NoiseRate/results"
+  log_dir: "d:/workspace/MRes/NoiseRate/logs"
+
+# Cleanlab parameters
+cleanlab:
+  return_indices_ranked_by: "self_confidence"
