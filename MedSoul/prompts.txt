@@ -1,0 +1,34 @@
+You are an expert radiologist. Based on the radiology report below, annotate each pathology **using only the highest-priority available section of the report**, in this order:  
+1. **Impression** section — if present, use ONLY this section.  
+2. If no Impression is present, use the **Findings** section.  
+3. If neither Impression nor Findings is present, use the other parts of the report.  
+
+Apply the following labeling rules strictly:
+
+- **1.0**: The pathology is explicitly and positively stated as present in the selected section (e.g., "large pleural effusion").
+- **0.0**: The pathology is explicitly negated in the selected section (e.g., "no xxx").
+- **-1.0**: The label was either: (1) mentioned with uncertainty in the report, and therefore may or may not be present to some degree in the corresponding image, or (2) mentioned with ambiguous language in the report and it is unclear if the pathology exists or not
+	* Explicit uncertainty: "The cardiac size cannot be evaluated."
+	* Ambiguous language: "The cardiac contours are stable."
+- **null**: The pathology is not mentioned at all in the selected section.
+
+**Special Rule for "No Finding"**:  
+- Set to **1.0** *only if* the selected section explicitly states the study is normal, unremarkable, or has no acute/focal abnormalities.  
+- Set to **null** in all other cases (including when any definite or uncertain pathology is described, or when support devices are present without pathology).  
+- "No Finding" can **never** be 0.0 or -1.0.
+
+Pathology list:  
+["No Finding", "Enlarged Cardiomediastinum", "Cardiomegaly", "Lung Lesion", "Airspace Opacity", "Edema", "Consolidation", "Pneumonia", "Atelectasis", "Pneumothorax", "Pleural Effusion", "Pleural Other", "Fracture", "Support Devices"]
+
+Report:Findings:
+Heart size is borderline enlarged. Mediastinal and hilar contours are 
+unremarkable. The pulmonary vasculature is normal. Except for linear 
+subsegmental atelectasis or scarring in the right lung base, the lungs 
+are clear. No pleural effusion or pneumothorax is present. Cholecystectomy 
+clips are demonstrated in the right upper quadrant of the abdomen.
+
+Impression:
+No acute cardiopulmonary abnormality.
+
+
+Output ONLY a valid JSON object with pathology names as keys and their labels (1.0, 0.0, -1.0, or null) as values. Do not include any other text.

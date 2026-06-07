@@ -1,7 +1,6 @@
 # Local tooling and environments
 .agent/
 .conda/
-MedSoul/
 
 # Data and generated training artifacts
 datasets/

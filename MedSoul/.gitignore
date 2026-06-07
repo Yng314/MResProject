@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+*.sh
+*.err
+
+# Virtual Environment
+.conda/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints
+
+# Outputs
+outputs/*
+# !outputs/slurm_experiment/
+*.pth
+*.npz
+*.json
+*.csv
+*.xlsx
+events.*
+
+# Batch API temp files
+temp_batch/
+*.jsonl
+
+# Logs
+*.log
+logs/
+runs/
+tensorboard/
+
+# Data (large files)
+datasets/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+*.png

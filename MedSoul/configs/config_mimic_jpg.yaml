@@ -1,0 +1,172 @@
+# MedSoul Pipeline Configuration for MIMIC-CXR-JPG Dataset
+
+# Data Configuration
+data:
+  # Data source type: "parquet" or "mimic_jpg"
+  source_type: "mimic_jpg"
+  
+  # MIMIC-CXR-JPG specific paths
+  mimic_jpg:
+    image_root: "datasets/mimic-cxr-jpg-224"  # Change to "datasets/mimic-cxr-jpg-224" after preprocessing or "datasets/mimic-cxr-jpg-2.1.0/files" to original images
+    chexpert_csv: "datasets/mimic-cxr-jpg-2.1.0/mimic-cxr-2.0.0-chexpert.csv.gz"
+    split_csv: "datasets/mimic-cxr-jpg-2.1.0/mimic-cxr-2.0.0-split.csv.gz"
+    test_csv: "datasets/medpalm_and_mimic_test_labels.csv"
+    skip_resize: true  # Set to true if using pre-resized images (datasets/mimic-cxr-jpg-224)
+  
+  # Parquet paths (for backward compatibility, not used when source_type="mimic_jpg")
+  parquet_paths:
+    - "datasets/mimic_dataset/train-00000-of-00002.parquet"
+    - "datasets/mimic_dataset/train-00001-of-00002.parquet"
+  
+  # Number of samples to use (null = use all)
+  num_samples: null  # Use full dataset (~368K train samples)
+  
+  # Train/val split ratio (only for MIMIC-JPG, parquet uses pre-defined splits)
+  train_ratio: 0.8  # Use 95% of train split for training
+  val_ratio: 0.2    # Use 5% of train split for validation
+  seed: 42
+  
+  # Label configuration (matching MIMIC-CXR test set labels)
+  # IMPORTANT: Use "Airspace Opacity" (from test set) not "Lung Opacity" (from CheXpert CSV)
+  # The model will be trained on "Lung Opacity" but evaluated on "Airspace Opacity"
+  # These refer to the same pathology
+  labels:
+    - "No Finding"
+    - "Enlarged Cardiomediastinum"
+    - "Cardiomegaly"
+    - "Lung Lesion"
+    - "Airspace Opacity"  # Test set uses "Airspace Opacity", CheXpert CSV uses "Lung Opacity"
+    - "Edema"
+    - "Consolidation"
+    - "Pneumonia"
+    - "Atelectasis"
+    - "Pneumothorax"
+    - "Pleural Effusion"
+    - "Pleural Other"
+    - "Fracture"
+    - "Support Devices"
+
+# LLM Configuration (Phase 1) - Not used for baseline with ground truth labels
+llm:
+  mode: "batch"
+  model_type: "qwen-preview"
+  model_name: "deepseek-reasoner"
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key_env: "DASHSCOPE_API_KEY"
+  temperature: 0.0
+  max_tokens: 16000
+  max_workers: 50
+  preview:
+    top_p: 0.8
+    thinking_budget: 500
+  batch_size: 10
+  batch:
+    max_wait_hours: 24
+    poll_interval: 300
+    temp_dir: "temp_batch"
+  cache_file: "outputs/pseudo_labels.json"
+
+# MAE Configuration (Phase 2)
+mae:
+  image_size: 224  # Image input size for MAE pretraining
+  patch_size: 32
+  encoder: "resnet50"
+  mask_ratio: 0.75
+  epochs: 100
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.05
+  warmup_epochs: 2
+  checkpoint_dir: "outputs/mae_pretrain"
+  resume: false
+  
+  scheduler: "plateau"
+  scheduler_factor: 0.5
+  scheduler_patience: 20
+  scheduler_step_size: 20
+  scheduler_gamma: 0.5
+  
+  early_stopping:
+    enabled: true
+    patience: 20
+    min_delta: 0.0
+
+# WSL Configuration (Phase 3)
+wsl:
+  skip_linear_probe: true
+  image_size: 224  # Image input size (should match MAE or xrv_weights resolution)
+  
+  # Model type: "resnet" or "densenet"
+  model_type: "densenet"
+  
+  # Encoder configuration
+  encoder:
+    type: "xrv"  # Use chest X-ray pretrained weights (recommended for baseline)
+    xrv_weights: "densenet121-res224-all"  # Match image_size
+    checkpoint: null
+  
+  # Linear Probe phase
+  linear_probe:
+    epochs: 1000
+    batch_size: 32
+    lr: 0.001
+    freeze_encoder: true
+    scheduler_patience: 10
+    early_stopping:
+      enabled: true
+      patience: 20
+      min_delta: 0.0
+  
+  # Fine-tune phase
+  fine_tune:
+    epochs: 1000
+    batch_size: 64  # Increased from 12 to fully utilize 12GB GPU
+    lr: 0.001
+    unfreeze_layers: 100000
+    scheduler_patience: 10
+    early_stopping:
+      enabled: true
+      patience: 20
+      min_delta: 0.0
+  
+  # Common settings
+  num_labels: 14
+  num_classes_per_label: 4  # negative, positive, uncertain, unlabeled (only for multi_class)
+  num_classes: 14
+  checkpoint_dir: "outputs/wsl_train"
+  log_interval: 10
+  
+  # Loss configuration
+  loss:
+    type: "binary"  # "binary" or "multi_class"
+    # Binary mode: positive (1.0) and uncertain (-1.0) -> 1, negative (0.0) -> 0, NaN masked out
+    # Multi-class mode: 4-way classification (negative/positive/uncertain/unlabeled)
+    label_smoothing: 0.0
+    use_class_weights: false  # Set to false for standard BCE without weights
+
+# Confident Learning Configuration (Phase 4)
+confident_learning:
+  enabled: false
+  method: "cleanlab"
+  n_folds: 5
+  prune_method: "prune_by_noise_rate"
+  converge_threshold: 0.01
+  max_iterations: 3
+  output_dir: "outputs/confident_learning"
+
+# Training Configuration
+training:
+  device: "cuda"
+  num_workers: 8  # Increased from 4 to speed up data loading (prevent CPU bottleneck)
+  pin_memory: true
+  mixed_precision: true  # Already enabled - good for memory efficiency
+
+# Pipeline Control
+pipeline:
+  phases:
+    generate_labels: false  # Skip Phase 1 - using ground truth labels
+    train_mae: false  # Skip Phase 2 - using xrv pretrained weights
+    train_wsl: true  # Run Phase 3 - WSL training with ground truth
+    confident_learning: false  # Skip Phase 4 for baseline
+  output_dir: "outputs"
+

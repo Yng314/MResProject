@@ -1,0 +1,160 @@
+# MedSoul Pipeline Configuration - Slurm Version
+# This is a copy for running on the GPU cluster
+# Source: configs/config.yaml (modified for non-interactive execution)
+
+# Data Configuration
+data:
+  # === MIMIC-CXR-JPG Mode (Ground Truth Labels) ===
+  source_type: 'mimic_jpg'  # 'mimic_jpg' for ground truth, 'parquet' for pseudo labels
+  
+  mimic_jpg:
+    image_root: "datasets/mimic-cxr-jpg-224"
+    chexpert_csv: "datasets/mimic-cxr-2.0.0-chexpert.csv.gz"
+    split_csv: "datasets/mimic-cxr-2.0.0-split.csv.gz"
+    # test_csv not specified - will use MIMIC's validation split
+    skip_resize: true  # Images are already 224x224
+  
+  # === Parquet Mode (Pseudo Labels) - Alternative ===
+  parquet_paths:
+    - "datasets/mimic_dataset/train-00000-of-00002.parquet"
+    - "datasets/mimic_dataset/train-00001-of-00002.parquet"
+  
+  num_samples: -1  # -1 for full dataset, or specify a number for testing
+  train_ratio: 0.85
+  val_ratio: 0.15
+  test_ratio: 0.0
+  seed: 42
+  
+  # Validation set configuration (from test set)
+  test_set_json: "outputs/test_set_2_1_0.json"
+  test_image_dir: "datasets/test_set"
+  val_ratio_from_test: 0.15
+  
+  # Label configuration (matching MIMIC-CXR-JPG 2.1.0 test set)
+  labels:
+    - "No Finding"
+    - "Enlarged Cardiomediastinum"
+    - "Cardiomegaly"
+    - "Lung Lesion"
+    - "Airspace Opacity"
+    - "Edema"
+    - "Consolidation"
+    - "Pneumonia"
+    - "Atelectasis"
+    - "Pneumothorax"
+    - "Pleural Effusion"
+    - "Pleural Other"
+    - "Fracture"
+    - "Support Devices"
+
+# LLM Configuration (Phase 1) - Skip for Slurm (use pre-generated labels)
+llm:
+  mode: "batch"
+  model_type: "qwen-preview"
+  model_name: "deepseek-reasoner"
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key_env: "DASHSCOPE_API_KEY"
+  temperature: 0.0
+  max_tokens: 16000
+  max_workers: 50
+  preview:
+    top_p: 0.8
+    thinking_budget: 500
+  batch_size: 10
+  batch:
+    max_wait_hours: 24
+    poll_interval: 300
+    temp_dir: "temp_batch"
+  cache_file: "outputs/pseudo_labels.json"
+
+# MAE Configuration (Phase 2)
+mae:
+  image_size: 224
+  patch_size: 32
+  encoder: "resnet50"
+  mask_ratio: 0.75
+  epochs: 100
+  batch_size: 32  # Increased for A40/A100
+  lr: 0.0001
+  weight_decay: 0.05
+  warmup_epochs: 2
+  checkpoint_dir: "mae_pretrain"
+  resume: false
+  scheduler: "plateau"
+  scheduler_factor: 0.5
+  scheduler_patience: 20
+  scheduler_step_size: 20
+  scheduler_gamma: 0.5
+  early_stopping:
+    enabled: true
+    patience: 20
+    min_delta: 0.0
+
+# WSL Configuration (Phase 3)
+wsl:
+  skip_linear_probe: false
+  image_size: 224
+  model_type: "densenet"
+  
+  encoder:
+    type: "xrv"
+    xrv_weights: "densenet121-res224-all"
+    checkpoint: null
+  
+  linear_probe:
+    epochs: 100  # Reduced for Slurm (can increase later)
+    batch_size: 64  # Larger batch for better GPU utilization
+    lr: 0.001
+    freeze_encoder: true
+    scheduler_patience: 10
+    early_stopping:
+      enabled: true
+      patience: 20
+      min_delta: 0.0
+  
+  fine_tune:
+    epochs: 100  # Reduced for Slurm
+    batch_size: 32  # Larger batch for A40/A100
+    lr: 0.001
+    unfreeze_layers: 2
+    scheduler_patience: 10
+    early_stopping:
+      enabled: true
+      patience: 20
+      min_delta: 0.0
+    
+  num_labels: 14
+  num_classes_per_label: 4
+  num_classes: 14
+  checkpoint_dir: "wsl_train"
+  log_interval: 10
+  
+  loss:
+    type: "binary"  # Binary: positive(1)+uncertain(-1)→1, negative(0)→0, NaN→skipped
+    label_smoothing: 0.0
+
+# Confident Learning Configuration (Phase 4)
+confident_learning:
+  enabled: false
+  method: "cleanlab"
+  n_folds: 5
+  prune_method: "prune_by_noise_rate"
+  converge_threshold: 0.01
+  max_iterations: 3
+  output_dir: "confident_learning"
+
+# Training Configuration
+training:
+  device: "cuda"
+  num_workers: 8  # More workers for faster data loading
+  pin_memory: true
+  mixed_precision: true
+
+# Pipeline Control
+pipeline:
+  phases:
+    generate_labels: false  # Skip LLM generation on GPU cluster
+    train_mae: false  # Skip MAE when using xrv encoder
+    train_wsl: true   # Main training phase
+    confident_learning: false
+  output_dir: "outputs/slurm_experiment"  # Experiment output directory
