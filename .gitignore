@@ -7,6 +7,8 @@ datasets/
 **/outputs/
 **/results/
 **/results_*/
+!NoiseRate/cxr_toy_experiment/results_multilabel/
+!NoiseRate/cxr_toy_experiment/results_multilabel/**
 **/cache/
 *.pth
 *.pt
