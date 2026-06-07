@@ -1,0 +1,22 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.23.0
+pandas>=2.0.0
+pyarrow>=10.0.0
+Pillow>=10.0.0
+
+# Training and evaluation
+scikit-learn>=1.3.0
+tqdm>=4.65.0
+tensorboard>=2.13.0
+
+# Confident Learning
+cleanlab>=2.5.0
+
+# LLM API
+openai>=1.0.0  # Compatible with DashScope API
+python-dotenv>=1.0.0
+
+# Configuration
+pyyaml>=6.0

@@ -1,0 +1,169 @@
+# MedSoul Pipeline Configuration
+
+# Data Configuration
+data:
+  parquet_paths:
+    - "datasets/mimic_dataset/train-00000-of-00002.parquet"
+    - "datasets/mimic_dataset/train-00001-of-00002.parquet"
+  num_samples: 10000  # Use full dataset (~31K samples)
+  train_ratio: 0.85  # Not used anymore - train uses all pseudo labels
+  val_ratio: 0.15  # Not used anymore - val comes from test set
+  test_ratio: 0.0  # Test set is separate (MIMIC-CXR 2.1.0 test set)
+  seed: 42
+  # Validation set configuration (from test set)
+  test_set_json: "outputs/test_set_2_1_0.json"  # Path to test set JSON
+  test_image_dir: "datasets/test_set"  # Directory containing test images
+  val_ratio_from_test: 0.15  # Use 15% of test set for validation (~100 samples from 685)
+  
+  # Label configuration (matching MIMIC-CXR-JPG 2.1.0 test set)
+  labels:
+    - "No Finding"
+    - "Enlarged Cardiomediastinum"
+    - "Cardiomegaly"
+    - "Lung Lesion"
+    - "Airspace Opacity"
+    - "Edema"
+    - "Consolidation"
+    - "Pneumonia"
+    - "Atelectasis"
+    - "Pneumothorax"
+    - "Pleural Effusion"
+    - "Pleural Other"
+    - "Fracture"
+    - "Support Devices"
+
+# LLM Configuration (Phase 1)
+llm:
+  mode: "batch"  # "realtime" or "batch" (batch = 50% cost savings)
+  model_type: "qwen-preview"  # "qwen-max" or "qwen-preview" or "deepseek" (preview has thinking but no batch support)
+  model_name: "deepseek-reasoner"  # deepseek-chat or deepseek-reasoner
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key_env: "DASHSCOPE_API_KEY"
+  temperature: 0.0
+  max_tokens: 16000  # Large value for deepseek-reasoner (needs space for thinking + answer)
+  max_workers: 50  # For qwen3-max-preview: 50 to hit 600 RPM limit (assuming ~5s per request)
+  
+  # Preview model specific settings (only used when model_type = "qwen-preview")
+  preview:
+    top_p: 0.8
+    thinking_budget: 500
+  
+  # Realtime mode settings (ignored in batch mode)
+  batch_size: 10  # Process N samples at a time for realtime
+  
+  # Batch mode settings (ignored in realtime mode)
+  batch:
+    max_wait_hours: 24  # Maximum time to wait for batch completion
+    poll_interval: 300  # Poll status every N seconds (5 min default)
+    temp_dir: "temp_batch"  # Directory for temporary JSONL files
+  
+  cache_file: "outputs/pseudo_labels.json"
+
+# MAE Configuration (Phase 2)
+mae:
+  image_size: 224  # Image input size for MAE pretraining
+  patch_size: 32
+  encoder: "resnet50"  # Use ResNet50 as encoder
+  mask_ratio: 0.75  # Standard MAE masking ratio (was 0.05, too low)
+  epochs: 100
+  batch_size: 16  # Optimized for 12GB GPU (was 8)
+  lr: 0.0001  # 1e-4 for stable SSL training (was 0.01, too high)
+  weight_decay: 0.05
+  warmup_epochs: 2
+  checkpoint_dir: "outputs/mae_pretrain"
+  resume: false
+  
+  # Learning rate scheduler options
+  # Options: 'plateau' (auto-adjust), 'cosine' (smooth decay), 'onecycle' (fast training), 'step' (fixed intervals), 'none'
+  scheduler: "plateau"  # Recommended: plateau for auto-adjustment
+  scheduler_factor: 0.5  # For plateau/step: reduce lr by this factor
+  scheduler_patience: 20  # For plateau: wait N epochs before reducing (was 5, increased for more patience)
+  scheduler_step_size: 20  # For step: reduce every N epochs
+  scheduler_gamma: 0.5  # For step: reduction factor
+  
+  # Early stopping
+  early_stopping:
+    enabled: true  # Enable early stopping
+    patience: 20  # Stop training if no improvement for N epochs
+    min_delta: 0.0  # Minimum change to qualify as an improvement
+
+# WSL Configuration (Phase 3)
+wsl:
+  skip_linear_probe: false  # Set to true to skip linear probe and directly fine-tune
+  image_size: 224  # Image input size (should match MAE image_size or xrv_weights resolution)
+  
+  # Model type: "resnet" or "densenet" (default: "resnet")
+  model_type: "densenet"  # Choose backbone architecture
+  
+  # Encoder configuration
+  encoder:
+    type: "xrv"  # For ResNet: "resnet50" (ImageNet) or "xrv" (chest X-ray pretrained, recommended!)
+                 # For DenseNet: "densenet121" (ImageNet) or "xrv" (chest X-ray pretrained, recommended!)
+    xrv_weights: "densenet121-res224-all"  # Only used if type="xrv"
+    # Options for ResNet: "resnet50-res512-all", "resnet50-res224-all", etc.
+    # Options for DenseNet: "densenet121-res224-all", "densenet121-res512-all", etc.
+    # Note: Should match image_size (224 -> res224, 512 -> res512)
+    checkpoint: null  # Path to custom encoder checkpoint (optional)
+  
+  # Linear Probe phase
+  linear_probe:
+    epochs: 1000
+    batch_size: 32  # Larger batch for frozen encoder (was 16)
+    lr: 0.001
+    freeze_encoder: true
+    scheduler_patience: 10  # Patience for ReduceLROnPlateau scheduler
+    early_stopping:
+      enabled: true  # Enable early stopping
+      patience: 20  # Stop training if no improvement for N epochs
+      min_delta: 0.0  # Minimum change to qualify as an improvement
+  
+  # Fine-tune phase
+  fine_tune:
+    epochs: 1000
+    batch_size: 12  # Optimized for 12GB GPU (was 8)
+    lr: 0.001  # 1e-4 for faster convergence (was 1e-5, too conservative)
+    unfreeze_layers: 2  # Unfreeze top N layers
+    scheduler_patience: 10  # Patience for ReduceLROnPlateau scheduler
+    early_stopping:
+      enabled: true  # Enable early stopping
+      patience: 20  # Stop training if no improvement for N epochs
+      min_delta: 0.0  # Minimum change to qualify as an improvement
+    
+  # Common settings
+  num_labels: 14  # Number of labels (e.g., 14 for MIMIC-CXR)
+  num_classes_per_label: 4  # Number of classes per label (negative, positive, uncertain, unlabeled)
+  num_classes: 14  # Deprecated: kept for backward compatibility, use num_labels instead
+  checkpoint_dir: "outputs/wsl_train"
+  log_interval: 10
+  
+  # Loss configuration
+  loss:
+    type: "multi_class"  # multi-class cross entropy for multi-label multi-class classification
+    label_smoothing: 0.0
+    # Future: robust_loss, bootstrapping, etc.
+
+# Confident Learning Configuration (Phase 4)
+confident_learning:
+  enabled: false  # Set to true to enable label cleaning
+  method: "cleanlab"
+  n_folds: 5  # Cross-validation folds
+  prune_method: "prune_by_noise_rate"  # or "prune_by_class"
+  converge_threshold: 0.01  # Stop if cleaned ratio < 1%
+  max_iterations: 3
+  output_dir: "outputs/confident_learning"
+
+# Training Configuration
+training:
+  device: "cuda"  # cuda or cpu
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true  # Use AMP for 12GB GPU
+
+# Pipeline Control
+pipeline:
+  phases:
+    generate_labels: true
+    train_mae: false  # Set to false when using xrv encoder (no need for MAE pretraining)
+    train_wsl: true
+    confident_learning: false
+  output_dir: "outputs"
