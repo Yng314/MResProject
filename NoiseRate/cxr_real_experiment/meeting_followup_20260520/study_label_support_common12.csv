@@ -1,0 +1,13 @@
+label,valid_count,positive_count,negative_count
+Atelectasis,214,212,2
+Cardiomegaly,242,170,72
+Consolidation,91,70,21
+Edema,252,165,87
+Enlarged Cardiomediastinum,93,66,27
+Fracture,44,37,7
+Lung Lesion,53,51,2
+Lung Opacity,166,148,18
+Pleural Effusion,327,259,68
+Pleural Other,23,22,1
+Pneumonia,202,124,78
+Pneumothorax,201,38,163

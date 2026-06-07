@@ -1,0 +1,584 @@
+sample_local_index,pool_row_id,subject_id,study_id,dicom_id,image_path,label_index,label_name,raw_label,binary_label,valid_label,pred_prob,est_issue_entry,entry_quality_self_confidence,entry_quality_normalized_margin,entry_quality_confidence_weighted_entropy,entry_issue_rank_self_confidence,entry_issue_rank_normalized_margin,entry_issue_rank_confidence_weighted_entropy,report_text,report_relation,report_match_phrase,report_snippet
+19714,19861,10862862,56031773,23624dca-67115a47-eaf73878-f09eb723-3094f5d8,p10/p10862862/s56031773/23624dca-67115a47-eaf73878-f09eb723-3094f5d8.jpg,0,Atelectasis,0.0,0.0,1,0.997565746307373,1,0.0024342536926269,0.0024342536926269,0.2379708737134933,1.0,1.0,1.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old man with decreased breath sounds  // Interval change
+ in pleural effusion?
+ 
+ IMPRESSION: 
+ 
+ As compared to ___ radiograph, widespread bilateral alveolar
+ opacities with relative sparing of the left upper lobe and periphery of right
+ lung base have worsened.  However, when compared to the more recent chest CT
+ of ___, left upper lobe collapse has resolved.  Moderate left
+ pleural effusion and small right pleural effusion are again demonstrated.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old man with decreased breath sounds // interval change in pleural effusion? impression: as compared to ___ radiograph, widespread bilateral alveolar opacities with ..."
+164889,165144,16948106,51708594,8ae233d3-17ae0d8d-d3121dd7-66c35e44-46cdd386,p16/p16948106/s51708594/8ae233d3-17ae0d8d-d3121dd7-66c35e44-46cdd386.jpg,0,Atelectasis,0.0,0.0,1,0.9963035583496094,1,0.0036964416503906,0.0036964416503906,0.2471983134746551,5.0,5.0,5.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old woman with ___'s, sbo s/p loa for sbo  //
+ interval change
+ 
+ COMPARISON:  ___.
+ 
+ IMPRESSION: 
+ 
+ As compared to the previous radiograph, the monitoring and support devices,
+ including the very low position of the endotracheal tube, are unchanged. 
+ Unchanged very low lung volumes with signs of mild fluid overload and
+ bilateral blunting of the costophrenic sinus, suggesting the presence of
+ minimal pleural effusions.  No pneumonia but atelectases at both lung bases
+ are present.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old woman with ___'s, sbo s/p loa for sbo // interval change comparison: ___. impression: as compared to the previous radiograph, the monitoring and support devices, ..."
+1547,1547,10065383,51143472,1e8fa7a4-98c7af24-42ef40a6-724884bb-d91ded68,p10/p10065383/s51143472/1e8fa7a4-98c7af24-42ef40a6-724884bb-d91ded68.jpg,0,Atelectasis,0.0,0.0,1,0.9953519105911256,1,0.0046480894088745,0.0046480894088745,0.252626895904541,12.0,12.0,12.0,"                                 FINAL REPORT
+ SINGLE FRONTAL VIEW OF THE CHEST
+ 
+ REASON FOR EXAM:  Patient with acute desaturation.  Increased secretions and
+ history of blastomycosis.
+ 
+ Comparison is made with prior study performed the same day earlier in the
+ morning.
+ 
+ There is no pneumothorax or obvious lung collapse.  Extensive lung
+ consolidations have minimally increased in the left upper lobe.  ET tube is
+ high, the tip is 7.5 cm above the carina; can be advanced a couple of
+ centimeters for a more standard position.  NG tube tip is out of view below
+ the diaphragm.  ECMO cannula tip is in unchanged position at the IVC.  Amount
+ of pleural fluid is difficult to evaluate, probably unchanged, larger on the
+ left side.  Cardiac silhouette is obscured by the parenchymal abnormalities.
+",unclear,,final report single frontal view of the chest reason for exam: patient with acute desaturation. increased secretions and history of blastomycosis. comparison is made with prior study performed the same day earlier in the morning. there ...
+200226,200481,18426683,53275042,6043b47b-bfb45ef3-6ed9cb92-2381888f-9e91f2b8,p18/p18426683/s53275042/6043b47b-bfb45ef3-6ed9cb92-2381888f-9e91f2b8.jpg,0,Atelectasis,0.0,0.0,1,0.9950726628303528,1,0.0049273371696472,0.0049273371696472,0.2540547251701355,17.0,17.0,17.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old man with L pleural effusion and L mainstem
+ compression here with recurrent pseudomonas pna, acute resp distress,
+ decreased BS in left  // acute collapse?     acute collapse?
+ 
+ IMPRESSION: 
+ 
+ In comparison with the study of ___, the Dobbhoff tube has been removed.
+ Again there are diffuse bilateral pulmonary opacifications, especially in the
+ mid zones bilaterally, consistent with recurrent pneumonia. Retrocardiac
+ opacification again is consistent with volume loss in the left lower lobe.
+ Bilateral pleural effusions are again seen.
+ No evidence of acute collapse or shift of the mediastinal structures.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old man with l pleural effusion and l mainstem compression here with recurrent pseudomonas pna, acute resp distress, decreased bs in left // acute collapse? acute ..."
+200227,200482,18426683,53275042,a19e5e94-5133cdb8-da645bb6-c8a8fdfc-f20143df,p18/p18426683/s53275042/a19e5e94-5133cdb8-da645bb6-c8a8fdfc-f20143df.jpg,0,Atelectasis,0.0,0.0,1,0.9949340224266052,1,0.0050659775733947,0.0050659775733947,0.2547405064105987,20.0,20.0,20.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old man with L pleural effusion and L mainstem
+ compression here with recurrent pseudomonas pna, acute resp distress,
+ decreased BS in left  // acute collapse?     acute collapse?
+ 
+ IMPRESSION: 
+ 
+ In comparison with the study of ___, the Dobbhoff tube has been removed.
+ Again there are diffuse bilateral pulmonary opacifications, especially in the
+ mid zones bilaterally, consistent with recurrent pneumonia. Retrocardiac
+ opacification again is consistent with volume loss in the left lower lobe.
+ Bilateral pleural effusions are again seen.
+ No evidence of acute collapse or shift of the mediastinal structures.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old man with l pleural effusion and l mainstem compression here with recurrent pseudomonas pna, acute resp distress, decreased bs in left // acute collapse? acute ..."
+132363,132618,15561274,53070008,2ebd1fb4-58af802a-a2b7e57f-5f573cb1-2a125f7c,p15/p15561274/s53070008/2ebd1fb4-58af802a-a2b7e57f-5f573cb1-2a125f7c.jpg,1,Cardiomegaly,0.0,0.0,1,0.9976599216461182,1,0.0023400783538818,0.0023400783538818,0.2371406704187393,1.0,1.0,1.0,"                                 FINAL REPORT
+ CHEST RADIOGRAPH PERFORMED ON ___
+ 
+ COMPARISON:  ___.
+ 
+ CLINICAL HISTORY:  Left arm edema, question intrathoracic mass lesion.
+ 
+ FINDINGS:  PA and lateral views of the chest were provided.  The heart is
+ moderately enlarged, though appears grossly stable from prior exam.  No focal
+ consolidation or discrete mass is seen within the chest.  The aorta appears
+ unfolded.  No large effusion or pneumothorax.  The bony structures appear
+ intact.
+ 
+ IMPRESSION:  No cardiomegaly, consolidation or mass seen.
+",negated,no cardiomegaly,"final report chest radiograph performed on ___ comparison: ___. clinical history: left arm edema, question intrathoracic mass lesion. findings: pa and lateral views of the chest were provided. the heart is moderately enlarged, though ..."
+38227,38392,11630519,57464780,638b72db-c3784dff-78bae056-d69548d6-e1fd957d,p11/p11630519/s57464780/638b72db-c3784dff-78bae056-d69548d6-e1fd957d.jpg,1,Cardiomegaly,0.0,0.0,1,0.9970644116401672,1,0.0029355883598327,0.0029355883598327,0.2420059889554977,2.0,2.0,2.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___M with afib, CHF, DM, HTN, h/o CVA initially admitted ___ with
+ mechanical fall on anticoagulation with intracranial bleeding. Now awaiting___ rehab placement, receiving inpatient stroke rehab, seized on ___ c/b
+ lactic acidosis. On ___ more tachypneic s/p 1L fluids. Please assess for
+ pulmonary edema.  // r/o pulmonary edema  r/o pulmonary edema
+ 
+ IMPRESSION: 
+ 
+ In comparison with the study of ___, there is stable enlargement of the
+ cardiac silhouette with little or no elevation in pulmonary venous pressure. 
+ This discordance raises the possibility of underlying cardiomyopathy or
+ pericardial effusion.  No evidence of acute focal pneumonia.
+ There is again an impression on the right of the lower cervical trachea,
+ suggesting thyroid enlargement.
+",unclear,,"final report examination: chest (portable ap) indication: ___m with afib, chf, dm, htn, h/o cva initially admitted ___ with mechanical fall on anticoagulation with intracranial bleeding. now awaiting___ rehab placement, receiving ..."
+7908,7935,10332254,56093737,8d6637d9-d85dcce7-1922aade-fcd7529f-4796c77e,p10/p10332254/s56093737/8d6637d9-d85dcce7-1922aade-fcd7529f-4796c77e.jpg,1,Cardiomegaly,0.0,0.0,1,0.9938011765480042,1,0.0061988234519958,0.0061988234519958,0.2598632574081421,8.0,8.0,8.0,"                                 FINAL REPORT
+ CHEST RADIOGRAPH PERFORMED ON ___
+ 
+ COMPARISON:  ___.
+ 
+ CLINICAL HISTORY:  Chest pain.
+ 
+ FINDINGS:  Frontal and lateral views of the chest are provided.  Lung volumes
+ are low which limits evaluation.  There is top normal heart size.  There does
+ appear to be mild interstitial pulmonary edema which in part could be
+ magnified due to technique.  There is no frank pulmonary alveolar edema.  No
+ effusion or pneumothorax.  Bony structures appear intact.
+ 
+ IMPRESSION:  Top normal heart size with apparent mild pulmonary edema, though
+ study limitations limit the evaluation.
+",unclear,,final report chest radiograph performed on ___ comparison: ___. clinical history: chest pain. findings: frontal and lateral views of the chest are provided. lung volumes are low which limits evaluation. there is top normal heart size. ...
+68732,68912,12907170,57457256,47c121ca-9987725b-3bdf20f7-5c9aee85-b5323b8a,p12/p12907170/s57457256/47c121ca-9987725b-3bdf20f7-5c9aee85-b5323b8a.jpg,1,Cardiomegaly,0.0,0.0,1,0.9927585124969482,1,0.0072414875030517,0.0072414875030517,0.2639796137809753,11.0,11.0,11.0,"                                 FINAL REPORT
+ CHEST RADIOGRAPH PERFORMED ON ___
+ 
+ COMPARISON:  Prior exam from earlier today.
+ 
+ CLINICAL HISTORY:  Central venous catheter, assess position.
+ 
+ FINDINGS:  Portable AP upright chest radiograph was provided.  There is a left
+ IJ central venous catheter in place with its tip in the region of the mid SVC.
+ The heart size appears top normal.  The lung volumes are low with
+ bronchovascular crowding and presumed atelectasis in the lower lungs.  There
+ is no definite sign of pneumonia, large effusion, or pneumothorax.  The
+ mediastinal contour appears stable.
+ 
+ IMPRESSION:  Appropriately positioned left IJ central venous catheter.  Top
+ normal heart size.
+",unclear,,"final report chest radiograph performed on ___ comparison: prior exam from earlier today. clinical history: central venous catheter, assess position. findings: portable ap upright chest radiograph was provided. there is a left ij ..."
+199675,199930,18402151,55113475,da878459-5a7451c5-668eefe3-a241198e-c23fc5b2,p18/p18402151/s55113475/da878459-5a7451c5-668eefe3-a241198e-c23fc5b2.jpg,1,Cardiomegaly,0.0,0.0,1,0.9927310347557068,1,0.0072689652442932,0.0072689652442932,0.2640818357467651,12.0,12.0,12.0,"                                 FINAL REPORT
+ REASON FOR EXAMINATION:  Chest tube placement.
+ 
+ AP radiograph of the chest was reviewed in comparison to prior study from
+ ___ and CT torso from ___.
+ 
+ The right chest tube is in place.  There is opacity in the right mid lung, new
+ as compared to ___ radiograph that might reflect hematoma.  There are
+ several rib fractures that are better depicted on the CT torso.  Heart size
+ and mediastinum are overall unremarkable.  The apical thickening on the left
+ is chronic.  The pacemaker defibrillator leads are in expected positions.
+",unclear,,"final report reason for examination: chest tube placement. ap radiograph of the chest was reviewed in comparison to prior study from ___ and ct torso from ___. the right chest tube is in place. there is opacity in the right mid lung, ..."
+88086,88291,13715870,53525232,838e9b45-4dc0ca7a-c351ef71-4a734aed-879a44eb,p13/p13715870/s53525232/838e9b45-4dc0ca7a-c351ef71-4a734aed-879a44eb.jpg,1,Cardiomegaly,0.0,0.0,1,0.9927167892456056,1,0.0072832107543945,0.0072832107543945,0.2641347050666809,13.0,13.0,13.0,"                                 FINAL REPORT
+ CHEST RADIOGRAPH PERFORMED ON ___ 
+ 
+ COMPARISON:  ___.
+ 
+ CLINICAL HISTORY:  Fever, question pneumonia.
+ 
+ FINDINGS:  PA and lateral views of the chest provided.  Midline sternotomy
+ wires and mediastinal clips are again noted as well as a right arm PICC line
+ with its tip again seen at the level of the low SVC.  The heart remains top
+ normal in size.  The lungs are clear.  No signs of CHF or pneumonia.  No
+ effusion or pneumothorax.  Bony structures are intact.
+",unclear,,"final report chest radiograph performed on ___ comparison: ___. clinical history: fever, question pneumonia. findings: pa and lateral views of the chest provided. midline sternotomy wires and mediastinal clips are again noted as well as ..."
+21677,21838,10943603,54991938,9c270069-9907cd80-8a02fa73-8a873508-c862676b,p10/p10943603/s54991938/9c270069-9907cd80-8a02fa73-8a873508-c862676b.jpg,1,Cardiomegaly,0.0,0.0,1,0.9926642775535583,1,0.0073357224464416,0.0073357224464416,0.2643289268016815,14.0,14.0,14.0,"                                 FINAL REPORT
+ CHEST RADIOGRAPH PERFORMED ON ___
+ 
+ COMPARISON:  None.
+ 
+ CLINICAL HISTORY:  Acute dyspnea.
+ 
+ FINDINGS:  Portable supine AP chest radiograph is obtained.  Endotracheal tube
+ is seen with its tip located approximately 5 cm above the carina.  NG tube
+ courses into the left upper abdomen.  Diffuse bilateral ground-glass
+ opacities, which are most compatible with pulmonary edema.  A right pleural
+ effusion is noted, moderate in volume.  There may be a tiny left pleural
+ effusion.  No pneumothorax is seen.  Heart size difficult to evaluate though
+ is at least top normal.  Widening of the mediastinum is likely due to supine
+ portable technique.  The imaged osseous structures are intact.
+ 
+ IMPRESSION:  Endotracheal and nasogastric tubes appropriately positioned. 
+ Pulmonary edema with moderate right and tiny left pleural effusion.  Top
+ normal heart size.
+",unclear,,final report chest radiograph performed on ___ comparison: none. clinical history: acute dyspnea. findings: portable supine ap chest radiograph is obtained. endotracheal tube is seen with its tip located approximately 5 cm above the ...
+43542,43707,11849511,55835086,95099e11-1eed9aa0-db6b4ead-e173224e-6053f6db,p11/p11849511/s55835086/95099e11-1eed9aa0-db6b4ead-e173224e-6053f6db.jpg,1,Cardiomegaly,0.0,0.0,1,0.99207204580307,1,0.0079279541969299,0.0079279541969299,0.2664499580860138,15.0,15.0,15.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old woman with L empyema  // interval change
+ 
+ COMPARISON:  ___.
+ 
+ IMPRESSION: 
+ 
+ As compared to the previous radiograph, the left pleural opacity, caused by an
+ empyema, as well as the left chest tube, are in unchanged position. Constant
+ extent of the relatively large left lower lung atelectasis. The endotracheal
+ tube, left internal jugular vein catheter and nasogastric tube are also
+ unchanged.  Normal size of the cardiac silhouette.  Normal hilar contours. The
+ right lung is unremarkable.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old woman with l empyema // interval change comparison: ___. impression: as compared to the previous radiograph, the left pleural opacity, caused by an empyema, as well ..."
+26909,27070,11170345,56811448,25ef2adf-658ceef0-01b04da8-fac5bbe7-1deec5d6,p11/p11170345/s56811448/25ef2adf-658ceef0-01b04da8-fac5bbe7-1deec5d6.jpg,1,Cardiomegaly,0.0,0.0,1,0.9916069507598876,1,0.0083930492401123,0.0083930492401123,0.2680333852767944,16.0,16.0,16.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PA AND LAT)
+ 
+ INDICATION:  ___M with dyspnea  // r/o acute process
+ 
+ COMPARISON:  ___
+ 
+ FINDINGS: 
+ 
+ PA and lateral views of the chest provided.   Dual lead AICD appears unchanged
+ in position.  There is no focal consolidation, edema or pneumothorax.  Trace
+ right pleural effusion is noted.  Cardiomediastinal silhouette is stable with
+ top-normal heart size.  Imaged osseous structures are intact.  No free air
+ below the right hemidiaphragm is seen.
+ 
+ IMPRESSION: 
+ 
+ Top normal heart size with trace right pleural effusion.
+",unclear,,final report examination: chest (pa and lat) indication: ___m with dyspnea // r/o acute process comparison: ___ findings: pa and lateral views of the chest provided. dual lead aicd appears unchanged in position. there is no focal ...
+182654,182909,17680120,52675456,5e1fce85-1380ecc9-1faef858-11bdc5ea-3ece1fcd,p17/p17680120/s52675456/5e1fce85-1380ecc9-1faef858-11bdc5ea-3ece1fcd.jpg,1,Cardiomegaly,0.0,0.0,1,0.9914551973342896,1,0.0085448026657104,0.0085448026657104,0.2685357332229614,17.0,17.0,17.0,"                                 FINAL REPORT
+ INDICATION:  ___ year old woman with ongoing hypoxemia, pressor requirement  //
+ assess for infiltrate
+ 
+ COMPARISON:  Radiographs from ___.
+ 
+ IMPRESSION: 
+ 
+ There are markedly low lung volumes. There is atelectasis with increase
+ density at the lung bases.  Heart size is within normal limits. There is a
+ right IJ central line with the distal lead tip in the proximal right atrium. 
+ Overall, these findings are unchanged. Deformity and severe degenerative
+ changes of bilateral shoulders are again seen.
+",unclear,,"final report indication: ___ year old woman with ongoing hypoxemia, pressor requirement // assess for infiltrate comparison: radiographs from ___. impression: there are markedly low lung volumes. there is atelectasis with increase ..."
+146179,146434,16127152,51218230,49c592c3-c232b2a9-4f2e8808-7c78797d-b77fc567,p16/p16127152/s51218230/49c592c3-c232b2a9-4f2e8808-7c78797d-b77fc567.jpg,1,Cardiomegaly,0.0,0.0,1,0.991081476211548,1,0.0089185237884521,0.0089185237884521,0.2697449326515198,18.0,18.0,18.0,"                                 FINAL REPORT
+ REASON FOR EXAMINATION:  Morbid obesity, hematuria, dysuria, and acute
+ shortness of breath.
+ 
+ PA and lateral upright chest radiographs were reviewed in comparison to ___ and ___.
+ 
+ Heart size and mediastinum are grossly unremarkable.  There is interval
+ development of substantial vascular engorgement consistent with the beginning
+ of pulmonary edema.  The lower lungs are most likely in the advanced stages of
+ pulmonary edema such as interstitial.  No appreciable pleural effusion is
+ seen.
+ 
+ Discussed with Dr ___ ___ the phone by Dr ___ at 3:35 pm on
+ ___
+",unclear,,"final report reason for examination: morbid obesity, hematuria, dysuria, and acute shortness of breath. pa and lateral upright chest radiographs were reviewed in comparison to ___ and ___. heart size and mediastinum are grossly ..."
+7601,7628,10318302,52221182,b54c466e-9d64ab08-89c09889-05cbc17c-cd346569,p10/p10318302/s52221182/b54c466e-9d64ab08-89c09889-05cbc17c-cd346569.jpg,1,Cardiomegaly,0.0,0.0,1,0.991078555583954,1,0.0089214444160461,0.0089214444160461,0.2697542309761047,19.0,19.0,19.0,"                                 FINAL REPORT
+ REASON FOR EXAMINATION:  Evaluation of the patient with pleural effusion.
+ 
+ COMPARISON:  ___.
+ 
+ PA and lateral upright chest radiographs were reviewed.
+ 
+ The patient has a dual ventricle pacemaker with the leads terminating in the
+ expected locations of the right atrium, right ventricle, and epicardium of the
+ left ventricle.  A coronary stent is projecting, better appreciated on the
+ lateral view.  Heart size is top normal.  Mediastinum is unremarkable.  The
+ patient is after sternotomy and CABG.
+ 
+ Right pleural effusion is noted, small-to-moderate with substantial posterior
+ loculation, better appreciated on the lateral view at least ___ x 5 cm in
+ diameter.  No left pleural effusion is demonstrated.  No pneumothorax is seen.
+",unclear,,final report reason for examination: evaluation of the patient with pleural effusion. comparison: ___. pa and lateral upright chest radiographs were reviewed. the patient has a dual ventricle pacemaker with the leads terminating in the ...
+180398,180653,17588592,54113978,5165ebbf-81bd2407-8398490e-0113c863-42db3aac,p17/p17588592/s54113978/5165ebbf-81bd2407-8398490e-0113c863-42db3aac.jpg,1,Cardiomegaly,0.0,0.0,1,0.9904983639717102,1,0.0095016360282897,0.0095016360282897,0.2715579867362976,20.0,20.0,20.0,"                                 FINAL REPORT
+ HISTORY:  Cardiomyopathy with biventricular ICD.
+ 
+ FINDINGS:  In comparison with the study of ___, there is little change in the
+ appearance of the biventricular and right atrial leads in this patient with
+ substantial enlargement of the cardiac silhouette and normal pulmonary
+ vessels, an appearance consistent with the clinical diagnosis of
+ cardiomyopathy.
+",unclear,,"final report history: cardiomyopathy with biventricular icd. findings: in comparison with the study of ___, there is little change in the appearance of the biventricular and right atrial leads in this patient with substantial ..."
+56398,56564,12367301,54993168,8985365e-f186c5cd-413feb10-ec6205ec-4948b9d6,p12/p12367301/s54993168/8985365e-f186c5cd-413feb10-ec6205ec-4948b9d6.jpg,6,Lung Lesion,0.0,0.0,1,0.9925770163536072,1,0.0074229836463928,0.0074229836463928,0.2646493911743164,6.0,6.0,6.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old man with known CAD s/p drug eluting stenting, AAA,
+ known aortic stenosis/AI who presented to___ on ___ with CHF,
+ SOB and ___ edema now being transferred for cardiac surgery evaluation and
+ diuresis.  // eval for CHF
+ 
+ COMPARISON:  None.
+ 
+ FINDINGS:
+ 
+ 
+ 
+ 
+ 
+ There is probable background hyperinflation/COPD.
+ 
+ There is mild cardiomegaly.  The aortic and hilar contours are obscured by the
+ surrounding parenchymal changes.
+ 
+ There are extensive increased interstitial markings in both lungs, with more
+ honeycomb appearance in the right upper zone.  The appearance is suggestive of
+ chronic parenchymal scarring, but the possibility of a superimposed
+ interstitial process or interstitial edema would be difficult to exclude. 
+ Probable background blebs and bullae in both lungs.
+ 
+ Minimal blunting of left-greater-than-right costophrenic angles.  Increased
+ retrocardiac opacity, also of uncertain etiology or acuity.  Asymmetric left
+ apical pleural thickening noted.
+ 
+ A metallic BB overlies the right lung base.  Based on this single frontal
+ view, this could either lie within or outside of the the patient.
+ 
+ Probable background osteopenia.  There is an apparent ununited fracture of the
+ lateral portion of the right clavicle at the level of the coracoid.  No
+ displacement or elevation is appreciated.
+ 
+ IMPRESSION:
+ 
+ 
+ 1. Probable background COPD, with extensive parenchymal scarring and bulla
+ formation, not fully evaluated by radiograph.
+ 2. Diffuse increased interstitial markings in both lungs.  While these likely
+ represent chronic changes, the possibility of an acute superimposed
+ interstitial process including, but not limited to CHF, cannot be excluded.
+ 3. Mild cardiomegaly.
+ 4. Asymmetric pleural thickening at the left lung apex.  Correlation with
+ previous (outside) radiographs is recommended to exclude developing neoplasm. 
+ If not available, then further assessment with CT would be recommended.
+ 5. BB over right lung base --___ within or outside the the patient.  If
+ MRI is contemplated, then a lateral view may help to further characterize
+ this.
+ 6. Ununited non display right clavicle fracture noted.
+ 
+ 
+ 
+ NOTIFICATION:  The impression and recommendation above (re left apical pleural
+ thickening) was entered by Dr. ___ on ___ at 18:14 into the
+ Department of Radiology critical communications system for direct
+ communication to the referring provider.
+",unclear,,"final report examination: chest (portable ap) indication: ___ year old man with known cad s/p drug eluting stenting, aaa, known aortic stenosis/ai who presented to___ on ___ with chf, sob and ___ edema now being transferred for cardiac ..."
+104912,105128,14431875,50828674,a94ed7e1-b2678f66-253c920c-98d45364-4cfcf637,p14/p14431875/s50828674/a94ed7e1-b2678f66-253c920c-98d45364-4cfcf637.jpg,6,Lung Lesion,0.0,0.0,1,0.992237389087677,1,0.0077626109123229,0.0077626109123229,0.2658701837062835,7.0,7.0,7.0,"                                 FINAL REPORT
+ INDICATION:  Chest pain and shortness of breath for three days.  Reports a
+ fever at home.
+ 
+ COMPARISONS:  Chest radiograph from ___.
+ 
+ TECHNIQUE:  A single AP frontal view of the chest was obtained.
+ 
+ FINDINGS:  In comparison with the prior exam, there is a new large opacity
+ involving the left middle and lower lung zones, most consistent with
+ pneumonia.  A component of pleural fluid is difficult to exclude.  There is
+ mild streaky opacification at the right base with obscuration of the right
+ hemidiaphragm.  This could be due to atelectasis, or a second focus of
+ pneumonia.  
+ 
+ The mediastinal contours are difficult to evaluate given the adjacent opacity,
+ though they appear increased in diameter since the prior exam.  This is may be
+ due to technique and obscuration from the left hemithorax opacity.  The heart
+ size is difficult to determine because of the adjacent opacity.
+ 
+ IMPRESSION:
+ 1.  New large left middle and lower lung zone opacity, most consistent with
+ pneumonia.  A component of pleural fluid is difficult to completely exclude. 
+ Recommend follow-up to resolution to exclude an underlyingmass.
+ 2.  Smaller opacity at the right base may represent atelectasis or second
+ focus of pneumonia.  
+ 3.  Apparent widening of the mediastinum may be related to the AP technique
+ and patient rotation.  Recommend a repeat PA and lateral radiograph when the
+ patient is more clinically stable, if high clinical concern for acute
+ mediastinal/aortic process, CT is more sensitive.
+ 
+ Results were discussed with Dr. ___ at 10:15 a.m. on ___ via telephone
+ by Dr. ___ at the time the findings were discovered.
+",unclear,,final report indication: chest pain and shortness of breath for three days. reports a fever at home. comparisons: chest radiograph from ___. technique: a single ap frontal view of the chest was obtained. findings: in comparison with the ...
+224244,224499,19450948,56453661,d0b63e5e-52d0b9fb-ae9a1ca0-3f45698d-561e620f,p19/p19450948/s56453661/d0b63e5e-52d0b9fb-ae9a1ca0-3f45698d-561e620f.jpg,6,Lung Lesion,0.0,0.0,1,0.9867278933525084,1,0.0132721066474914,0.0132721066474914,0.2816312909126282,15.0,15.0,15.0,"                                 FINAL REPORT
+ INDICATION:  ___-year-old man with fevers despite on antibiotics for 7 days for
+ pneumonia.
+ 
+ TECHNIQUE:  Chest PA and lateral
+ 
+ COMPARISON:  Chest x-ray from ___
+ 
+ FINDINGS: 
+ 
+ There are opacities at the bilateral lung bases with air bronchograms
+ concerning for aspiration/pneumonia.  There is also a small right and likely
+ trace left pleural effusion.  The cardiac silhouette is markedly enlarged. 
+ There is mild pulmonary vascular congestion.  No pneumothorax is seen.
+ 
+ IMPRESSION: 
+ 
+ 1.  Bibasilar opacities concerning for infection/ aspiration.  Recommend
+ treating to full resolution.  If these opacities do not resolve, CT chest is
+ recommended for further evaluation to exclude underlying neoplasm.
+ 
+ 2.  Small right and likely trace left pleural effusions.
+ 
+ 3.  Severe cardiomegaly, unchanged.
+",unclear,,final report indication: ___-year-old man with fevers despite on antibiotics for 7 days for pneumonia. technique: chest pa and lateral comparison: chest x-ray from ___ findings: there are opacities at the bilateral lung bases with air ...
+48196,48361,12029820,57705626,d0665a74-20dba8f8-62101a15-3553cb01-9bc999be,p12/p12029820/s57705626/d0665a74-20dba8f8-62101a15-3553cb01-9bc999be.jpg,6,Lung Lesion,0.0,0.0,1,0.9845173954963684,1,0.0154826045036315,0.0154826045036315,0.2865854799747467,19.0,19.0,19.0,"                                 FINAL REPORT
+ EXAMINATION:  Chest radiograph PA and lateral
+ 
+ INDICATION:  ___ year old man with left PNA, slow to improve  // eval for other
+ process eg pleural effusion/empyema
+ 
+ TECHNIQUE:  Chest PA and lateral
+ 
+ COMPARISON:  CT chest ___
+ 
+ FINDINGS: 
+ 
+ There is extensive hazy consolidation of the central portion of the left
+ hemithorax that appears to involve the left upper lobe and lingula. This is
+ better characterized by the recent CT chest performed on ___.  The
+ right lung is essentially clear without evidence of pneumonia, pulmonary edema
+ or a pneumothorax. No evidence of pleural effusions. The heart is enlarged. 
+ No acute osseous abnormalities.
+ 
+ IMPRESSION: 
+ 
+ 1. Extensive consolidation of the left upper lobe and lingula, which was
+ better characterized on the recent CT scan performed ___. No
+ appreciable interval change.
+ 2.  No pleural effusions or cavitary lesions.
+",unclear,,"final report examination: chest radiograph pa and lateral indication: ___ year old man with left pna, slow to improve // eval for other process eg pleural effusion/empyema technique: chest pa and lateral comparison: ct chest ___ ..."
+37321,37486,11599292,51260423,26e74312-0e0770b1-51b95296-23bedb80-8ed910cb,p11/p11599292/s51260423/26e74312-0e0770b1-51b95296-23bedb80-8ed910cb.jpg,6,Lung Lesion,0.0,0.0,1,0.983676016330719,1,0.016323983669281,0.016323983669281,0.2883363962173462,20.0,20.0,20.0,"                                 FINAL REPORT
+ INDICATION:  ___ year old man with lung cancer s/p LLL superior segmentectomy. 
+ // assess interval change
+ 
+ COMPARISON:  Radiographs from ___.
+ 
+ IMPRESSION: 
+ 
+ Left chest tube is unchanged. There are no pneumothoraces. There is
+ atelectasis at the lung bases and the left retrocardiac opacity which has
+ slightly worsened. The right basilar nodular density is no longer seen and may
+ have represented atelectasis. There is unchanged cardiomegaly.
+",unclear,,final report indication: ___ year old man with lung cancer s/p lll superior segmentectomy. // assess interval change comparison: radiographs from ___. impression: left chest tube is unchanged. there are no pneumothoraces. there is ...
+180206,180461,17582273,58025392,0c638ace-057b45a2-a82a9487-53533dc7-05a58507,p17/p17582273/s58025392/0c638ace-057b45a2-a82a9487-53533dc7-05a58507.jpg,8,Pleural Effusion,0.0,0.0,1,0.997008979320526,1,0.0029910206794738,0.0029910206794738,0.2424179166555404,8.0,8.0,8.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old woman with subglottic stenosis s/p dilation,
+ intubated for acute hypoxia  // interval change     interval change
+ 
+ IMPRESSION: 
+ 
+ Comparison to ___.  The lung volumes have decreased. As a
+ consequence, the bilateral basal parenchymal opacities appear denser than on
+ the previous image.  The monitoring and support devices are constant. 
+ Moderate cardiomegaly.  No pleural effusions.
+",negated,no pleural effusions,"final report examination: chest (portable ap) indication: ___ year old woman with subglottic stenosis s/p dilation, intubated for acute hypoxia // interval change interval change impression: comparison to ___. the lung volumes have ..."
+13322,13421,10573359,51592822,f23fb804-91cda364-877ce281-ae865e2f-d8d4d508,p10/p10573359/s51592822/f23fb804-91cda364-877ce281-ae865e2f-d8d4d508.jpg,8,Pleural Effusion,0.0,0.0,1,0.9954755902290344,1,0.0045244097709655,0.0045244097709655,0.2519732415676117,14.0,14.0,14.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old woman post op pna now with hernia recurrence with
+ continuous O2 requirements s/p chest tube placement  // evaluate parapneumonic
+ effusion
+ 
+ TECHNIQUE:  Portable AP film was obtained
+ 
+ COMPARISON:  ___
+ 
+ FINDINGS: 
+ 
+ There is cardiomegaly in this patient status post sternotomy. A right-sided
+ pleural effusion.  Remains substantially resolved but there is now evidence of
+ a small right apical pneumothorax. Right-sided PICC line is in good anatomical
+ position.  Retained barium is identified in the left retrocardiac area
+ suggesting that much of the opacity here may reflect a a hernia. Substantial
+ left-sided effusion with extensive atelectasis is suggested.
+ 
+ There remains significant increased attenuation throughout the lung parenchyma
+ consistent with a diffuse ground-glass opacification is observed recent CT. 
+ This is presumptively represent of infection as per the CT though pulmonary
+ edema or other causes need to be considered.
+ 
+ IMPRESSION:
+ 
+ 
+ new right-sided pneumothorax. No effusion. Stable diffuse bilateral
+ parenchymal changes.
+ 
+ NOTIFICATION:   The findings were discussed by Dr. ___ with Dr. ___ on
+ the telephone on ___ at 9:00 AM, 15 minutes after discovery of the
+ findings.
+",negated,no effusion,final report examination: chest (portable ap) indication: ___ year old woman post op pna now with hernia recurrence with continuous o2 requirements s/p chest tube placement // evaluate parapneumonic effusion technique: portable ap film ...
+119353,119608,15040842,53095593,7acd4e50-123867aa-afd1c042-711e481e-a9f12fba,p15/p15040842/s53095593/7acd4e50-123867aa-afd1c042-711e481e-a9f12fba.jpg,10,Pneumonia,0.0,0.0,1,0.9971486926078796,1,0.0028513073921203,0.0028513073921203,0.2413677871227264,1.0,1.0,1.0," WET READ: ___ ___ ___ 8:10 AM
+  Bilateral parenchymal opacities, lower lung predominant persist and compared
+  to the CT from ___ and chest radiograph from ___ are perhaps slightly
+  worse, particularly in the left lower lobe.
+ WET READ VERSION #1 ___ ___ ___ 1:20 AM
+  ___ year old woman with SAPHO presenting with 4 weeks or progressive fevers,
+  chills, cough, SOB with concner for infection vs. inflammatory etiology.  //
+  interval assessment prior to bronch
+  
+  Bilateral parenchymal opacities, lower lung predominant persist and compared
+  to the CT from ___ and chest radiograph from ___ are perhaps slightly
+  worse, particularly in the left lower lobe.
+ ______________________________________________________________________________
+                                 FINAL REPORT
+ EXAMINATION:  CHEST (PA AND LAT)
+ 
+ INDICATION:  ___ year old woman with SAPHO presenting with 4 weeks or
+ progressive fevers, chills, cough, SOB with concner for infection vs.
+ inflammatory etiology.  // interval assessment prior to bronch     interval
+ assessment prior to bronch
+ 
+ IMPRESSION: 
+ 
+ Comparison to ___.  The multifocal bilateral parenchymal opacities
+ have increased in severity.  The opacities starts to show consolidations.  No
+ pleural effusions.  No pneumonia.  No pulmonary edema.
+",negated,no pneumonia,"wet read: ___ ___ ___ 8:10 am bilateral parenchymal opacities, lower lung predominant persist and compared to the ct from ___ and chest radiograph from ___ are perhaps slightly worse, particularly in the left lower lobe. wet read ..."
+15488,15587,10667797,56775458,253e058c-acc61474-8df0f1ef-48c2528d-9f833754,p10/p10667797/s56775458/253e058c-acc61474-8df0f1ef-48c2528d-9f833754.jpg,10,Pneumonia,0.0,0.0,1,0.9742383360862732,1,0.0257616639137268,0.0257616639137268,0.3045924305915832,16.0,16.0,16.0,"                                 FINAL REPORT
+ EXAMINATION:  CHEST (PORTABLE AP)
+ 
+ INDICATION:  ___ year old woman with pulmonary lymphoma, intubated  // please
+ eval for interval change      please eval for interval change
+ 
+ IMPRESSION: 
+ 
+ Comparison to ___.  No relevant change.  Stable a correctly
+ positioned monitoring and support devices.  Massive bilateral parenchymal
+ opacities, most of which are nodular in appearance.  Lung volumes remain low
+ and the cardiac silhouette remains minimally enlarged.  No larger pleural
+ effusions.  No pneumonia.
+",negated,no pneumonia,"final report examination: chest (portable ap) indication: ___ year old woman with pulmonary lymphoma, intubated // please eval for interval change please eval for interval change impression: comparison to ___. no relevant change. stable ..."
+219389,219644,19237718,59313310,52a58681-a8fdcafd-b3f6e52a-fc3928ca-b13edab4,p19/p19237718/s59313310/52a58681-a8fdcafd-b3f6e52a-fc3928ca-b13edab4.jpg,10,Pneumonia,0.0,0.0,1,0.9781877994537354,1,0.0218122005462646,0.0218122005462646,0.2984082102775574,8.0,8.0,8.0,"                                 FINAL REPORT
+ EXAMINATION:   CHEST (AP AND LATERAL)
+ 
+ INDICATION:  History: ___M with dyspnea and cough
+ 
+ TECHNIQUE:  Upright AP and lateral views of the chest
+ 
+ COMPARISON:  ___
+ 
+ FINDINGS: 
+ 
+ The patient is status post median sternotomy and CABG.  Left-sided
+ AICD/pacemaker device is noted with leads terminating in the regions of the
+ right atrium, right ventricle, and coronary sinus. Moderate enlargement of the
+ cardiac silhouette the appear slightly increased compared to the previous
+ exam. The aorta is diffusely calcified. Perihilar haziness and vascular
+ indistinctness is more pronounced on the right compared to left, and likely
+ reflects asymmetric pulmonary edema, mild to moderate in degree.  Small right
+ pleural effusion is noted. No pneumothorax is identified. S-shaped scoliosis
+ of the thoracolumbar spine is present along with multilevel moderate
+ degenerative changes.
+ 
+ IMPRESSION: 
+ 
+ Mild to moderate asymmetric pulmonary edema, more pronounced on the right,
+ with trace right pleural effusion. Followup radiographs after diuresis are
+ recommended to exclude infection in the right lung.
+",unclear,,final report examination: chest (ap and lateral) indication: history: ___m with dyspnea and cough technique: upright ap and lateral views of the chest comparison: ___ findings: the patient is status post median sternotomy and cabg. ...
+125205,125460,15280028,57040181,882b3a4f-8921c0f6-81f59096-8bc8166e-02d86c0f,p15/p15280028/s57040181/882b3a4f-8921c0f6-81f59096-8bc8166e-02d86c0f.jpg,10,Pneumonia,0.0,0.0,1,0.972987413406372,1,0.0270125865936279,0.0270125865936279,0.306412786245346,20.0,20.0,20.0," WET READ: ___ ___ ___ 8:10 AM
+  Extensive interstitial opacities may reflect pulmonary edema or worsening
+  underlying sarcoid lung disease, although it is difficult to exclude infection
+  in the right clinical setting. No pneumothorax.
+ ______________________________________________________________________________
+                                 FINAL REPORT
+ INDICATION:  ___M with SOB  // Eval for pneumothorax
+ 
+ TECHNIQUE:  Chest PA and lateral
+ 
+ COMPARISON:  Chest radiograph ___.
+ CT chest from ___.
+ 
+ FINDINGS: 
+ 
+ The lungs are hyperexpanded.  Ill-defined interstitial opacities are most
+ prominent in both upper lungs, increased from ___.  Mediastinal contours, and
+ hila are overall unchanged.  Cardiac silhouette is larger than in ___.  There
+ is no pleural effusion pneumothorax.
+ 
+ IMPRESSION: 
+ 
+ Extensive interstitial opacities may reflect pulmonary edema or worsening
+ underlying sarcoid lung disease, although it is difficult to exclude infection
+ in the right clinical setting. No pneumothorax.
+",unclear,,"wet read: ___ ___ ___ 8:10 am extensive interstitial opacities may reflect pulmonary edema or worsening underlying sarcoid lung disease, although it is difficult to exclude infection in the right clinical setting. no pneumothorax. ..."

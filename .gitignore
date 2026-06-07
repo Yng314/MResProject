@@ -15,6 +15,13 @@ datasets/
 *.dll
 *.so
 
+# Experiment logs and presentation artifacts
+slurm_logs/
+NoiseRate/figures/*.png
+NoiseRate/cxr_real_experiment/meeting_followup_20260520/*.png
+NoiseRate/cxr_real_experiment/meeting_followup_20260520/*.zip
+NoiseRate/cxr_real_experiment/meeting_followup_20260520/ppt_bundle_20260528/images/
+
 # Python cache
 __pycache__/
 *.pyc

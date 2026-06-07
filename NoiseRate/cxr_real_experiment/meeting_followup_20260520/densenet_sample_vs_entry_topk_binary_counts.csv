@@ -1,0 +1,13 @@
+family,label,base_sample_positive,base_sample_negative,base_entry_positive,base_entry_negative,top05_sample_removed_positive,top05_sample_removed_negative,top10_sample_removed_positive,top10_sample_removed_negative,top20_sample_removed_positive,top20_sample_removed_negative,top05_entry_removed_positive,top05_entry_removed_negative,top10_entry_removed_positive,top10_entry_removed_negative,top20_entry_removed_positive,top20_entry_removed_negative
+DenseNet,Atelectasis,58239,1566,58239,1566,0,90,17,163,356,406,0,377,0,600,0,674
+DenseNet,Cardiomegaly,52553,16036,52553,16036,20,162,171,315,916,922,0,159,0,350,8,795
+DenseNet,Consolidation,15652,8256,15652,8256,82,33,247,81,571,341,0,49,0,94,14,221
+DenseNet,Edema,42117,25445,42117,25445,96,113,341,274,908,935,31,83,67,228,195,591
+DenseNet,Enlarged Cardiomediastinum,17129,5330,17129,5330,27,22,170,69,458,303,0,60,0,140,0,310
+DenseNet,Fracture,5267,952,5267,952,1,55,18,70,153,102,0,0,0,15,0,31
+DenseNet,Lung Lesion,7593,820,7593,820,1,37,27,61,120,140,0,50,0,93,0,192
+DenseNet,Lung Opacity,57111,2979,57111,2979,1,134,56,296,483,667,0,455,0,752,0,1129
+DenseNet,Pleural Effusion,62076,27073,62076,27073,112,67,358,229,991,1053,35,323,80,606,194,1123
+DenseNet,Pleural Other,2774,123,2774,123,0,9,2,15,51,36,0,21,0,31,0,45
+DenseNet,Pneumonia,35627,23838,35627,23838,245,286,701,735,1608,1443,0,45,5,149,85,452
+DenseNet,Pneumothorax,12206,43776,12206,43776,378,43,545,185,1012,791,38,15,189,29,710,66

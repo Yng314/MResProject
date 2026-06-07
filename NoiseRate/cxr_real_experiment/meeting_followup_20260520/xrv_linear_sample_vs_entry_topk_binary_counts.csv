@@ -1,0 +1,13 @@
+family,label,base_sample_positive,base_sample_negative,base_entry_positive,base_entry_negative,top05_sample_removed_positive,top05_sample_removed_negative,top10_sample_removed_positive,top10_sample_removed_negative,top20_sample_removed_positive,top20_sample_removed_negative,top05_entry_removed_positive,top05_entry_removed_negative,top10_entry_removed_positive,top10_entry_removed_negative,top20_entry_removed_positive,top20_entry_removed_negative
+XRV linear-head,Atelectasis,58239,1566,58239,1566,0,119,0,211,206,405,0,595,0,712,0,712
+XRV linear-head,Cardiomegaly,52553,16036,52553,16036,15,242,130,409,750,1136,0,183,1,495,21,1268
+XRV linear-head,Consolidation,15652,8256,15652,8256,26,43,139,98,419,437,0,104,1,224,20,429
+XRV linear-head,Edema,42117,25445,42117,25445,104,94,313,243,970,828,36,93,90,272,230,784
+XRV linear-head,Enlarged Cardiomediastinum,17129,5330,17129,5330,11,41,103,96,370,364,0,86,0,259,0,583
+XRV linear-head,Fracture,5267,952,5267,952,0,78,4,94,77,137,0,13,0,44,0,126
+XRV linear-head,Lung Lesion,7593,820,7593,820,0,38,11,51,78,110,0,72,0,135,0,226
+XRV linear-head,Lung Opacity,57111,2979,57111,2979,0,133,12,313,243,647,0,509,0,966,0,1189
+XRV linear-head,Pleural Effusion,62076,27073,62076,27073,136,73,369,199,1073,909,52,265,134,538,344,1035
+XRV linear-head,Pleural Other,2774,123,2774,123,0,7,1,11,24,23,0,27,0,37,0,50
+XRV linear-head,Pneumonia,35627,23838,35627,23838,134,92,565,465,1476,1256,0,28,8,77,86,294
+XRV linear-head,Pneumothorax,12206,43776,12206,43776,715,20,1098,114,1580,646,24,3,179,9,939,25

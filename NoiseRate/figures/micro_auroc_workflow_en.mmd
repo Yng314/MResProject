@@ -1,0 +1,21 @@
+flowchart LR
+    A1["Disease A<br/>Positive scores: 0.9<br/>Negative scores: 0.1"] --> P["Pool all samples from A and B together"]
+    B1["Disease B<br/>Positive scores: 0.4<br/>Negative scores: 0.6"] --> P
+
+    P --> Q["Positive score set<br/>0.9, 0.4"]
+    P --> R["Negative score set<br/>0.1, 0.6"]
+
+    Q --> S["Compare every positive score<br/>against every negative score"]
+    R --> S
+
+    S --> T1["0.9 > 0.1  Yes"]
+    S --> T2["0.9 > 0.6  Yes"]
+    S --> T3["0.4 > 0.1  Yes"]
+    S --> T4["0.4 > 0.6  No"]
+
+    T1 --> U["3 winning pairs / 4 total pairs"]
+    T2 --> U
+    T3 --> U
+    T4 --> U
+
+    U --> V["Micro AUROC = 3 / 4 = 0.75"]

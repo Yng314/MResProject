@@ -1,0 +1,4 @@
+flowchart LR
+    A["Disease A<br/>AUROC = 0.90"] --> M["Average the AUROC of each disease"]
+    B["Disease B<br/>AUROC = 0.50"] --> M
+    M --> R["Macro AUROC = (0.90 + 0.50) / 2 = 0.70"]
