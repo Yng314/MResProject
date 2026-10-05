@@ -30,6 +30,7 @@ Some local result paths are symbolic links into the Bitbucket archive. They are 
 | `NoiseRate/utils/`, `models/`, `config/`, `tests/` | Shared utilities, models, configuration, and tests | Tracked source |
 | `MedSoul/` | Earlier weakly supervised classification pipeline | Tracked source and documentation; data and outputs remain external |
 | `reference/` | Literature and exploratory notebooks | Review individually before publishing |
+| `NoiseRate/local_notes/` | Local literature, meeting, and audit notes | Kept on the cluster; only the directory README is public |
 
 ## Local use
 

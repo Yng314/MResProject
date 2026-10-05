@@ -31,6 +31,7 @@ The parent GPU Data checkout also contains separate repositories, `MResAIML_thes
 | Run artifacts | `results_*`, `outputs`, `slurm_logs`, checkpoints, `.job_complete` markers | Keep in the Bitbucket archive |
 | Environment/vendor files | `.vendor/`, caches, local virtual environments | Ignore and leave local |
 | Machine-specific links | symlinks from `MResProject` into `/vol/bitbucket/...` | Ignore; do not commit |
+| Local notes | `NoiseRate/local_notes/literature_review/`, `meeting_materials/`, `analysis_audits/` | Keep grouped locally; publish only the directory README |
 
 ## Public-data issue found
 

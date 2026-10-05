@@ -10,6 +10,7 @@
 - `NoiseRate/utils/`, `NoiseRate/models/`, `NoiseRate/config/`, `NoiseRate/tests/`: reusable utilities, model definitions, configuration, and unit tests.
 - `MedSoul/`: earlier weakly supervised medical-image classification pipeline, including data preparation, training, evaluation, and API helpers.
 - `reference/`: research notes and exploratory notebooks.
+- `NoiseRate/local_notes/`: local-only literature, meeting, and audit notes grouped away from executable experiment code.
 - `/vol/bitbucket/yz3522/NoiseRate_results_archive`: cluster-side result store for checkpoints, run transactions, logs, large tables, and generated figures/decks.
 
 ## Call flow
