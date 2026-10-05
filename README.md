@@ -53,5 +53,5 @@ This organization pass inspected the local Git history and the public GitHub met
 ## Completed and pending
 
 - Completed: separated the GPU Data checkout from the Bitbucket result archive in the repository policy; added ignore rules for external links, vendor copies, output trees, logs, and generated presentation directories; recorded the current classification and privacy review in `REPOSITORY_ORGANIZATION.md`.
-- Completed in this pass: prepared a 289-file source/protocol candidate; kept the verbose job log and meeting/deck review material local for a separate decision.
+- Completed in this pass: prepared and pushed the 289-file source/protocol candidate as `5331f88`; kept the verbose job log and meeting/deck review material local for a separate decision.
 - Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts; then run the final review and push the safe candidate.
