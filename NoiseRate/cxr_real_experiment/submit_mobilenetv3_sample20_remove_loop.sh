@@ -1,0 +1,38 @@
+#!/bin/bash
+set -euo pipefail
+
+PROJECT_DIR="/vol/gpudata/yz3522-llmtest/MResProject"
+SCRIPT_DIR="${PROJECT_DIR}/NoiseRate/cxr_real_experiment"
+STAMP="$(date +%Y%m%d_%H%M%S)"
+OUTPUT_ROOT="${OUTPUT_ROOT_OVERRIDE:-/vol/bitbucket/yz3522/NoiseRate_results_archive/cxr_real_experiment/results_mobilenetv3_sample20_remove_loop/${STAMP}}"
+LOOP_COUNT="${LOOP_COUNT_OVERRIDE:-5}"
+TOP_FRACTION="${TOP_FRACTION_OVERRIDE:-0.20}"
+SEED="${SEED_OVERRIDE:-13}"
+
+mkdir -p "${OUTPUT_ROOT}" "${PROJECT_DIR}/slurm_logs"
+
+JOB_REMOVE="$(
+  MODEL_BACKBONE_OVERRIDE=mobilenet_v3_small_scratch \
+  MODEL_TAG_OVERRIDE=mobilenet_v3_small_scratch \
+  OOF_BATCH_SIZE_OVERRIDE="${OOF_BATCH_SIZE_OVERRIDE:-32}" \
+  TRAIN_BATCH_SIZE_OVERRIDE="${TRAIN_BATCH_SIZE_OVERRIDE:-32}" \
+  sbatch --parsable --job-name=mbv3-s20-remove \
+    "${SCRIPT_DIR}/run_xrv_iterative_sample20_branch.sh" \
+    "remove_only" "${OUTPUT_ROOT}" "${LOOP_COUNT}" "${TOP_FRACTION}" "${SEED}"
+)"
+
+cat > "${OUTPUT_ROOT}/submission_summary.txt" <<TXT
+OUTPUT_ROOT=${OUTPUT_ROOT}
+LOOP_COUNT=${LOOP_COUNT}
+TOP_FRACTION=${TOP_FRACTION}
+SEED=${SEED}
+MODEL_BACKBONE=mobilenet_v3_small_scratch
+REMOVE_ONLY_JOB=${JOB_REMOVE}
+TXT
+
+echo "OUTPUT_ROOT=${OUTPUT_ROOT}"
+echo "LOOP_COUNT=${LOOP_COUNT}"
+echo "TOP_FRACTION=${TOP_FRACTION}"
+echo "SEED=${SEED}"
+echo "MODEL_BACKBONE=mobilenet_v3_small_scratch"
+echo "REMOVE_ONLY_JOB=${JOB_REMOVE}"

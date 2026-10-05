@@ -39,6 +39,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
+from torchvision import models as tv_models
 from matplotlib.offsetbox import AnchoredOffsetbox, HPacker, TextArea, VPacker
 from PIL import Image
 from sklearn.metrics import roc_auc_score
@@ -126,6 +127,8 @@ class XRV12RunSummary:
     batch_size: int
     learning_rate: float
     model_backbone: str
+    model_param_count: int
+    model_trainable_param_count: int
     xrv_weights: str
     study_aggregation: str
     metadata_csv: str
@@ -220,12 +223,56 @@ class XRVEncoderCheXpert12HeadModel(nn.Module):
         return self.classifier(features)
 
 
+class TorchvisionCheXpert12Model(nn.Module):
+    def __init__(self, backbone: str):
+        super().__init__()
+        if backbone == "resnet18_scratch":
+            model = tv_models.resnet18(weights=None)
+            model.conv1 = nn.Conv2d(
+                1,
+                model.conv1.out_channels,
+                kernel_size=model.conv1.kernel_size,
+                stride=model.conv1.stride,
+                padding=model.conv1.padding,
+                bias=False,
+            )
+            model.fc = nn.Linear(model.fc.in_features, len(LABEL_NAMES))
+        elif backbone == "mobilenet_v3_small_scratch":
+            model = tv_models.mobilenet_v3_small(weights=None)
+            first_conv = model.features[0][0]
+            model.features[0][0] = nn.Conv2d(
+                1,
+                first_conv.out_channels,
+                kernel_size=first_conv.kernel_size,
+                stride=first_conv.stride,
+                padding=first_conv.padding,
+                bias=False,
+            )
+            model.classifier[-1] = nn.Linear(model.classifier[-1].in_features, len(LABEL_NAMES))
+        else:
+            raise ValueError(f"Unknown torchvision backbone: {backbone}")
+        self.model = model
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if x.shape[1] == 3:
+            x = 0.299 * x[:, 0:1, :, :] + 0.587 * x[:, 1:2, :, :] + 0.114 * x[:, 2:3, :, :]
+        return self.model(x)
+
+
 def create_model(model_backbone: str, xrv_weights: str, xrv_cache_dir: str | None = None) -> nn.Module:
     if model_backbone == "xrv_densenet121_direct":
         return XRVDirectCheXpert12Model(weights=xrv_weights, cache_dir=xrv_cache_dir)
     if model_backbone == "xrv_densenet121_linearhead":
         return XRVEncoderCheXpert12HeadModel(weights=xrv_weights, cache_dir=xrv_cache_dir)
+    if model_backbone in {"resnet18_scratch", "mobilenet_v3_small_scratch"}:
+        return TorchvisionCheXpert12Model(backbone=model_backbone)
     raise ValueError(f"Unknown model_backbone: {model_backbone}")
+
+
+def count_parameters(model: nn.Module) -> tuple[int, int]:
+    total = sum(p.numel() for p in model.parameters())
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    return int(total), int(trainable)
 
 
 def load_test_rows(
@@ -328,6 +375,55 @@ def apply_entry_exclusions(
 
     print(f"Applied entry exclusions: masked {excluded_count} label entries")
     return raw_labels, y_binary, valid_mask, excluded_count
+
+
+def apply_entry_relabels(
+    train_rows: pd.DataFrame,
+    raw_labels: np.ndarray,
+    y_binary: np.ndarray,
+    valid_mask: np.ndarray,
+    override_entry_csv: Path | None,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, int]:
+    if override_entry_csv is None:
+        return raw_labels, y_binary, valid_mask, 0
+
+    print(f"Loading entry relabel CSV: {override_entry_csv}")
+    override_df = pd.read_csv(override_entry_csv)
+    required_cols = {"pool_row_id", "label_index", "new_raw_label"}
+    missing_cols = required_cols - set(override_df.columns)
+    if missing_cols:
+        raise ValueError(f"Entry relabel CSV missing columns {sorted(missing_cols)}: {override_entry_csv}")
+
+    pool_row_to_local = {
+        int(pool_row_id): int(local_idx)
+        for local_idx, pool_row_id in enumerate(train_rows["pool_row_id"].to_numpy(dtype=np.int64))
+    }
+
+    raw_labels = raw_labels.copy()
+    y_binary = y_binary.copy()
+    valid_mask = valid_mask.copy()
+    relabeled_count = 0
+
+    for pool_row_id, label_idx, new_raw_label in override_df[["pool_row_id", "label_index", "new_raw_label"]].itertuples(index=False):
+        local_idx = pool_row_to_local.get(int(pool_row_id))
+        if local_idx is None:
+            continue
+        label_idx = int(label_idx)
+        if not (0 <= label_idx < y_binary.shape[1]):
+            continue
+        new_raw = float(new_raw_label)
+        if new_raw not in {0.0, 1.0, -1.0}:
+            raise ValueError(
+                f"Unsupported new_raw_label={new_raw!r} at pool_row_id={pool_row_id}, label_index={label_idx}"
+            )
+        raw_labels[local_idx, label_idx] = new_raw
+        binary_value = 1.0 if new_raw in {1.0, -1.0} else 0.0
+        y_binary[local_idx, label_idx] = binary_value
+        valid_mask[local_idx, label_idx] = True
+        relabeled_count += 1
+
+    print(f"Applied entry relabels: updated {relabeled_count} label entries")
+    return raw_labels, y_binary, valid_mask, relabeled_count
 
 
 def split_train_val_rows(
@@ -956,7 +1052,12 @@ def main() -> None:
         "--model-backbone",
         type=str,
         default="xrv_densenet121_direct",
-        choices=["xrv_densenet121_direct", "xrv_densenet121_linearhead"],
+        choices=[
+            "xrv_densenet121_direct",
+            "xrv_densenet121_linearhead",
+            "resnet18_scratch",
+            "mobilenet_v3_small_scratch",
+        ],
     )
     parser.add_argument("--xrv-weights", type=str, default="densenet121-res224-all")
     parser.add_argument("--xrv-cache-dir", type=str, default=None)
@@ -967,6 +1068,7 @@ def main() -> None:
     parser.add_argument("--exclude-issue-col", type=str, default="est_issue_sample")
     parser.add_argument("--exclude-entry-csv", type=str, default=None)
     parser.add_argument("--exclude-entry-issue-col", type=str, default="est_issue_entry")
+    parser.add_argument("--override-entry-csv", type=str, default=None)
     parser.add_argument("--output-dir", type=str, default=None)
     args = parser.parse_args()
 
@@ -979,6 +1081,7 @@ def main() -> None:
     metadata_csv = Path(args.metadata_csv) if args.metadata_csv else None
     exclude_sample_csv = Path(args.exclude_sample_csv) if args.exclude_sample_csv else None
     exclude_entry_csv = Path(args.exclude_entry_csv) if args.exclude_entry_csv else None
+    override_entry_csv = Path(args.override_entry_csv) if args.override_entry_csv else None
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_dir = Path(args.output_dir) if args.output_dir else SCRIPT_DIR / "results_xrv12" / timestamp
@@ -1019,6 +1122,13 @@ def main() -> None:
         train_rows = train_rows.iloc[:args.train_limit].reset_index(drop=True)
         print(f"Applied train limit: {len(train_rows)} rows")
     train_raw, train_binary, train_valid = project_raw_labels_to_binary(train_rows, LABEL_NAMES)
+    train_raw, train_binary, train_valid, relabeled_entry_count = apply_entry_relabels(
+        train_rows=train_rows,
+        raw_labels=train_raw,
+        y_binary=train_binary,
+        valid_mask=train_valid,
+        override_entry_csv=override_entry_csv,
+    )
     train_raw, train_binary, train_valid, excluded_entry_count = apply_entry_exclusions(
         train_rows=train_rows,
         raw_labels=train_raw,
@@ -1107,6 +1217,8 @@ def main() -> None:
         xrv_weights=args.xrv_weights,
         xrv_cache_dir=args.xrv_cache_dir,
     )
+    model_param_count, model_trainable_param_count = count_parameters(model)
+    print(f"Model parameters: total={model_param_count:,}, trainable={model_trainable_param_count:,}")
     model, best_epoch, best_val_loss = train_full_model(
         model=model,
         train_loader=train_loader,
@@ -1214,6 +1326,8 @@ def main() -> None:
                 batch_size=int(args.batch_size),
                 learning_rate=float(args.learning_rate),
                 model_backbone=str(args.model_backbone),
+                model_param_count=int(model_param_count),
+                model_trainable_param_count=int(model_trainable_param_count),
                 xrv_weights=str(args.xrv_weights),
                 study_aggregation=str(args.study_aggregation),
                 metadata_csv="" if metadata_csv is None else str(metadata_csv),
@@ -1224,6 +1338,7 @@ def main() -> None:
             ).__dict__
         ]
     )
+    summary_df["relabeled_entry_count"] = int(relabeled_entry_count)
     summary_df.to_csv(output_dir / "baseline_run_summary.csv", index=False)
 
     write_report(
