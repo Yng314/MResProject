@@ -65,6 +65,10 @@ Bitbucket archive: raw results, logs, checkpoints, generated decks, review table
                    datasets, and all patient-level or report-level artifacts
 ```
 
+## Largest local result area
+
+`NoiseRate/cxr_real_experiment/meeting_followup_20260520/` is the largest dated local follow-up area in this checkout (about 74 MB). It contains a 69 MB ignored sample-level review table, report-support CSVs, case images, meeting notes, exploratory figures, and a small plotting script. The folder is being indexed before any path move: scripts and protocol notes are source candidates, aggregate figures are regeneration candidates, and sample-level tables, report text, case notes, and presentation bundles remain local/archive candidates.
+
 The first cleanup pass deliberately keeps existing paths stable. Moving hundreds of experiment files would invalidate archived command lines and manifests; path refactoring can follow after the publication boundary is safe.
 
 ## Validation performed in this pass
