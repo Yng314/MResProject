@@ -1,7 +1,7 @@
 ## 2026-10-05 — Repository publication boundary audit
 - 当前正在做什么：已盘点 `MResProject` 的 GitHub、GPU Data 工作树和 Bitbucket 结果归档，并建立代码、协议、结果、生成物、环境文件和机器链接的分类边界。
 - 上次停在哪个位置：已确认远端是公开仓库，现有公开历史含逐病例字段；289 个 source/protocol/docs 已在提交 `5331f88` 中推送，21 个本地笔记已移入 `local_notes/`，未删除结果或重写历史。
-- 关键决定和原因：先冻结安全的 source/document allowlist，再把内部笔记移入本地 `local_notes/`；整理提交 `5331f88` 与笔记边界提交 `89fb6c8` 均已推送，大型结果继续留在 `/vol/bitbucket/yz3522/NoiseRate_results_archive`。
+- 关键决定和原因：先冻结安全的 source/document allowlist，再把内部笔记移入本地 `local_notes/`；整理提交 `5331f88`、笔记边界提交 `89fb6c8` 与记录提交 `60ad055` 均已推送，大型结果继续留在 `/vol/bitbucket/yz3522/NoiseRate_results_archive`。
 
 ## 2026-08-28 — Five-seed MIMIC calibration completed and verified
 - 当前正在做什么：MIMIC-CXR calibration-transfer finalizer `279601` 已完成，正式五-seed结果已通过官方 postflight 与独立数值、行数和哈希审计，并交付论文更新。
