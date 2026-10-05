@@ -3,16 +3,16 @@
 Audit date: 2026-10-05
 Checkout: `/vol/gpudata/yz3522-llmtest/MResProject`
 Remote: `git@github-yng314:Yng314/MResProject.git` (`https://github.com/Yng314/MResProject`)
-Remote branch: `main` at `55cbb10`
+Remote branch: `main` at `cf504cb`
 
-The safe source/protocol cleanup was pushed as commit `5331f88`; `HEAD` and `origin/main` now match.
+The safe source/protocol cleanup was pushed as commit `5331f88`, the local-note grouping as `89fb6c8`, and the final context records as `cf504cb`; `HEAD` and `origin/main` now match.
 
 The parent GPU Data checkout also contains separate repositories, `MResAIML_thesis` and `CheXGPT`; this audit targets `MResProject` because it is the repository connected to the noisy experiment tree and the remote above.
 
 ## Current state
 
 - The GitHub repository is public.
-- The remote history has 230 tracked paths and is currently much older than the local working tree.
+- The current public tree has 517 tracked paths after the allowlist push; its older history still contains artifacts that are not part of the new boundary.
 - At the start of the audit the local tree had two modified tracked files and 343 changed or untracked `NoiseRate` entries, plus two local output symlinks under `MedSoul`; after the new ignore rules and review split, the source/protocol candidate contains 289 files.
 - The local result links point to `/vol/bitbucket/yz3522/NoiseRate_results_archive`; the Bitbucket archive contains the large MIMIC-CXR, VinDr-CXR, MedSoul, Slurm, checkpoint, and presentation outputs.
 - The local checkout also contains a vendored DICOM/JPEG dependency under `NoiseRate/.vendor/`; this is an environment artifact, not project source.
@@ -54,7 +54,7 @@ The safe sequence is:
 1. Freeze the candidate source/document allowlist.
 2. Remove patient-level files from the current tree and add redacted aggregate replacements only where needed.
 3. Run a secret/identifier scan and inspect the exact staged list. The source scan completed here with no private-key or hard-coded API-token match; code references to environment variables and dataset column names are expected and still require normal review.
-4. Push the safe commit.
+4. The safe current-tree commits are already pushed (`5331f88`, `89fb6c8`, `cf504cb`).
 5. Separately decide whether to rewrite the public history and coordinate that force-push; it is a destructive remote operation.
 
 ## Proposed repository boundary

@@ -49,10 +49,10 @@ There is no application deployment. Publication means committing the reviewed so
 
 ## Search record
 
-This organization pass inspected the local Git history and the public GitHub metadata for `Yng314/MResProject`; no external `skills.sh` search was used. The remote currently points to the public `main` branch at commit `55cbb10`.
+This organization pass inspected the local Git history and the public GitHub metadata for `Yng314/MResProject`; no external `skills.sh` search was used. The public `main` branch now points to the cleanup commits ending at `cf504cb`.
 
 ## Completed and pending
 
 - Completed: separated the GPU Data checkout from the Bitbucket result archive in the repository policy; added ignore rules for external links, vendor copies, output trees, logs, and generated presentation directories; recorded the current classification and privacy review in `REPOSITORY_ORGANIZATION.md`.
-- Completed in this pass: prepared and pushed the 289-file source/protocol candidate as `5331f88`; kept the verbose job log and meeting/deck review material local for a separate decision.
-- Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts; then run the final review and push the safe candidate.
+- Completed in this pass: prepared and pushed the 289-file source/protocol candidate as `5331f88`; grouped 21 literature, meeting, and audit notes under ignored `NoiseRate/local_notes/` in `89fb6c8`; recorded the final cleanup state in `cf504cb`.
+- Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts. The safe current-tree boundary is already pushed; history rewriting remains a separate destructive operation.
