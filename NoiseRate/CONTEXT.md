@@ -1,3 +1,9 @@
+## 2026-10-07 — Public workspace snapshot
+
+当前正在做什么：实验项目的八路径源码整理已提交推送，完整 llmtest 工作区在同一公开仓库的独立 `llmtest-workspace` 分支发布，主分支继续保存实验项目。
+上次停在哪个位置：三个历史 Slurm 入口已随 `eb798b8` 发布，工作树与远端一致；工作区快照采用当前文件树并记录源提交，本次同步更新入口说明。
+近期的关键决定和原因：现有连接可推送文件但不能新建仓库或改可见性，因此使用已公开仓库的独立分支完成整个源码工作区公开，两个原仓库历史及所有本地数据保持不变。
+
 ## 2026-10-07 — Whole-workspace source publication
 
 当前正在做什么：按作者公开发布整个 llmtest 源码工作区的决定，将 MedSoul 三个原先被通配规则忽略的 Slurm 入口纳入 Git，并记录它们保留的旧路径。
@@ -44,8 +50,3 @@
 - 当前正在做什么：A16 serial job `278151` 正在 `gpuvm36` 依次运行 `13007/17011/19001/23003/27011/31013/37003`，结束后会在同一 allocation 内生成八-seed aggregate；当前已从 seed13007 正常开始且 stderr 为空。
 - 上次停在哪个位置：为释放全局第三张 GPU，刚启动约五分钟的 MIMIC seed123 job `278133` 已取消，已落盘 review checkpoint 保留；A30 seed42/97 继续运行。
 - 关键决定和原因：当前最高优先级是完整跑完 VinDr A16 multi-seed 与 aggregate；在 `278151` 完成前不恢复 MIMIC seed123、不提交剩余 MIMIC seeds 或任何新的 GPU 作业。单个连续 allocation 会跨 seeds 保持 A16，不给用户的其他作业留下插队窗口。
-
-## 2026-08-24 — A16 VinDr MobileNet pilot completed
-- 当前正在做什么：A16 job `278114` 已正常完成 seed11003 的五轮 VinDr MobileNet full-issue-pool pilot；当前没有任何 A16 后续作业排队。
-- 上次停在哪个位置：one-shot 后 known quality 为 `0.84653`，继续四轮后达到 `0.98583`；相对 one-shot，action/sentinel AUROC 分别增加 `0.02982/0.12457`，stderr 为空。
-- 关键决定和原因：七个剩余 seeds 的 array runner 已存在但尚未提交，因此当前只得到单 seed pilot；是否扩展需由用户明确决定，不与正在运行的 MIMIC A30 multi-seed 作业混淆。
