@@ -1,6 +1,6 @@
 # Repository organization audit
 
-Audit date: 2026-10-05
+Audit date: 2026-10-07
 Checkout: `/vol/gpudata/yz3522-llmtest/MResProject`
 Remote: `git@github-yng314:Yng314/MResProject.git` (`https://github.com/Yng314/MResProject`)
 Remote branch: `main` (local `HEAD` matched `origin/main` at the end of the audit)
@@ -12,7 +12,7 @@ The parent GPU Data checkout also contains separate repositories, `MResAIML_thes
 ## Current state
 
 - The GitHub repository is public.
-- The current public tree has 517 tracked paths after the allowlist push; its older history still contains artifacts that are not part of the new boundary.
+- The initial allowlist tree had 517 tracked paths; this cleanup stops tracking ten case-level files, leaving 507 paths. Older history still contains artifacts outside the current boundary.
 - At the start of the audit the local tree had two modified tracked files and 343 changed or untracked `NoiseRate` entries, plus two local output symlinks under `MedSoul`; after the new ignore rules and review split, the source/protocol candidate contains 289 files.
 - The local result links point to `/vol/bitbucket/yz3522/NoiseRate_results_archive`; the Bitbucket archive contains the large MIMIC-CXR, VinDr-CXR, MedSoul, Slurm, checkpoint, and presentation outputs.
 - The local checkout also contains a vendored DICOM/JPEG dependency under `NoiseRate/.vendor/`; this is an environment artifact, not project source.
@@ -37,7 +37,7 @@ The parent GPU Data checkout also contains separate repositories, `MResAIML_thes
 
 Several files already in the public remote tree contain patient-level or exam-level fields. Examples include the old top-5 LLM summary and meeting-follow-up tables with `subject_id`, `study_id`, `dicom_id`, image paths, and report text. A normal new commit can stop additional exposure, but it cannot erase those old blobs from public Git history.
 
-The current-tree files that need a privacy review first include:
+The identified case-level files include:
 
 - `NoiseRate/cxr_real_experiment/top5_llm_judgment_summary.csv`
 - `NoiseRate/cxr_real_experiment/meeting_followup_20260520/densenet_sample_issue_review_full.csv`
@@ -49,12 +49,20 @@ The current-tree files that need a privacy review first include:
 
 The top-5 summary, the two report-scan CSVs, the XRV baseline table, and the accompanying case notes are already in the remote history or current tracked tree. The two `densenet_sample_issue_review_*.csv` files are local material that the new ignore rules keep out of future commits.
 
-The safe sequence is:
+### Case-level exclusion on 2026-10-07
+
+The cleanup stops tracking the four CSVs above and six meeting drafts: `MRes_Meeting_20260604.md`, `noisy_sample_case_notes.md`, `supplemental_case_notes_20260603.md`, `weighted_and_entry_trend_script.md`, and the two corresponding draft copies in `ppt_bundle_20260528/`. Five drafts contain identifier-like values; the sixth (`weighted_and_entry_trend_script_local.md`) repeats report cases without their identifiers. The ten originals stay at the same paths and have hash-verified recovery copies under the parent workspace's `.repo_backups/`.
+
+The CSV filenames are generated outputs of the report scan and follow-up analysis. No executable input reference was found in the inspected Python, shell, JSON, YAML, and Markdown source search; references between the local meeting drafts remain valid. Aggregate CSVs, plotting source, experiment programs, and binary artifacts are unchanged. The meeting area's Git index contains no tracked PNG/JPG/PDF/PPTX/ZIP artifact.
+
+The ten originals are excluded from the resulting Git tree; earlier commits still contain them because history was not rewritten. The post-cleanup scan checked all 36 retained CSV headers and all tracked Markdown for identifier-like values, plus the meeting draft's repeated report cases; it does not certify every binary artifact or historical Git object.
+
+The publication sequence is:
 
 1. Freeze the candidate source/document allowlist.
-2. Remove patient-level files from the current tree and add redacted aggregate replacements only where needed.
+2. Stop tracking the identified patient-level files while retaining local originals and aggregate summaries.
 3. Run a secret/identifier scan and inspect the exact staged list. The source scan completed here with no private-key or hard-coded API-token match; code references to environment variables and dataset column names are expected and still require normal review.
-4. The safe current-tree commits are already pushed (`5331f88`, `89fb6c8`, `cf504cb`).
+4. Publish this ten-path exclusion separately from the earlier source/organization changes.
 5. Separately decide whether to rewrite the public history and coordinate that force-push; it is a destructive remote operation.
 
 ## Proposed repository boundary

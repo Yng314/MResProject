@@ -20,6 +20,8 @@ The working checkout is on GPU Data at:
 
 Some local result paths are symbolic links into the Bitbucket archive. They are intentionally ignored and must not be committed as links containing machine-specific paths.
 
+Four case-level CSVs and six meeting drafts listed explicitly in `.gitignore` are local-only. Git no longer tracks them, and the original files remain at their existing paths so local analysis can continue to read them. The meeting bundle's local-path draft repeats the report cases even though it omits their identifiers, so it follows the same boundary. Aggregate tables and plotting source remain tracked. Earlier public commits still contain the removed versions; this cleanup does not rewrite history.
+
 ## Main areas
 
 | Area | Role | GitHub status |
@@ -55,4 +57,5 @@ This organization pass inspected the local Git history and the public GitHub met
 
 - Completed: separated the GPU Data checkout from the Bitbucket result archive in the repository policy; added ignore rules for external links, vendor copies, output trees, logs, and generated presentation directories; recorded the current classification and privacy review in `REPOSITORY_ORGANIZATION.md`.
 - Completed in this pass: prepared and pushed the 289-file source/protocol candidate as `5331f88`; grouped 21 literature, meeting, and audit notes under ignored `NoiseRate/local_notes/` in `89fb6c8`; recorded and refreshed the cleanup documentation.
-- Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts. The safe current-tree boundary is already pushed; history rewriting remains a separate destructive operation.
+- Completed: ignore and stop tracking four case-level CSVs and six meeting drafts, retaining the originals and a hash-verified recovery copy.
+- Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts. Earlier commits still contain the previously published copies; history rewriting remains a separate operation.

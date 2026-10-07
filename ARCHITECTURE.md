@@ -31,6 +31,7 @@ The source checkout may expose selected archive folders through symbolic links f
 2. Keep datasets, checkpoints, raw review responses, patient-level tables, Slurm logs, and generated delivery packages outside the public repository.
 3. Keep the existing experiment paths stable for now. A path-wide refactor would break Slurm entrypoints and archived manifests; classification is therefore enforced first through documentation and ignore rules.
 4. Review every aggregate CSV or notebook before publication because a small file can still contain subject, study, DICOM, report, or image-path fields.
+5. Case-level tables and their meeting drafts remain at the original analysis paths without being Git inputs. The explicit ignore list and removal from Git tracking separate local availability from publication; no source entrypoint or aggregate table is removed.
 
 ## Verification boundary
 
