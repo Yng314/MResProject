@@ -22,6 +22,9 @@ wheels/
 *.egg
 
 *.sh
+!slurm_jobs/run_train_wsl.sh
+!slurm_jobs/run_estimate_noise_rate.sh
+!slurm_jobs/run_full_pipeline.sh
 *.err
 
 # Virtual Environment

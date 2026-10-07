@@ -9,6 +9,7 @@
 - `NoiseRate/cxr_toy_experiment/`: small known-truth experiments used to sanity-check noise-rate and DQS calculations.
 - `NoiseRate/utils/`, `NoiseRate/models/`, `NoiseRate/config/`, `NoiseRate/tests/`: reusable utilities, model definitions, configuration, and unit tests.
 - `MedSoul/`: earlier weakly supervised medical-image classification pipeline, including data preparation, training, evaluation, and API helpers.
+- `MedSoul/slurm_jobs/run_*.sh`: three historical cluster entrypoints for training, noise estimation and their combined pipeline; original script contents are preserved and their old paths need adaptation before execution.
 - `reference/`: research notes and exploratory notebooks.
 - `NoiseRate/local_notes/`: local-only literature, meeting, and audit notes grouped away from executable experiment code.
 - `/vol/bitbucket/yz3522/NoiseRate_results_archive`: cluster-side result store for checkpoints, run transactions, logs, large tables, and generated figures/decks.
@@ -32,6 +33,7 @@ The source checkout may expose selected archive folders through symbolic links f
 3. Keep the existing experiment paths stable for now. A path-wide refactor would break Slurm entrypoints and archived manifests; classification is therefore enforced first through documentation and ignore rules.
 4. Review every aggregate CSV or notebook before publication because a small file can still contain subject, study, DICOM, report, or image-path fields.
 5. Case-level tables and their meeting drafts remain at the original analysis paths without being Git inputs. The explicit ignore list and removal from Git tracking separate local availability from publication; no source entrypoint or aggregate table is removed.
+6. The parent `llmtest` repository records this repository as a submodule. This preserves its independent history and allows a recursive workspace clone without copying datasets or installed environments.
 
 ## Verification boundary
 

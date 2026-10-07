@@ -45,6 +45,8 @@ python -m pytest NoiseRate/tests
 
 GPU experiments are submitted from `NoiseRate/cxr_real_experiment/` with the relevant `run_*.sh` or `submit_*.sh` entrypoint. Those scripts expect cluster datasets and the external result archive; they are not local-only demos.
 
+The three historical `MedSoul/slurm_jobs/run_*.sh` entrypoints are also tracked. Their hard-coded project path predates the move into `MResProject/`; consult the Slurm README and adapt paths before using them. The workspace entrypoint is [Yng314/llmtest](https://github.com/Yng314/llmtest), which pins this repository alongside the thesis. Large-data locations and long-term storage recommendations are documented there.
+
 ## Deployment and publication
 
 There is no application deployment. Publication means committing the reviewed source/doc subset to `origin/main`. Before a push, check the candidate file list, scan for secrets and patient-level fields, run `git diff --check`, and verify that generated outputs and external symlinks are ignored.

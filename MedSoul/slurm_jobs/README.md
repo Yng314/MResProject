@@ -1,5 +1,10 @@
 # MedSoul Slurm 任务提交指南
 
+这三个脚本作为历史实验入口随源码保存。当前 checkout 位于
+`/vol/gpudata/yz3522-llmtest/MResProject/MedSoul`，脚本的 `PROJECT_DIR`
+及下文示例仍是整理前的路径；运行前需要按实际 checkout 调整路径、环境和队列。
+本次发布只恢复 Git 跟踪，没有修改脚本或提交新作业。
+
 ## 📁 文件结构
 
 ```

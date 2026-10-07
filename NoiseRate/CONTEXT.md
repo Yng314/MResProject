@@ -1,3 +1,9 @@
+## 2026-10-07 — Whole-workspace source publication
+
+当前正在做什么：按作者公开发布整个 llmtest 源码工作区的决定，将 MedSoul 三个原先被通配规则忽略的 Slurm 入口纳入 Git，并记录它们保留的旧路径。
+上次停在哪个位置：三个 shell 文件内容不变，新增源码及文档已准备作为本次普通提交发布；实验结果、数据集和本地病例文件继续留在原处，真实提交及远端核验由根工作区恢复记录保存。
+近期的关键决定和原因：根仓库用子模块连接实验与论文仓库以保留独立历史，公开源代码和汇总材料，外部大数据用位置清单记录，不改程序、不跑新作业、不重写历史。
+
 ## 2026-10-07 — Case-level publication boundary
 
 当前正在做什么：本次整理提交为 4 份病例级 CSV 和 6 份会议稿加入精确忽略规则并解除 Git 跟踪，原始文件仍在相同路径且有经过 SHA-256 核对的恢复副本。
@@ -43,8 +49,3 @@
 - 当前正在做什么：A16 job `278114` 已正常完成 seed11003 的五轮 VinDr MobileNet full-issue-pool pilot；当前没有任何 A16 后续作业排队。
 - 上次停在哪个位置：one-shot 后 known quality 为 `0.84653`，继续四轮后达到 `0.98583`；相对 one-shot，action/sentinel AUROC 分别增加 `0.02982/0.12457`，stderr 为空。
 - 关键决定和原因：七个剩余 seeds 的 array runner 已存在但尚未提交，因此当前只得到单 seed pilot；是否扩展需由用户明确决定，不与正在运行的 MIMIC A30 multi-seed 作业混淆。
-
-## 2026-08-24 — Seed13 completed; seed123 queued
-- 当前正在做什么：seed42/97 jobs `277707/277708` 继续在 `dipper` 运行；seed13 释放槽位后已提交 seed123 job `278133`，当前因资源排队，预计今天约 `20:18 BST` 启动。
-- 上次停在哪个位置：seed13 job `277538` 已正常完成全部八轮，stderr 为空；Loop8 study-weighted AUROC 为 `0.779444`，高于 matched baseline `0.728102`，累计 `14,801` relabel 和 `20,688` mask。
-- 关键决定和原因：继续按固定 seeds `42/97/123/314/2718` 滚动占用最多三张 A30；当前无 seed13 续跑需要，剩余 `314/2718` 待后续槽位释放时提交。
