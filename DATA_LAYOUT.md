@@ -16,9 +16,13 @@ Last checked: 2026-10-08. This is a location index, not a data-use approval.
 
 Imperial CSG describes `/vol/bitbucket` as temporary space for regenerable material and states it is not backed up. The CSG guide also warns against placing copyright-restricted material there. MIMIC-CXR requires credentialed access and a data-use agreement that prohibits sharing access to the data. Therefore the presence of MIMIC/REFLACX or their case-level derivatives in an existing folder does not by itself establish that Bitbucket is an approved archive destination. Confirm the permitted storage location with the supervisor or data administrator before moving or copying them.
 
+For long-term storage, use Imperial-maintained research storage after checking the project's data classification and provider terms. RCS storage and compute services such as RDS, RDF-Active, and HPC are intended for Public or Unrestricted data; sensitive or restricted work may need an approved secure environment such as BDAU Secure Environment or a Secure Enclave. Ask the supervisor/data owner and the relevant Imperial data-governance team to confirm the correct service for these specific datasets and derivatives. Until then, leave MIMIC/REFLACX and case-level outputs where they are. Keep regenerable, unrestricted scratch material on Bitbucket only with a separate backup if it must be retained.
+
 Do not put restricted source data, reports, case-level tables, or API review payloads in public GitHub. The repository ignores generated result files by default. A regular Git commit only updates the current tree; older public commits may still contain earlier versions.
 
 ## Related guidance
 
 - [Imperial CSG storage quota and Bitbucket guidance](https://www.imperial.ac.uk/computing/people/csg/guides/file-storage/quota/)
 - [PhysioNet MIMIC-CXR access and DUA](https://physionet.org/content/mimic-cxr/2.1.0/)
+- [Imperial Research Computing Service access and data-classification terms](https://www.imperial.ac.uk/admin-services/ict/self-service/research-support/rcs/get-access/)
+- [Imperial Secure Research Services](https://www.imperial.ac.uk/admin-services/ict/self-service/research-support/rcs/service-offering/secure-research-service/)
