@@ -1,63 +1,42 @@
 # MResProject
 
-This repository contains the source code and protocol documents for the MRes medical-image label-quality projects. The main active line is `NoiseRate`, which studies label-noise detection, selective review, and iterative refinement for chest X-ray labels. `MedSoul` is the earlier weakly supervised classification project retained for provenance.
+Research source code for chest X-ray label-noise analysis and weakly supervised classification. The repository contains programs, tests, configuration, protocols, and dependency manifests; generated experiment outputs and datasets are kept outside Git.
 
-## Repository boundary
+## Project areas
 
-GitHub stores source code, configuration, tests, protocol documents, and small aggregate summaries that do not contain patient-level records. Datasets, model checkpoints, Slurm logs, generated slide packages, result trees, external-API response tables, and local links to result archives stay outside GitHub.
+- `NoiseRate/` contains the active label-noise analysis tools, experiment drivers, evaluation code, tests, configuration, and research protocols.
+- `MedSoul/` contains the earlier weakly supervised classification pipeline and its own dependency manifest.
+- `reference/` contains lightweight method notes and source material.
 
-The large experiment archive is on the cluster at:
+The module relationships and data flow are described in [ARCHITECTURE.md](ARCHITECTURE.md). Current dataset and result locations, including items that still need storage approval, are listed in [DATA_LAYOUT.md](DATA_LAYOUT.md).
 
-```text
-/vol/bitbucket/yz3522/NoiseRate_results_archive
-```
+## Environments and local use
 
-The working checkout is on GPU Data at:
-
-```text
-/vol/gpudata/yz3522-llmtest/MResProject
-```
-
-Some local result paths are symbolic links into the Bitbucket archive. They are intentionally ignored and must not be committed as links containing machine-specific paths.
-
-Four case-level CSVs and six meeting drafts listed explicitly in `.gitignore` are local-only. Git no longer tracks them, and the original files remain at their existing paths so local analysis can continue to read them. The meeting bundle's local-path draft repeats the report cases even though it omits their identifiers, so it follows the same boundary. Aggregate tables and plotting source remain tracked. Earlier public commits still contain the removed versions; this cleanup does not rewrite history.
-
-## Main areas
-
-| Area | Role | GitHub status |
-| --- | --- | --- |
-| `NoiseRate/` | Current label-noise analysis implementation | Source, tests, protocols, and selected safe summaries |
-| `NoiseRate/cxr_real_experiment/` | MIMIC-CXR and VinDr experiment drivers, evaluators, and Slurm entrypoints | Scripts and protocol documents; generated results remain external |
-| `NoiseRate/cxr_toy_experiment/` | Small known-truth validation examples | Reproducible code and toy outputs only |
-| `NoiseRate/utils/`, `models/`, `config/`, `tests/` | Shared utilities, models, configuration, and tests | Tracked source |
-| `MedSoul/` | Earlier weakly supervised classification pipeline | Tracked source and documentation; data and outputs remain external |
-| `reference/` | Literature and exploratory notebooks | Review individually before publishing |
-| `NoiseRate/local_notes/` | Local literature, meeting, and audit notes | Kept on the cluster; only the directory README is public |
-
-## Local use
-
-Create an environment from the project requirements, then run the unit tests from `NoiseRate/`:
+No virtual environment, package cache, model weights, or vendored dependency is part of Git. `NoiseRate/requirements.txt` lists the Python packages used by the active research code. Install the PyTorch build appropriate for the machine first, then install the remaining requirements:
 
 ```bash
-cd /vol/gpudata/yz3522-llmtest/MResProject
+python -m pip install -r NoiseRate/requirements.txt
 python -m pytest NoiseRate/tests
 ```
 
-GPU experiments are submitted from `NoiseRate/cxr_real_experiment/` with the relevant `run_*.sh` or `submit_*.sh` entrypoint. Those scripts expect cluster datasets and the external result archive; they are not local-only demos.
+`MedSoul/requirements.txt` is retained for the earlier pipeline. Its environment can be prepared separately. GPU experiments run on the Imperial cluster and require authorized datasets plus writable output locations; they are not local demo commands.
 
-The three historical `MedSoul/slurm_jobs/run_*.sh` entrypoints are also tracked. Their hard-coded project path predates the move into `MResProject/`; consult the Slurm README and adapt paths before using them. The workspace entrypoint is [llmtest-workspace](https://github.com/Yng314/MResProject/tree/llmtest-workspace), which publishes a source snapshot of this repository alongside the thesis. Large-data locations and long-term storage recommendations are documented there.
+## Storage boundary
 
-## Deployment and publication
+GitHub is for source and lightweight reproducibility documents. Datasets, logs, predictions, result tables, checkpoints, generated figures, and presentation exports are excluded by `.gitignore`. See [DATA_LAYOUT.md](DATA_LAYOUT.md) before locating or moving research data. Bitbucket is not a backup service, and restricted datasets must only be placed on storage approved for their data-use terms.
 
-There is no application deployment. Publication means committing the reviewed source/doc subset to `origin/main`. Before a push, check the candidate file list, scan for secrets and patient-level fields, run `git diff --check`, and verify that generated outputs and external symlinks are ignored.
+## Deployment and checks
 
-## Search record
+There is no application deployment. Review an explicit file list before committing, then run:
 
-This organization pass inspected the local Git history and the public GitHub metadata for `Yng314/MResProject`; no external `skills.sh` search was used. The public `main` branch was checked against the local `HEAD` at the end of the pass.
+```bash
+git diff --check
+python -m pytest NoiseRate/tests
+```
 
-## Completed and pending
+The repository was inspected locally; no `skills.sh` search was needed. GitHub's public `main` branch and this checkout were compared during the repository-boundary audit.
 
-- Completed: separated the GPU Data checkout from the Bitbucket result archive in the repository policy; added ignore rules for external links, vendor copies, output trees, logs, and generated presentation directories; recorded the current classification and privacy review in `REPOSITORY_ORGANIZATION.md`.
-- Completed in this pass: prepared and pushed the 289-file source/protocol candidate as `5331f88`; grouped 21 literature, meeting, and audit notes under ignored `NoiseRate/local_notes/` in `89fb6c8`; recorded and refreshed the cleanup documentation.
-- Completed: ignore and stop tracking four case-level CSVs and six meeting drafts, retaining the originals and a hash-verified recovery copy.
-- Pending: decide whether the existing public history must be rewritten to remove already-published patient-level artifacts. Earlier commits still contain the previously published copies; history rewriting remains a separate operation.
+## Status
+
+- Completed: source, generated-output, environment, dataset, and external-storage boundaries are documented; current result artifacts are being excluded from the Git tree without deleting their local copies.
+- Pending: confirm an approved storage location for MIMIC-CXR/REFLACX and their restricted derivatives; decide separately whether to clean older public Git history, which contains prior versions of files now excluded from the current tree.

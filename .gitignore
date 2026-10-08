@@ -1,6 +1,10 @@
 # Local tooling and environments
 .agent/
 .conda/
+.venv/
+venv/
+env/
+ENV/
 
 # Data and generated training artifacts
 datasets/
@@ -41,8 +45,6 @@ NoiseRate/ASSIGNMENT.md
 NoiseRate/local_notes/*
 !NoiseRate/local_notes/
 !NoiseRate/local_notes/README.md
-!NoiseRate/cxr_toy_experiment/results_multilabel/
-!NoiseRate/cxr_toy_experiment/results_multilabel/**
 **/cache/
 *.pth
 *.pt
@@ -64,7 +66,34 @@ __pycache__/
 *.pyo
 *.pyd
 .ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+# Generated experiment outputs and temporary analysis artifacts stay outside Git.
+NoiseRate/**/*.csv
+NoiseRate/**/*.log
+NoiseRate/**/*.npy
+NoiseRate/**/*.xlsx
+NoiseRate/**/*.png
+NoiseRate/kfold_results/
+NoiseRate/kfold_results_*/
+NoiseRate/logs/
+NoiseRate/cxr_real_experiment/**/*.csv
+NoiseRate/cxr_real_experiment/**/*.xlsx
+NoiseRate/cxr_real_experiment/**/*.png
+NoiseRate/cxr_real_experiment/common12_compare_from_existing_runs.csv
+NoiseRate/toy_experiment/**/*.csv
+NoiseRate/toy_experiment/**/*.png
+NoiseRate/cxr_toy_experiment/results_multilabel/
+NoiseRate/label_value_distribution.png
+NoiseRate/gt_pseudo_comparison.png
+
+# Scratch/reference notebooks and exported conversation transcripts.
+/test.ipynb
+/reference/image_tagging.ipynb
+/transcript_*.json

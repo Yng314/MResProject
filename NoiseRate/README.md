@@ -2,6 +2,8 @@
 
 胸部X光多标签分类的标签噪声分析工具。
 
+> **Repository boundary:** install dependencies from `requirements.txt` after selecting a machine-appropriate PyTorch build. Generated CSV/Excel tables, logs, prediction arrays, figures, datasets, and checkpoints are not versioned; use approved external storage as recorded in the repository-level [`DATA_LAYOUT.md`](../DATA_LAYOUT.md). The historical output paths below describe program behavior and do not mean those outputs belong in Git.
+
 ## 📁 文件结构
 
 ```

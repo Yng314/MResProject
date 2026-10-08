@@ -1,3 +1,8 @@
+## 2026-10-08 — Source-only Git cleanup
+- 当前正在做什么：已将 `MResProject/main` 的 99 份结果/临时文件从 Git index 排除，补齐 NoiseRate requirements 与数据位置索引，并保留无执行输出的 toy Notebook 源码。
+- 上次停在哪个位置：所有被解除跟踪的原件仍在 GPU Data 原路径，SHA-256 已逐个验证；完整 Notebook 副本和路径哈希表存于父工作区的 `.repo_backups/MResProject_cleanup_20261008/`。
+- 关键决定和原因：不删除文件；在 Imperial/PhysioNet 存储许可确认前不新复制 MIMIC/REFLACX 或病例级派生结果，Bitbucket 仅记录为现有临时结果位置。
+
 ## 2026-10-07 — Public workspace snapshot
 
 当前正在做什么：实验项目的八路径源码整理已提交推送，完整 llmtest 工作区在同一公开仓库的独立 `llmtest-workspace` 分支发布，主分支继续保存实验项目。
@@ -45,8 +50,3 @@
 - 当前正在做什么：已复用 `20260805_v1` 中 24 组已完成 VinDr-CXR MobileNet OOF evidence，在 CPU 上复算四个已知质量状态及四类固定干预的 raw／coverage-adjusted DQS，并生成论文 Figure 5.3 与机器可读 CSV／QA。
 - 上次停在哪个位置：六 seed、18,000 entries、五个 720-entry 累积步骤均通过输入、join、方向性和独立数字审计；未重新训练模型、未占用 GPU，也未修改 archive。
 - 关键决定和原因：将 DQS 解释为 model-dependent trend indicator；count-matched pseudo-random removal 使用固定 SHA-256 顺序，使控制 cohort 在 paired seeds 间一致且不依赖真值或 OOF 分数。
-
-## 2026-08-24 — Seven remaining VinDr MobileNet seeds started on A16
-- 当前正在做什么：A16 serial job `278151` 正在 `gpuvm36` 依次运行 `13007/17011/19001/23003/27011/31013/37003`，结束后会在同一 allocation 内生成八-seed aggregate；当前已从 seed13007 正常开始且 stderr 为空。
-- 上次停在哪个位置：为释放全局第三张 GPU，刚启动约五分钟的 MIMIC seed123 job `278133` 已取消，已落盘 review checkpoint 保留；A30 seed42/97 继续运行。
-- 关键决定和原因：当前最高优先级是完整跑完 VinDr A16 multi-seed 与 aggregate；在 `278151` 完成前不恢复 MIMIC seed123、不提交剩余 MIMIC seeds 或任何新的 GPU 作业。单个连续 allocation 会跨 seeds 保持 A16，不给用户的其他作业留下插队窗口。
