@@ -1,7 +1,7 @@
 ## 2026-10-08 — Source-only Git cleanup
-- 当前正在做什么：源码边界清理已推送到 `MResProject/main`；99 份结果/临时文件退出当前 Git 树，15 份合成 toy CSV/PNG 已复制到 Bitbucket 并逐文件验 hash。
-- 上次停在哪个位置：远端双分支镜像备份已保存在父工作区 `.repo_backups/MResProject_remote_before_rewrite_20261008.git`；现正准备重写 `main` 历史并删除旧工作区分支。
-- 关键决定和原因：按用户授权清理旧病例级文件历史并删除 `llmtest-workspace` 分支；MIMIC/REFLACX 原始数据和临床派生结果仍须使用获准存储，不因用户要求忽略限制而迁移。
+- 当前正在做什么：轻量源码边界已推送到 `MResProject/main`；99 份结果/临时文件不在当前 Git 树，15 份合成 toy CSV/PNG 已复制到 Bitbucket 并逐文件验 hash。
+- 上次停在哪个位置：`main` 历史重写完成于 `2c337ce`，111 个核查路径已从历史移除；远端只剩 `main`，旧 `llmtest-workspace` 分支已删除，重写前镜像保存在父工作区 `.repo_backups/MResProject_remote_before_rewrite_20261008.git`。
+- 关键决定和原因：保留所有本地原件；仅迁移已确认可存放的合成结果，MIMIC/REFLACX 原始数据和临床派生结果仍须使用获准存储。
 
 ## 2026-10-07 — Public workspace snapshot
 

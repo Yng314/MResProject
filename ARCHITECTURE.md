@@ -27,7 +27,7 @@ Git contains source, tests, configuration, dependency manifests, and lightweight
 2. Keep dependency declarations in `NoiseRate/requirements.txt` and `MedSoul/requirements.txt`; install a machine-appropriate PyTorch build separately before installing the listed packages.
 3. Preserve established experiment paths until their consumers and archived run manifests have been checked. This cleanup changes Git tracking rules, not experiment code or result paths.
 4. Treat dataset movement as a separate storage decision. MIMIC-CXR and REFLACX are not copied by this cleanup; consult their access terms and Imperial storage guidance first.
-5. A normal commit changes the current Git tree only. It does not remove previous public Git objects; history rewriting requires a separate decision.
+5. Current-tree cleanup and historical cleanup are separate. On 2026-10-08, the public `main` history was rewritten to remove 111 reviewed paths and the obsolete `llmtest-workspace` branch was deleted. Existing clones or forks may retain earlier copies.
 
 ## Verification
 

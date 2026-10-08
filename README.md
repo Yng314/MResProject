@@ -39,4 +39,5 @@ The repository was inspected locally; no `skills.sh` search was needed. GitHub's
 ## Status
 
 - Completed: source, generated-output, environment, dataset, and external-storage boundaries are documented; generated artifacts are excluded from the Git tree while their local copies remain.
-- Pending: confirm an approved storage location for MIMIC-CXR/REFLACX and their restricted derivatives; decide separately whether to clean older public Git history, which contains prior versions of files now excluded from the current tree.
+- Completed: on 2026-10-08, the public `main` history was rewritten to remove 111 reviewed generated, scratch, and selected case-level paths; the obsolete `llmtest-workspace` branch was deleted. The current `main` tree was unchanged by the rewrite.
+- Pending: confirm an approved storage location for MIMIC-CXR/REFLACX and their restricted derivatives. Rewriting GitHub does not remove copies already present in other people's clones, forks, or independent caches.
