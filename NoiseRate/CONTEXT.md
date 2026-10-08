@@ -1,6 +1,6 @@
 ## 2026-10-08 — Source-only Git cleanup
-- 当前正在做什么：已将 `MResProject/main` 的 99 份结果/临时文件从 Git index 排除，补齐 NoiseRate requirements 与数据位置索引，并保留无执行输出的 toy Notebook 源码。
-- 上次停在哪个位置：所有被解除跟踪的原件仍在 GPU Data 原路径，SHA-256 已逐个验证；完整 Notebook 副本和路径哈希表存于父工作区的 `.repo_backups/MResProject_cleanup_20261008/`。
+- 当前正在做什么：源码边界清理已以 `d8f4e04` 推送到 `MResProject/main`；99 份结果/临时文件从当前 Git 树排除，NoiseRate requirements、数据位置索引和无执行输出的 toy Notebook 源码已就绪。
+- 上次停在哪个位置：推送后 `HEAD` 与 `origin/main` 一致且工作树干净；被解除跟踪的原件仍在 GPU Data 原路径并通过 SHA-256 核验，完整 Notebook 副本和路径哈希表在父工作区 `.repo_backups/MResProject_cleanup_20261008/`。
 - 关键决定和原因：不删除文件；在 Imperial/PhysioNet 存储许可确认前不新复制 MIMIC/REFLACX 或病例级派生结果，Bitbucket 仅记录为现有临时结果位置。
 
 ## 2026-10-07 — Public workspace snapshot

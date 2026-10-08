@@ -38,5 +38,5 @@ The repository was inspected locally; no `skills.sh` search was needed. GitHub's
 
 ## Status
 
-- Completed: source, generated-output, environment, dataset, and external-storage boundaries are documented; current result artifacts are being excluded from the Git tree without deleting their local copies.
+- Completed: source, generated-output, environment, dataset, and external-storage boundaries are documented; generated artifacts are excluded from the Git tree while their local copies remain.
 - Pending: confirm an approved storage location for MIMIC-CXR/REFLACX and their restricted derivatives; decide separately whether to clean older public Git history, which contains prior versions of files now excluded from the current tree.

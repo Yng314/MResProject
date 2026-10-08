@@ -34,4 +34,4 @@ This audit targets `main` only. The separate public `llmtest-workspace` branch i
 
 ## Validation
 
-The staged allowlist is reviewed before publication. Checks include `git diff --check`, notebook JSON validation, Python source parsing, repository tests where the installed environment permits them, and a post-push comparison of local `HEAD` with `origin/main`. Existing local files are verified to remain present after index-only removals.
+The staged allowlist was checked before publication. `git diff --check`, notebook JSON validation, 176 Python-file parses, and `bash -n` on 154 shell files passed. The full pytest run cannot collect `test_xrv_utils.py` because this machine has no `torch`; excluding that file gives 4 passes and 1 pre-existing failure because `validate_cleanlab_format()` returns `None` after reporting success. No test or experiment code changed. Commit `d8f4e04` was pushed, then `HEAD` and `origin/main` matched and the worktree was clean. All 99 index-removed files remain locally and match their saved SHA-256 values.
