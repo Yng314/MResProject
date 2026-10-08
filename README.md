@@ -40,4 +40,5 @@ The repository was inspected locally; no `skills.sh` search was needed. GitHub's
 
 - Completed: source, generated-output, environment, dataset, and external-storage boundaries are documented; generated artifacts are excluded from the Git tree while their local copies remain.
 - Completed: on 2026-10-08, the public `main` history was rewritten to remove 111 reviewed generated, scratch, and selected case-level paths; the obsolete `llmtest-workspace` branch was deleted. The current `main` tree was unchanged by the rewrite.
-- Pending: confirm an approved storage location for MIMIC-CXR/REFLACX and their restricted derivatives. Rewriting GitHub does not remove copies already present in other people's clones, forks, or independent caches.
+- Completed: on 2026-10-08, MIMIC-CXR-JPG and REFLACX working data were copied outside Git to `/vol/bitbucket/yz3522/datasets/MResProject/MedSoul/datasets/` (6.03G reported); the GPU Data source was retained. The user reports supervisor approval. See [DATA_LAYOUT.md](DATA_LAYOUT.md) and the transfer manifest on Bitbucket.
+- Note: Bitbucket is temporary storage and is not a backup. Rewriting GitHub does not remove copies already present in other people's clones, forks, or independent caches.

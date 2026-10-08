@@ -13,8 +13,9 @@ The `main` branch is the lightweight source repository. It keeps Python and shel
 - Stopped tracking 99 generated or scratch files: 36 CSVs, 48 logs, two OOF arrays, one Excel workbook, nine PNGs, two scratch/reference notebooks, and one exported transcript.
 - Kept every original file at its existing GPU Data path. The full output-bearing toy notebook was copied to the parent workspace's ignored `.repo_backups/MResProject_cleanup_20261008/` before its generated cell outputs were cleared; the notebook's code remains tracked.
 - Copied 15 synthetic known-truth toy CSV/PNG outputs to `/vol/bitbucket/yz3522/NoiseRate_results_archive/repo_artifacts/toy_synthetic_20261008/` and verified every copy by SHA-256; the destination includes a path/hash manifest.
+- Copied the MIMIC-CXR-JPG and REFLACX working datasets (6.03G reported by rsync) to `/vol/bitbucket/yz3522/datasets/MResProject/MedSoul/datasets/`; rsync completed successfully, representative SHA-256 checks matched, and the GPU Data originals were retained. The user reports supervisor approval. A transfer record is at `/vol/bitbucket/yz3522/datasets/MResProject/TRANSFER_MANIFEST.md`.
 - Added generated-artifact ignore rules and a `NoiseRate/requirements.txt` dependency manifest. No virtual environment was added.
-- Did not copy MIMIC-CXR/REFLACX data or their derived experiment outputs to Bitbucket. Their permitted storage location still needs confirmation; see [DATA_LAYOUT.md](DATA_LAYOUT.md).
+- Other experiment results remain outside Git in the archive paths listed in [DATA_LAYOUT.md](DATA_LAYOUT.md); this transfer did not delete or relocate the GPU Data originals.
 
 ## Current classification
 
@@ -25,7 +26,7 @@ The `main` branch is the lightweight source repository. It keeps Python and shel
 | Dataset files, predictions, result tables, logs, plots, checkpoints | Ignore; retain originals outside Git |
 | Scratch/reference notebooks and transcripts | Ignore; retain originals locally |
 | Virtual environments, caches, vendored packages, external symlinks | Ignore |
-| MIMIC-CXR and REFLACX source data | Keep in the current local dataset directory until an approved storage destination is established |
+| MIMIC-CXR-JPG and REFLACX source data | Store outside Git at the Bitbucket project path listed in `DATA_LAYOUT.md`; retain the GPU Data source copy |
 
 ## Known history and branch scope
 
