@@ -8,7 +8,8 @@ Last checked: 2026-10-08. This is a location index, not a data-use approval.
 | VinDr-CXR working data | `/vol/bitbucket/yz3522/datasets/vindr-cxr` | Outside Git | Existing location; Bitbucket is temporary storage and is not backed up. |
 | Large NoiseRate and MedSoul experiment archive | `/vol/bitbucket/yz3522/NoiseRate_results_archive` | Outside Git | Contains experiment outputs, logs, checkpoints, and generated materials. It is not a backup copy. |
 | MedSoul outputs and Slurm logs | `MResProject/MedSoul/outputs/` and `MResProject/MedSoul/slurm_logs/` | Ignored symlinks to the archive above | Local links resolve into the `MedSoul/` subtree of the archive. |
-| Small legacy outputs removed from Git in this pass | Existing `NoiseRate/` paths in the GPU Data checkout | Ignored; originals remain at those paths | Their current archival copies have not been individually verified. This pass did not duplicate them to Bitbucket while storage permission is unresolved. |
+| Synthetic known-truth toy outputs | `/vol/bitbucket/yz3522/NoiseRate_results_archive/repo_artifacts/toy_synthetic_20261008/` | Outside Git | 15 CSV/PNG files copied and SHA-256 checked; `MANIFEST.tsv` records the mapping. These outputs are regenerable and contain synthetic data. |
+| Other small legacy outputs removed from Git | Existing `NoiseRate/` paths in the GPU Data checkout | Ignored; originals remain at those paths | Their archive copies have not been individually verified. MIMIC/REFLACX-derived materials were not copied while their storage status remains unresolved. |
 | Python environments, caches, vendored packages | Local workspace paths | Ignored; not in Git | Recreate from `NoiseRate/requirements.txt` or `MedSoul/requirements.txt`; install a platform-specific PyTorch build separately. |
 
 ## Storage boundary

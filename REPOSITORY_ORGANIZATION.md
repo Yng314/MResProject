@@ -12,8 +12,9 @@ The `main` branch is the lightweight source repository. It keeps Python and shel
 
 - Stopped tracking 99 generated or scratch files: 36 CSVs, 48 logs, two OOF arrays, one Excel workbook, nine PNGs, two scratch/reference notebooks, and one exported transcript.
 - Kept every original file at its existing GPU Data path. The full output-bearing toy notebook was copied to the parent workspace's ignored `.repo_backups/MResProject_cleanup_20261008/` before its generated cell outputs were cleared; the notebook's code remains tracked.
+- Copied 15 synthetic known-truth toy CSV/PNG outputs to `/vol/bitbucket/yz3522/NoiseRate_results_archive/repo_artifacts/toy_synthetic_20261008/` and verified every copy by SHA-256; the destination includes a path/hash manifest.
 - Added generated-artifact ignore rules and a `NoiseRate/requirements.txt` dependency manifest. No virtual environment was added.
-- Did not copy MIMIC-CXR/REFLACX data or their case-level derivatives to Bitbucket. Their permitted storage location still needs confirmation; see [DATA_LAYOUT.md](DATA_LAYOUT.md).
+- Did not copy MIMIC-CXR/REFLACX data or their derived experiment outputs to Bitbucket. Their permitted storage location still needs confirmation; see [DATA_LAYOUT.md](DATA_LAYOUT.md).
 
 ## Current classification
 

@@ -1,7 +1,7 @@
 ## 2026-10-08 — Source-only Git cleanup
-- 当前正在做什么：源码边界清理已以 `d8f4e04` 推送到 `MResProject/main`；99 份结果/临时文件从当前 Git 树排除，NoiseRate requirements、数据位置索引和无执行输出的 toy Notebook 源码已就绪。
-- 上次停在哪个位置：推送后 `HEAD` 与 `origin/main` 一致且工作树干净；被解除跟踪的原件仍在 GPU Data 原路径并通过 SHA-256 核验，完整 Notebook 副本和路径哈希表在父工作区 `.repo_backups/MResProject_cleanup_20261008/`。
-- 关键决定和原因：不删除文件；在 Imperial/PhysioNet 存储许可确认前不新复制 MIMIC/REFLACX 或病例级派生结果，Bitbucket 仅记录为现有临时结果位置。
+- 当前正在做什么：源码边界清理已推送到 `MResProject/main`；99 份结果/临时文件退出当前 Git 树，15 份合成 toy CSV/PNG 已复制到 Bitbucket 并逐文件验 hash。
+- 上次停在哪个位置：远端双分支镜像备份已保存在父工作区 `.repo_backups/MResProject_remote_before_rewrite_20261008.git`；现正准备重写 `main` 历史并删除旧工作区分支。
+- 关键决定和原因：按用户授权清理旧病例级文件历史并删除 `llmtest-workspace` 分支；MIMIC/REFLACX 原始数据和临床派生结果仍须使用获准存储，不因用户要求忽略限制而迁移。
 
 ## 2026-10-07 — Public workspace snapshot
 
